@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants.dart';
+import 'package:per_note/config/theme.dart';
 import 'text_field_container.dart';
 
 class RoundedInputField extends StatelessWidget {
@@ -9,7 +9,7 @@ class RoundedInputField extends StatelessWidget {
   const RoundedInputField({
     Key? key,
     required this.hintText,
-    this.icon = Icons.person,
+    this.icon = Icons.phone,
     required this.onChanged,
   }) : super(key: key);
 

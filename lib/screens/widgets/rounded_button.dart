@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../constants.dart';
+import 'package:per_note/config/theme.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
-  final Function press;
+  final Function onPressed;
   final Color color, textColor;
   const RoundedButton({
     Key? key,
     required this.text,
-    required this.press,
+    required this.onPressed,
     this.color = kPrimaryColor,
     this.textColor = Colors.white,
   }) : super(key: key);
@@ -28,9 +28,9 @@ class RoundedButton extends StatelessWidget {
           ),
           child: Text(
             text,
-            style: TextStyle(color: textColor),
+            style: TextStyle(color: textColor, fontSize: 18),
           ),
-          onPressed: press(),
+          onPressed: onPressed(),
         ),
       ),
     );

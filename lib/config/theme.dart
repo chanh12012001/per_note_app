@@ -6,3 +6,6 @@ ThemeData theme() {
     fontFamily: 'San Francisco',
   );
 }
+
+const kPrimaryColor = Color.fromARGB(255, 157, 83, 231);
+const kPrimaryLightColor = Color(0xFFF1E6FF);
