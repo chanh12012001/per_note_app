@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:per_note/config/theme.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
-  final bool login;
+  final String textLeft;
+  final String textRight;
   final Function onTap;
   const AlreadyHaveAnAccountCheck({
     Key? key,
-    this.login = true,
+    required this.textLeft,
+    required this.textRight,
     required this.onTap,
   }) : super(key: key);
 
@@ -16,13 +18,15 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          login ? "Bạn chưa có tài khoản ? " : "Bạn đã có tài khoản ? ",
+          textLeft,
           style: const TextStyle(color: kPrimaryColor, fontSize: 16),
         ),
         GestureDetector(
-          onTap: onTap(),
+          onTap: () {
+            onTap();
+          },
           child: Text(
-            login ? "Đăng kí" : "Đăng nhập",
+            textRight,
             style: const TextStyle(
               color: kPrimaryColor,
               fontWeight: FontWeight.bold,

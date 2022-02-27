@@ -1,5 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:per_note/screens/screens.dart';
+import '../models/user_model.dart';
+import '../preferences/user_preference.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = '/splash';
@@ -28,12 +31,18 @@ class _SplashScreenState extends State<SplashScreen>
     curve: Curves.fastOutSlowIn,
   );
 
+  Future<User> getUserData() => UserPreferences().getUser();
+
   @override
   void initState() {
     Timer(
       const Duration(seconds: 4),
       () => {
-        Navigator.pushReplacementNamed(context, '/login'),
+        getUserData().then((value) => value.token == null
+            ? Navigator.pushNamedAndRemoveUntil(
+                context, LoginScreen.routeName, (route) => false)
+            : Navigator.pushNamedAndRemoveUntil(
+                context, HomeScreen.routeName, (route) => false)),
       },
     );
 

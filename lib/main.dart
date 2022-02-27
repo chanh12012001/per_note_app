@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:per_note/providers/auth_provider.dart';
+import 'package:per_note/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 import 'config/app_router.dart';
 import 'config/theme.dart';
 import 'screens/screens.dart';
@@ -12,12 +15,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Personal Notebook',
-      theme: theme(),
-      onGenerateRoute: AppRouter.onGenerateRoute,
-      initialRoute: SplashScreen.routeName,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Personal Notebook',
+        theme: theme(),
+        onGenerateRoute: AppRouter.onGenerateRoute,
+        initialRoute: SplashScreen.routeName,
+      ),
     );
   }
 }
