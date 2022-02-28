@@ -5,7 +5,7 @@ class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case SplashScreen.routeName:
-        return SplashScreen.route();
+        return FinancialScreen.route();
       case LoginScreen.routeName:
         return LoginScreen.route();
       default:

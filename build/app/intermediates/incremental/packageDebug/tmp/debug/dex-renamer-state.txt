@@ -1,0 +1,4 @@
+#Mon Feb 28 13:09:44 ICT 2022
+base.0=D\:\\HK2Nam3\\per_note_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
