@@ -18,6 +18,10 @@ class AppRouter {
         return InputPasswordScreen.route();
       case ForgotPasswordScreen.routeName:
         return ForgotPasswordScreen.route();
+      case ScheduleScreen.routeName:
+        return ScheduleScreen.route();
+      case FinancialScreen.routeName:
+        return FinancialScreen.route();
       default:
         return _errorRoute();
     }

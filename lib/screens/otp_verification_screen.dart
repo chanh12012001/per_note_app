@@ -130,6 +130,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
             auth.verifyOtpStatus == Status.verifyingOTP
                 ? const ColorLoader()
                 : RoundedButton(
+                    width: 0.8,
                     text: 'XÁC THỰC',
                     onPressed: () {
                       // Navigator.pushNamedAndRemoveUntil(context,

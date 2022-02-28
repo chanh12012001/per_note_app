@@ -128,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
               auth.loggedInStatus == Status.authenticating
                   ? const ColorLoader()
                   : RoundedButton(
+                      width: 0.8,
                       text: "ĐĂNG NHẬP",
                       onPressed: () {
                         _login(phoneController.text, passwordController.text);

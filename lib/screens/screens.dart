@@ -5,3 +5,5 @@ export 'register_screen.dart';
 export 'otp_verification_screen.dart';
 export 'input_password_screen.dart';
 export 'forgot_password_screen.dart';
+export 'schedule_screen.dart';
+export 'financial_manage_screen.dart';

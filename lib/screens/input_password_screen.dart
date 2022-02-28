@@ -135,6 +135,7 @@ class _InputPasswordScreenState extends State<InputPasswordScreen> {
             auth.registeredStatus == Status.registering
                 ? const ColorLoader()
                 : RoundedButton(
+                    width: 0.8,
                     text: "TIẾP TỤC",
                     onPressed: () {
                       _register(_passwordController.text,

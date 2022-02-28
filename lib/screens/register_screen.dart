@@ -126,6 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             auth.sentOtpStatus == Status.sendingOtp
                 ? const ColorLoader()
                 : RoundedButton(
+                    width: 0.8,
                     text: 'TIẾP TỤC',
                     onPressed: () {
                       _createNewOtp(phoneController.text);

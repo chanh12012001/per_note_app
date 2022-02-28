@@ -133,6 +133,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             auth.sentOtpStatus == Status.sendingOtp
                 ? const ColorLoader()
                 : RoundedButton(
+                    width: 0.8,
                     text: 'TIẾP TỤC',
                     onPressed: () {
                       _forgotPassword(_phoneController.text);
