@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:per_note/config/theme.dart';
 import 'package:per_note/screens/screens.dart';
+import 'package:per_note/services/toast_service.dart';
 import 'package:provider/provider.dart';
 import '../models/user_model.dart';
 import '../providers/auth_provider.dart';
@@ -28,14 +28,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
-  FToast fToast = FToast();
-
-  @override
-  void initState() {
-    super.initState();
-    fToast = FToast();
-    fToast.init(context);
-  }
+  ToastService toast = ToastService();
 
   @override
   Widget build(BuildContext context) {
@@ -46,24 +39,18 @@ class _LoginScreenState extends State<LoginScreen> {
       String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
       RegExp regExp = RegExp(pattern);
       if (phone == '' || pass == '') {
-        fToast.showToast(
-          child: const toast.Toast(
-            icon: Icons.error,
-            color: Colors.redAccent,
-            message: 'Vui lòng nhập đầy đủ thông tin',
-          ),
-          gravity: ToastGravity.BOTTOM,
-          toastDuration: const Duration(seconds: 2),
+        toast.showToast(
+          context: context,
+          message: 'Vui lòng nhập đầy đủ thông tin',
+          icon: Icons.error,
+          backgroundColor: Colors.redAccent,
         );
       } else if (!regExp.hasMatch(phone)) {
-        fToast.showToast(
-          child: const toast.Toast(
-            icon: Icons.error,
-            color: Colors.redAccent,
-            message: 'Số điện thoại không đúng định dạng',
-          ),
-          gravity: ToastGravity.BOTTOM,
-          toastDuration: const Duration(seconds: 2),
+        toast.showToast(
+          context: context,
+          message: 'Số điện thoại không đúng định dạng',
+          icon: Icons.error,
+          backgroundColor: Colors.redAccent,
         );
       } else {
         final Future<Map<String, dynamic>> successfulMessage =
@@ -75,24 +62,18 @@ class _LoginScreenState extends State<LoginScreen> {
             Provider.of<UserProvider>(context, listen: false).setUser(user);
             Navigator.pushNamedAndRemoveUntil(
                 context, HomeScreen.routeName, (route) => false);
-            fToast.showToast(
-              child: const toast.Toast(
-                icon: Icons.check,
-                color: Colors.green,
-                message: 'Đăng nhập thành công',
-              ),
-              gravity: ToastGravity.BOTTOM,
-              toastDuration: const Duration(seconds: 2),
+            toast.showToast(
+              context: context,
+              message: 'Đăng nhập thành công',
+              icon: Icons.check,
+              backgroundColor: Colors.green,
             );
           } else {
-            fToast.showToast(
-              child: const toast.Toast(
-                icon: Icons.error,
-                color: Colors.redAccent,
-                message: 'SĐT hoặc Mật khẩu không chính xác',
-              ),
-              gravity: ToastGravity.BOTTOM,
-              toastDuration: const Duration(seconds: 2),
+            toast.showToast(
+              context: context,
+              message: 'SĐT hoặc Mật khẩu không chính xác',
+              icon: Icons.error,
+              backgroundColor: Colors.redAccent,
             );
           }
         });

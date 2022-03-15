@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:per_note/providers/auth_provider.dart';
 import 'package:per_note/screens/screens.dart';
 import 'package:per_note/screens/widgets/widgets.dart';
+import 'package:per_note/services/toast_service.dart';
 import 'package:provider/provider.dart';
 import '../config/theme.dart';
-import 'widgets/toast.dart' as toast;
 
 class ForgotPasswordScreen extends StatefulWidget {
   static const String routeName = '/forgot-password';
@@ -24,13 +23,11 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  FToast fToast = FToast();
+  ToastService toast = ToastService();
 
   @override
   void initState() {
     super.initState();
-    fToast = FToast();
-    fToast.init(context);
   }
 
   @override
@@ -44,24 +41,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       RegExp regExp = RegExp(pattern);
 
       if (phoneNumber == '') {
-        fToast.showToast(
-          child: const toast.Toast(
-            icon: Icons.error,
-            color: Colors.redAccent,
-            message: 'Vui lòng nhập số điện thoại để tiếp tục',
-          ),
-          gravity: ToastGravity.BOTTOM,
-          toastDuration: const Duration(seconds: 2),
+        toast.showToast(
+          context: context,
+          message: 'Vui lòng nhập số điện thoại để tiếp tục',
+          icon: Icons.error,
+          backgroundColor: Colors.redAccent,
         );
       } else if (!regExp.hasMatch(phoneNumber)) {
-        fToast.showToast(
-          child: const toast.Toast(
-            icon: Icons.error,
-            color: Colors.redAccent,
-            message: 'Số điện thoại không đúng định dạng',
-          ),
-          gravity: ToastGravity.BOTTOM,
-          toastDuration: const Duration(seconds: 2),
+        toast.showToast(
+          context: context,
+          message: 'Số điện thoại không đúng định dạng',
+          icon: Icons.error,
+          backgroundColor: Colors.redAccent,
         );
       } else {
         final Future<Map<String, dynamic>> successfulMessage =
@@ -71,24 +62,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           (response) {
             if (response['status']) {
               Navigator.pushNamed(context, LoginScreen.routeName);
-              fToast.showToast(
-                child: toast.Toast(
-                  icon: Icons.check,
-                  color: Colors.green,
-                  message: 'Mật khẩu mới đã được gửi đến $phoneNumber',
-                ),
-                gravity: ToastGravity.BOTTOM,
-                toastDuration: const Duration(seconds: 3),
+              toast.showToast(
+                context: context,
+                message: 'Mật khẩu mới đã được gửi đến $phoneNumber',
+                icon: Icons.check,
+                backgroundColor: Colors.green,
               );
             } else {
-              fToast.showToast(
-                child: toast.Toast(
-                  icon: Icons.error,
-                  color: Colors.redAccent,
-                  message: response['message'],
-                ),
-                gravity: ToastGravity.BOTTOM,
-                toastDuration: const Duration(seconds: 2),
+              toast.showToast(
+                context: context,
+                message: response['message'],
+                icon: Icons.error,
+                backgroundColor: Colors.redAccent,
               );
             }
           },

@@ -1,16 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:per_note/screens/home_screen.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:per_note/models/task_model.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  BuildContext? context;
-
-  initializeNotification() async {
-    //tz.initializeTimeZones();
+  initializeNotification(Function selectNotification) async {
+    _configureLocalTimezone();
     final IOSInitializationSettings initializationSettingsIOS =
         IOSInitializationSettings(
       requestSoundPermission: false,
@@ -27,10 +27,10 @@ class NotificationService {
       iOS: initializationSettingsIOS,
       android: initializationSettingsAndroid,
     );
-    await flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
-      onSelectNotification: selectNotification,
-    );
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: (payload) async {
+      selectNotification(payload);
+    });
   }
 
   displayNotification({required String title, required String body}) async {
@@ -54,6 +54,47 @@ class NotificationService {
     );
   }
 
+  scheduledNotification(int hour, int minutes, Task task) async {
+    debugPrint(task.id);
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      createIdNotification(task.id!),
+      task.title,
+      task.note,
+      _convertTime(hour, minutes, task.repeat!),
+      const NotificationDetails(
+          android: AndroidNotificationDetails(
+              'your channel id', 'your channel name',
+              channelDescription: 'your channel description')),
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: DateTimeComponents.time,
+      payload: "${task.title}|${task.note}|${task.startTime}|${task.endTime}",
+    );
+  }
+
+  tz.TZDateTime _convertTime(int hour, int minutes, String repeat) {
+    final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    tz.TZDateTime scheduleDate =
+        tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minutes);
+    if (scheduleDate.isBefore(now)) {
+      if (repeat == 'None') {
+        scheduleDate = scheduleDate;
+      } else if (repeat == 'Ngày') {
+        scheduleDate = scheduleDate.add(const Duration(days: 1));
+      } else {
+        scheduleDate = scheduleDate.add(const Duration(days: 7));
+      }
+    }
+    return scheduleDate;
+  }
+
+  Future<void> _configureLocalTimezone() async {
+    tz.initializeTimeZones();
+    final String timeZone = await FlutterNativeTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(timeZone));
+  }
+
   void requestIOSPermissions() {
     flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
@@ -68,37 +109,19 @@ class NotificationService {
   Future onDidReceiveLocalNotification(
       int id, String? title, String? body, String? payload) async {
     // display a dialog with the notification details, tap ok to go to another page
-    showDialog(
-      context: context!,
-      builder: (BuildContext context) => CupertinoAlertDialog(
-        title: Text(title!),
-        content: Text(body!),
-        actions: [
-          CupertinoDialogAction(
-            isDefaultAction: true,
-            child: const Text('Ok'),
-            onPressed: () async {
-              Navigator.of(context, rootNavigator: true).pop();
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
-                ),
-              );
-            },
-          )
-        ],
-      ),
-    );
   }
 
-  Future selectNotification(String? payload) async {
-    if (payload != null) {
-      debugPrint('notification payload: $payload');
-    }
-    await Navigator.push(
-      context!,
-      MaterialPageRoute<void>(builder: (context) => HomeScreen()),
-    );
+  Future<void> cancelAllNotification() async {
+    await flutterLocalNotificationsPlugin.cancelAll();
+  }
+
+  Future<void> cancelNotificationById(String taskId) async {
+    await flutterLocalNotificationsPlugin.cancel(createIdNotification(taskId));
+  }
+
+  int createIdNotification(String taskId) {
+    String strId = taskId.replaceAll(RegExp(r'[^0-9]'), '');
+    String subId = strId.substring(3, 6) + strId.substring(strId.length - 3);
+    return int.parse(subId);
   }
 }

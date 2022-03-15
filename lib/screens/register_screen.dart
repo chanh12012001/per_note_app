@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
+import 'package:per_note/services/toast_service.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../providers/user_provider.dart';
@@ -26,14 +26,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final phoneController = TextEditingController();
-  FToast fToast = FToast();
-
-  @override
-  void initState() {
-    super.initState();
-    fToast = FToast();
-    fToast.init(context);
-  }
+  ToastService toast = ToastService();
 
   @override
   Widget build(BuildContext context) {
@@ -45,24 +38,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
       RegExp regExp = RegExp(pattern);
 
       if (phone == '') {
-        fToast.showToast(
-          child: const toast.Toast(
-            icon: Icons.error,
-            color: Colors.redAccent,
-            message: 'Vui lòng nhập số điện thoại để tiếp tục',
-          ),
-          gravity: ToastGravity.BOTTOM,
-          toastDuration: const Duration(seconds: 2),
+        toast.showToast(
+          context: context,
+          message: 'Vui lòng nhập số điện thoại để tiếp tục',
+          icon: Icons.error,
+          backgroundColor: Colors.redAccent,
         );
       } else if (!regExp.hasMatch(phone)) {
-        fToast.showToast(
-          child: const toast.Toast(
-            icon: Icons.error,
-            color: Colors.redAccent,
-            message: 'Số điện thoại không đúng định dạng',
-          ),
-          gravity: ToastGravity.BOTTOM,
-          toastDuration: const Duration(seconds: 2),
+        toast.showToast(
+          context: context,
+          message: 'Số điện thoại không đúng định dạng',
+          icon: Icons.error,
+          backgroundColor: Colors.redAccent,
         );
       } else {
         final Future<Map<String, dynamic>> successfulMessage =
@@ -79,14 +66,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   .setHashDataOtp(hashData);
               Navigator.pushNamed(context, OtpVerificationScreen.routeName);
             } else {
-              fToast.showToast(
-                child: const toast.Toast(
-                  icon: Icons.error,
-                  color: Colors.redAccent,
-                  message: 'SĐT đã được đăng kí bởi người khác',
-                ),
-                gravity: ToastGravity.BOTTOM,
-                toastDuration: const Duration(seconds: 2),
+              toast.showToast(
+                context: context,
+                message: 'SĐT đã được đăng kí bởi người khác',
+                icon: Icons.error,
+                backgroundColor: Colors.redAccent,
               );
             }
           },

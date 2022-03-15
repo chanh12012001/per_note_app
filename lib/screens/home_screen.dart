@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:per_note/config/theme.dart';
 import 'package:per_note/screens/screens.dart';
 import 'package:per_note/screens/widgets/widgets.dart';
 import 'package:per_note/services/notification_service.dart';
@@ -27,8 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    notifyService.initializeNotification();
-    notifyService.requestIOSPermissions();
   }
 
   @override
@@ -37,7 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("HOME"),
         elevation: 0.1,
-        leading: const Icon(Icons.person),
+        leading: GestureDetector(
+          onTap: () {
+            notifyService.cancelAllNotification();
+          },
+          child: const Icon(Icons.person),
+        ),
         actions: [
           GestureDetector(
             onTap: () {
@@ -92,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           RoundedButton(
             text: 'Finacial',
-            color: Color.fromARGB(255, 13, 75, 45),
+            color: const Color.fromARGB(255, 13, 75, 45),
             onPressed: () {
               Navigator.pushNamed(context, FinancialScreen.routeName);
             },

@@ -4,7 +4,7 @@ import 'package:per_note/config/theme.dart';
 class RoundedButton extends StatelessWidget {
   final String text;
   final Function onPressed;
-  final Color color, textColor;
+  final Color? color, textColor;
   final double width;
   final double height;
   const RoundedButton({

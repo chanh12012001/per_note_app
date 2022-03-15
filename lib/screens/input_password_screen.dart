@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:per_note/screens/screens.dart';
 import 'package:per_note/screens/widgets/widgets.dart';
+import 'package:per_note/services/toast_service.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import 'widgets/toast.dart' as toast;
@@ -23,14 +23,7 @@ class InputPasswordScreen extends StatefulWidget {
 }
 
 class _InputPasswordScreenState extends State<InputPasswordScreen> {
-  FToast fToast = FToast();
-
-  @override
-  void initState() {
-    super.initState();
-    fToast = FToast();
-    fToast.init(context);
-  }
+  ToastService toast = ToastService();
 
   @override
   Widget build(BuildContext context) {
@@ -41,34 +34,25 @@ class _InputPasswordScreenState extends State<InputPasswordScreen> {
 
     _register(password, confirmPassword) {
       if (password == '') {
-        fToast.showToast(
-          child: const toast.Toast(
-            icon: Icons.error,
-            color: Colors.redAccent,
-            message: 'Vui lòng nhập mật khẩu',
-          ),
-          gravity: ToastGravity.BOTTOM,
-          toastDuration: const Duration(seconds: 2),
+        toast.showToast(
+          context: context,
+          message: 'Vui lòng nhập mật khẩu',
+          icon: Icons.error,
+          backgroundColor: Colors.redAccent,
         );
       } else if (confirmPassword == '') {
-        fToast.showToast(
-          child: const toast.Toast(
-            icon: Icons.error,
-            color: Colors.redAccent,
-            message: 'Vui lòng xác nhận mật khẩu',
-          ),
-          gravity: ToastGravity.BOTTOM,
-          toastDuration: const Duration(seconds: 2),
+        toast.showToast(
+          context: context,
+          message: 'Vui lòng xác nhận mật khẩu',
+          icon: Icons.error,
+          backgroundColor: Colors.redAccent,
         );
       } else if (confirmPassword != password) {
-        fToast.showToast(
-          child: const toast.Toast(
-            icon: Icons.error,
-            color: Colors.redAccent,
-            message: 'Mật khẩu xác nhận không chính xác',
-          ),
-          gravity: ToastGravity.BOTTOM,
-          toastDuration: const Duration(seconds: 2),
+        toast.showToast(
+          context: context,
+          message: 'Mật khẩu xác nhận không chính xác',
+          icon: Icons.error,
+          backgroundColor: Colors.redAccent,
         );
       } else {
         final Future<Map<String, dynamic>> successfulMessage =
@@ -78,24 +62,18 @@ class _InputPasswordScreenState extends State<InputPasswordScreen> {
           if (response['status']) {
             Navigator.pushNamedAndRemoveUntil(
                 context, LoginScreen.routeName, (route) => false);
-            fToast.showToast(
-              child: const toast.Toast(
-                icon: Icons.check,
-                color: Colors.green,
-                message: 'Đăng ký thành công',
-              ),
-              gravity: ToastGravity.BOTTOM,
-              toastDuration: const Duration(seconds: 2),
+            toast.showToast(
+              context: context,
+              message: 'Đăng ký thành công',
+              icon: Icons.check,
+              backgroundColor: Colors.green,
             );
           } else {
-            fToast.showToast(
-              child: toast.Toast(
-                icon: Icons.error,
-                color: Colors.redAccent,
-                message: response['message'],
-              ),
-              gravity: ToastGravity.BOTTOM,
-              toastDuration: const Duration(seconds: 2),
+            toast.showToast(
+              context: context,
+              message: response['message'],
+              icon: Icons.error,
+              backgroundColor: Colors.redAccent,
             );
           }
         });

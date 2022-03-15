@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:per_note/config/theme.dart';
 import 'package:per_note/providers/auth_provider.dart';
 import 'package:per_note/screens/screens.dart';
+import 'package:per_note/services/toast_service.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
@@ -27,14 +27,7 @@ class OtpVerificationScreen extends StatefulWidget {
 }
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
-  FToast fToast = FToast();
-
-  @override
-  void initState() {
-    super.initState();
-    fToast = FToast();
-    fToast.init(context);
-  }
+  ToastService toast = ToastService();
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +39,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
     _verifyOTP(phone, otp, hashDataOtp) {
       if (otp == '') {
-        fToast.showToast(
-          child: const toast.Toast(
-            icon: Icons.error,
-            color: Colors.redAccent,
-            message: 'Vui lòng nhập OTP',
-          ),
-          gravity: ToastGravity.BOTTOM,
-          toastDuration: const Duration(seconds: 2),
+        toast.showToast(
+          context: context,
+          message: 'Vui lòng nhập OTP',
+          icon: Icons.error,
+          backgroundColor: Colors.redAccent,
         );
       } else {
         final Future<Map<String, dynamic>> successfulMessage =
@@ -65,14 +55,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
             Navigator.pushNamedAndRemoveUntil(
                 context, InputPasswordScreen.routeName, (route) => false);
           } else {
-            fToast.showToast(
-              child: toast.Toast(
-                icon: Icons.error,
-                color: Colors.redAccent,
-                message: response['message'],
-              ),
-              gravity: ToastGravity.BOTTOM,
-              toastDuration: const Duration(seconds: 2),
+            toast.showToast(
+              context: context,
+              message: response['message'],
+              icon: Icons.error,
+              backgroundColor: Colors.redAccent,
             );
           }
         });

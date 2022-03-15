@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:per_note/providers/auth_provider.dart';
+import 'package:per_note/providers/task_provider.dart';
 import 'package:per_note/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'config/app_router.dart';
 import 'config/theme.dart';
 import 'screens/screens.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => TaskProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

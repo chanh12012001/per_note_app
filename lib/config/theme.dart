@@ -29,3 +29,29 @@ TextStyle get headingStyle {
     ),
   );
 }
+
+TextStyle get titleStyle {
+  return GoogleFonts.lato(
+    textStyle: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: Colors.black,
+    ),
+  );
+}
+
+TextStyle get subTitleStyle {
+  return GoogleFonts.lato(
+    textStyle: TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+      color: Colors.grey[600],
+    ),
+  );
+}
+
+Color? tealColor = Colors.teal[300];
+Color? whiteColor = Colors.white;
+Color? redColor = Colors.red;
+Color? redColor200 = Colors.red[200];
+Color? blackCoffeeColor = const Color(0xFF3B2F2F);

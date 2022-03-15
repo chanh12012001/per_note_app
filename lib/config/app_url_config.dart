@@ -6,4 +6,9 @@ class AppUrl {
   static const String verifyOTP = baseURL + "/verifyOTP";
   static const String register = baseURL + "/register";
   static const String forgotPassword = baseURL + "/forgotPassword";
+
+  static const String createNewTask = baseURL + "/createNewTask";
+  static const String getAllTasks = baseURL + "/getAllTasks";
+  static const String deleteTask = baseURL + "/deleteTask/";
+  static const String updateTaskCompletion = baseURL + "/updateTaskCompletion/";
 }

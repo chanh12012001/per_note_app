@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:per_note/screens/widgets/widgets.dart';
 import '../screens/screens.dart';
 
 class AppRouter {
@@ -22,6 +23,8 @@ class AppRouter {
         return ScheduleScreen.route();
       case FinancialScreen.routeName:
         return FinancialScreen.route();
+      case AddTaskScreen.routeName:
+        return AddTaskScreen.route();
       default:
         return _errorRoute();
     }
