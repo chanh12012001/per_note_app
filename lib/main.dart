@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per_note/providers/auth_provider.dart';
+import 'package:per_note/providers/spending_provider.dart';
 import 'package:per_note/providers/task_provider.dart';
 import 'package:per_note/providers/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => TaskProvider()),
+        ChangeNotifierProvider(create: (_) => SpendingProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -11,4 +11,7 @@ class AppUrl {
   static const String getAllTasks = baseURL + "/getAllTasks";
   static const String deleteTask = baseURL + "/deleteTask/";
   static const String updateTaskCompletion = baseURL + "/updateTaskCompletion/";
+
+  static const String createNewSpending = baseURL + "/createNewSpending";
+  static const String getAllSpendings = baseURL + "/getAllSpendings";
 }
