@@ -7,3 +7,5 @@ export 'input_password_screen.dart';
 export 'forgot_password_screen.dart';
 export 'schedule_screen.dart';
 export 'financial_manage_screen.dart';
+export 'storage_manage_screen.dart';
+export 'health_manage_screen.dart';

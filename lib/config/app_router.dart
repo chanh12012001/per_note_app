@@ -25,6 +25,10 @@ class AppRouter {
         return FinancialScreen.route();
       case AddTaskScreen.routeName:
         return AddTaskScreen.route();
+      case AssetManageScreen.routeName:
+        return AssetManageScreen.route();
+      case HealthManageScreen.routeName:
+        return HealthManageScreen.route();
       default:
         return _errorRoute();
     }

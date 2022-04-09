@@ -68,19 +68,14 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           const SizedBox(
-            height: 80,
+            height: 40,
           ),
           ElevatedButton(
-            onPressed: () {
-              notifyService.displayNotification(
-                title: 'Notification App',
-                body: 'Day di hoc de',
-              );
-            },
+            onPressed: () {},
             child: const Text('Push Notification'),
           ),
           const SizedBox(
-            height: 80,
+            height: 40,
           ),
           RoundedButton(
             text: 'Schedule',
@@ -90,7 +85,29 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 0.3,
           ),
           const SizedBox(
-            height: 80,
+            height: 40,
+          ),
+          RoundedButton(
+            color: Colors.black,
+            text: 'Asset',
+            onPressed: () {
+              Navigator.pushNamed(context, AssetManageScreen.routeName);
+            },
+            width: 0.3,
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          RoundedButton(
+            color: Colors.red,
+            text: 'Health',
+            onPressed: () {
+              Navigator.pushNamed(context, HealthManageScreen.routeName);
+            },
+            width: 0.3,
+          ),
+          const SizedBox(
+            height: 40,
           ),
           RoundedButton(
             text: 'Finacial',

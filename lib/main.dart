@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:per_note/providers/album_provider.dart';
 import 'package:per_note/providers/auth_provider.dart';
-import 'package:per_note/providers/spending_provider.dart';
+import 'package:per_note/providers/image_provider.dart';
+import 'package:per_note/providers/loading_provider.dart';
+import 'package:per_note/providers/note_provider.dart';
 import 'package:per_note/providers/task_provider.dart';
 import 'package:per_note/providers/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -19,10 +22,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => LoadingProvider()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => TaskProvider()),
-        ChangeNotifierProvider(create: (_) => SpendingProvider()),
+        ChangeNotifierProvider(create: (_) => AlbumProvider()),
+        ChangeNotifierProvider(create: (_) => ImagesProvider()),
+        ChangeNotifierProvider(create: (_) => NoteProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

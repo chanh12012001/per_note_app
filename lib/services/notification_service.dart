@@ -68,9 +68,22 @@ class NotificationService {
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: DateTimeComponents.time,
+      matchDateTimeComponents: matchDateTimeComponents(task.repeat!),
       payload: "${task.title}|${task.note}|${task.startTime}|${task.endTime}",
     );
+  }
+
+  DateTimeComponents? matchDateTimeComponents(String repeat) {
+    switch (repeat) {
+      case 'None':
+        return null;
+      case 'Ngày':
+        return DateTimeComponents.time;
+      case 'Tuần':
+        return DateTimeComponents.dayOfWeekAndTime;
+      default:
+        return null;
+    }
   }
 
   tz.TZDateTime _convertTime(int hour, int minutes, String repeat) {
@@ -78,13 +91,7 @@ class NotificationService {
     tz.TZDateTime scheduleDate =
         tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minutes);
     if (scheduleDate.isBefore(now)) {
-      if (repeat == 'None') {
-        scheduleDate = scheduleDate;
-      } else if (repeat == 'Ngày') {
-        scheduleDate = scheduleDate.add(const Duration(days: 1));
-      } else {
-        scheduleDate = scheduleDate.add(const Duration(days: 7));
-      }
+      scheduleDate = scheduleDate.add(const Duration(days: 1));
     }
     return scheduleDate;
   }

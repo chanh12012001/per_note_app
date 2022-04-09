@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:per_note/providers/task_provider.dart';
+import 'package:per_note/providers/loading_provider.dart';
 import 'package:per_note/screens/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -17,81 +17,92 @@ class MyAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TaskProvider taskProvider = Provider.of<TaskProvider>(context);
-    return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.topCenter,
-        children: [
-          SizedBox(
-            height: 230,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 75, 20, 10),
-              child: Column(
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    subTitle,
-                    style: GoogleFonts.lato(
-                      textStyle: const TextStyle(
-                        fontSize: 20,
+    LoadingProvider loadingProvider =
+        Provider.of<LoadingProvider>(context, listen: false);
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return Dialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          child: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.topCenter,
+            children: [
+              SizedBox(
+                height: 230,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 75, 20, 10),
+                  child: Column(
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  taskProvider.processedStatus == Status.processing
-                      ? const ColorLoader()
-                      : Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _buildButton(
-                                text: 'Huỷ bỏ',
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                backgroundColor: Colors.grey,
-                              ),
-                              _buildButton(
-                                text: 'OK',
-                                onPressed: () {
-                                  action();
-                                },
-                                backgroundColor: Colors.teal[300]!,
-                              ),
-                            ],
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        subTitle,
+                        style: GoogleFonts.lato(
+                          textStyle: const TextStyle(
+                            fontSize: 20,
                           ),
-                        )
-                ],
-              ),
-            ),
-          ),
-          const Positioned(
-              top: -60,
-              child: CircleAvatar(
-                backgroundColor: Colors.redAccent,
-                radius: 60,
-                child: Icon(
-                  Icons.assistant_photo,
-                  color: Colors.white,
-                  size: 45,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      loadingProvider.loading == true
+                          ? const ColorLoader()
+                          : Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 20, right: 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  _buildButton(
+                                    text: 'Huỷ bỏ',
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    backgroundColor: Colors.grey,
+                                  ),
+                                  _buildButton(
+                                    text: 'OK',
+                                    onPressed: () {
+                                      action();
+                                      setState(() {
+                                        loadingProvider.setLoading(true);
+                                      });
+                                    },
+                                    backgroundColor: Colors.teal[300]!,
+                                  ),
+                                ],
+                              ),
+                            )
+                    ],
+                  ),
                 ),
-              )),
-        ],
-      ),
+              ),
+              const Positioned(
+                  top: -60,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.redAccent,
+                    radius: 60,
+                    child: Icon(
+                      Icons.assistant_photo,
+                      color: Colors.white,
+                      size: 45,
+                    ),
+                  )),
+            ],
+          ),
+        );
+      },
     );
   }
 

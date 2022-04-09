@@ -8,7 +8,6 @@ import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
 import 'widgets/widgets.dart';
-import 'widgets/toast.dart' as toast;
 
 class OtpVerificationScreen extends StatefulWidget {
   static const String routeName = '/otp-verification';

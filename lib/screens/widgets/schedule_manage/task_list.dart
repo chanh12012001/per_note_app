@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:intl/intl.dart';
 import 'package:per_note/models/task_model.dart';
+import 'package:per_note/providers/loading_provider.dart';
 import 'package:per_note/providers/task_provider.dart';
 import 'package:per_note/screens/widgets/schedule_manage/task_card.dart';
 import 'package:per_note/screens/widgets/widgets.dart';
@@ -105,6 +106,8 @@ class _TaskListState extends State<TaskList> {
   }
 
   _showBottomSheet(context, Task task) {
+    LoadingProvider loadingProvider =
+        Provider.of<LoadingProvider>(context, listen: false);
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -159,6 +162,9 @@ class _TaskListState extends State<TaskList> {
                         action: () {
                           notifyService.cancelNotificationById(task.id!);
                           _deleteTask(task);
+                          setState(() {
+                            loadingProvider.setLoading(false);
+                          });
                         },
                       );
                     },

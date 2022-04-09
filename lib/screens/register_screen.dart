@@ -6,7 +6,6 @@ import '../providers/auth_provider.dart';
 import '../providers/user_provider.dart';
 import 'screens.dart';
 import 'widgets/widgets.dart';
-import 'widgets/toast.dart' as toast;
 
 class RegisterScreen extends StatefulWidget {
   static const String routeName = '/register';

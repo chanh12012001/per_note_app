@@ -7,7 +7,6 @@ import '../models/user_model.dart';
 import '../providers/auth_provider.dart';
 import '../providers/user_provider.dart';
 import 'widgets/widgets.dart';
-import 'widgets/toast.dart' as toast;
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/login';

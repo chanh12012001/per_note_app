@@ -12,6 +12,19 @@ class AppUrl {
   static const String deleteTask = baseURL + "/deleteTask/";
   static const String updateTaskCompletion = baseURL + "/updateTaskCompletion/";
 
-  static const String createNewSpending = baseURL + "/createNewSpending";
-  static const String getAllSpendings = baseURL + "/getAllSpendings";
+  static const String createNewAlbum = baseURL + "/createNewAlbum";
+  static const String getAllAlbums = baseURL + "/getAllAlbums";
+  static const String deleteAlbum = baseURL + "/deleteAlbum/";
+  static const String updateAlbum = baseURL + "/updateAlbum/";
+
+  static const String getAllImagesByAlbumId =
+      baseURL + "/get-all-images-by-albumid";
+  static const String uploadImagesToAlbum = baseURL + "/upload-images-album";
+  static const String deleteImagesOfAlbum =
+      baseURL + "/delete-images-of-album/";
+
+  static const String createNewNote = baseURL + "/create-new-note";
+  static const String getAllNotes = baseURL + "/get-all-notes";
+  static const String deteleNote = baseURL + "/deleteNote/";
+  static const String updateNote = baseURL + "/update-note/";
 }
