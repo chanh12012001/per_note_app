@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:per_note/providers/album_provider.dart';
 import 'package:per_note/providers/auth_provider.dart';
+import 'package:per_note/providers/detail_healthy_index_provider.dart';
+import 'package:per_note/providers/healthy_index_provider.dart';
 import 'package:per_note/providers/image_provider.dart';
 import 'package:per_note/providers/loading_provider.dart';
 import 'package:per_note/providers/note_provider.dart';
@@ -29,6 +31,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AlbumProvider()),
         ChangeNotifierProvider(create: (_) => ImagesProvider()),
         ChangeNotifierProvider(create: (_) => NoteProvider()),
+        ChangeNotifierProvider(create: (_) => HealthyIndexProvider()),
+        ChangeNotifierProvider(create: (_) => DetailHealthyIndexProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

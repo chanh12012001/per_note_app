@@ -22,95 +22,87 @@ class CardInfomationBaseSteps extends StatelessWidget {
   Widget build(BuildContext context) {
     const double _borderRadius = 24;
 
-    return Expanded(
-      child: Center(
-        child: Stack(
-          children: <Widget>[
-            Container(
-              height: 110,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(_borderRadius),
-                gradient: LinearGradient(
-                  colors: [
-                    startColorLinearGradient,
-                    endColorLinearGradient,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
+    return Stack(
+      children: [
+        Container(
+          height: 100,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(_borderRadius),
+            gradient: LinearGradient(
+              colors: [
+                startColorLinearGradient,
+                endColorLinearGradient,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
-            Positioned(
-              right: 0,
-              bottom: 0,
-              top: 0,
-              child: CustomPaint(
-                size: const Size(100, 150),
-                painter: CustomCardShapePainter(
-                  _borderRadius,
-                  startColorLinearGradient,
-                  endColorLinearGradient,
-                ),
-              ),
+          ),
+        ),
+        Positioned(
+          right: 0,
+          bottom: 0,
+          top: 0,
+          child: CustomPaint(
+            size: const Size(100, 150),
+            painter: CustomCardShapePainter(
+              _borderRadius,
+              startColorLinearGradient,
+              endColorLinearGradient,
             ),
-            Positioned.fill(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: image,
-                    flex: 2,
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Positioned(
-                          right: 10,
-                          top: 10,
-                          child: Text(
-                            title,
+          ),
+        ),
+        Positioned.fill(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: image,
+                flex: 2,
+              ),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Avenir',
+                        fontSize: 19,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: parameter,
                             style: const TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Avenir',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
+                              fontSize: 19,
+                              color: Color.fromARGB(255, 39, 108, 165),
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: parameter,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  color: Color.fromARGB(255, 39, 108, 165),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              TextSpan(
-                                text: ' $parameterUnit',
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
+                          TextSpan(
+                            text: ' $parameterUnit',
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

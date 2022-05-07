@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:per_note/config/theme.dart';
 import 'package:per_note/models/task_model.dart';
 import 'package:per_note/providers/task_provider.dart';
-import 'package:per_note/screens/widgets/schedule_manage/input_field.dart';
+import 'package:per_note/screens/widgets/input_field.dart';
 import 'package:per_note/services/toast_service.dart';
 import 'package:provider/provider.dart';
 import '../../../services/notification_service.dart';

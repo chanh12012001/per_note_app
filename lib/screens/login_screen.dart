@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:per_note/config/theme.dart';
+import 'package:per_note/preferences/user_preference.dart';
+import 'package:per_note/screens/screen_navigation.dart';
 import 'package:per_note/screens/screens.dart';
 import 'package:per_note/services/toast_service.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     AuthProvider auth = Provider.of<AuthProvider>(context);
-
     _login(phone, pass) {
       String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
       RegExp regExp = RegExp(pattern);
@@ -55,12 +56,19 @@ class _LoginScreenState extends State<LoginScreen> {
         final Future<Map<String, dynamic>> successfulMessage =
             auth.login(phone, pass);
 
-        successfulMessage.then((response) {
+        successfulMessage.then((response) async {
           if (response['status']) {
             User user = response['user'];
             Provider.of<UserProvider>(context, listen: false).setUser(user);
-            Navigator.pushNamedAndRemoveUntil(
-                context, HomeScreen.routeName, (route) => false);
+
+            Navigator.push(context, MaterialPageRoute<void>(
+              builder: (BuildContext context) {
+                return ScreenNavigation(
+                  user: user,
+                );
+              },
+            ));
+
             toast.showToast(
               context: context,
               message: 'Đăng nhập thành công',

@@ -31,8 +31,8 @@ class StepInfomation extends StatelessWidget {
         children: [
           Image.asset(
             'assets/images/running.gif',
-            width: size.width / 3,
-            height: size.width / 3,
+            width: size.width / 3.5,
+            height: size.width / 3.5,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,7 +41,7 @@ class StepInfomation extends StatelessWidget {
                 padding: EdgeInsets.only(top: 15),
               ),
               CircularPercentIndicator(
-                radius: 90.0,
+                radius: size.width / 4.5,
                 lineWidth: 8.0,
                 percent: 0.7,
                 circularStrokeCap: CircularStrokeCap.round,

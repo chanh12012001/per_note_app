@@ -30,9 +30,13 @@ dependencies:
   flutter_slidable: ^1.2.0
   image_picker: ^0.8.4+11
   percent_indicator: ^4.0.0
+  syncfusion_flutter_charts: ^20.1.48
+  flutter_custom_clippers: ^2.0.0
   photo_view:
     git: https://github.com/bluefireteam/photo_view.git
   shared_preferences: ^2.0.13
+  carousel_slider: ^4.1.1
+  convex_bottom_bar: ^3.0.0
 
 dev_dependencies:
   flutter_test:

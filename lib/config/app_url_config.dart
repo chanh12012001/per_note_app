@@ -27,4 +27,15 @@ class AppUrl {
   static const String getAllNotes = baseURL + "/get-all-notes";
   static const String deteleNote = baseURL + "/deleteNote/";
   static const String updateNote = baseURL + "/update-note/";
+
+  static const String createNewHealthyIndex =
+      baseURL + "/create-new-healthy-index";
+  static const String getAllHealthyIndexs = baseURL + "/get-all-healthy-indexs";
+
+  static const String createNewDetailHealthyIndex =
+      baseURL + "/create-new-detail-healthy-index";
+  static const String getAllDetailHealthyIndexByUserId =
+      baseURL + "/get-all-detail-healthy-index/";
+  static const String deleteDetailHealthyIndex =
+      baseURL + "/delete-detail-healthy-index/";
 }

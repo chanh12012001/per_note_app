@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:per_note/screens/screen_navigation.dart';
 import 'package:per_note/screens/screens.dart';
 import '../models/user_model.dart';
 import '../preferences/user_preference.dart';
@@ -36,15 +37,17 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     Timer(
-      const Duration(seconds: 4),
-      () => {
-        getUserData().then((value) => value.token == null
-            ? Navigator.pushNamedAndRemoveUntil(
-                context, LoginScreen.routeName, (route) => false)
-            : Navigator.pushNamedAndRemoveUntil(
-                context, HomeScreen.routeName, (route) => false)),
-      },
-    );
+        const Duration(seconds: 4),
+        () => {
+              getUserData().then((value) => value.token == null
+                  ? Navigator.pushNamedAndRemoveUntil(
+                      context, LoginScreen.routeName, (route) => false)
+                  : Navigator.push(context, MaterialPageRoute<void>(
+                      builder: (BuildContext context) {
+                        return ScreenNavigation(user: value);
+                      },
+                    )))
+            });
 
     super.initState();
   }

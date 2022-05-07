@@ -13,10 +13,12 @@ import 'package:provider/provider.dart';
 class TaskList extends StatefulWidget {
   final List<Task> tasks;
   final DateTime selectedDate;
+  final Axis? scrollDirection;
   const TaskList({
     Key? key,
     required this.tasks,
     required this.selectedDate,
+    this.scrollDirection = Axis.vertical,
   }) : super(key: key);
 
   @override
@@ -34,6 +36,7 @@ class _TaskListState extends State<TaskList> {
       child: Consumer<TaskProvider>(builder: (context, taskProvider, child) {
         var tasks = taskProvider.getTasks;
         return ListView.builder(
+          scrollDirection: widget.scrollDirection!,
           itemCount: tasks.length,
           itemBuilder: (context, index) {
             Task task = tasks[index];

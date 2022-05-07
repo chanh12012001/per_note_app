@@ -7,13 +7,17 @@ class InputField extends StatelessWidget {
   final TextEditingController? controller;
   final Widget? widget;
   final TextInputType? inputType;
+  final Function(String)? onChanged;
+  final bool? enable;
   const InputField({
     Key? key,
     required this.title,
     required this.hint,
     this.controller,
     this.widget,
+    this.onChanged,
     this.inputType = TextInputType.multiline,
+    this.enable = true,
   }) : super(key: key);
 
   @override
@@ -43,6 +47,7 @@ class InputField extends StatelessWidget {
                 Expanded(
                   child: TextFormField(
                     keyboardType: inputType,
+                    onChanged: onChanged,
                     readOnly: widget == null ? false : true,
                     autofocus: false,
                     cursorColor: Colors.grey,

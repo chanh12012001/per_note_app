@@ -27,6 +27,7 @@ class _AssetManageScreenState extends State<AssetManageScreen> {
       child: Scaffold(
         backgroundColor: whiteColor,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           iconTheme: IconThemeData(color: blackCoffeeColor),
           elevation: 0,
           backgroundColor: whiteColor,
