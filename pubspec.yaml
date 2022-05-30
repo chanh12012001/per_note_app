@@ -37,6 +37,7 @@ dependencies:
   shared_preferences: ^2.0.13
   carousel_slider: ^4.1.1
   convex_bottom_bar: ^3.0.0
+  pedometer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

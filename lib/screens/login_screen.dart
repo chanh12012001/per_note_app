@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:per_note/config/theme.dart';
-import 'package:per_note/preferences/user_preference.dart';
 import 'package:per_note/screens/screen_navigation.dart';
 import 'package:per_note/screens/screens.dart';
 import 'package:per_note/services/toast_service.dart';
@@ -61,13 +60,17 @@ class _LoginScreenState extends State<LoginScreen> {
             User user = response['user'];
             Provider.of<UserProvider>(context, listen: false).setUser(user);
 
-            Navigator.push(context, MaterialPageRoute<void>(
-              builder: (BuildContext context) {
-                return ScreenNavigation(
-                  user: user,
-                );
-              },
-            ));
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return ScreenNavigation(
+                    user: user,
+                  );
+                },
+              ),
+              (route) => false,
+            );
 
             toast.showToast(
               context: context,

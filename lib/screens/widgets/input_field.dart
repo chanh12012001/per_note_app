@@ -46,6 +46,7 @@ class InputField extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextFormField(
+                    enabled: enable,
                     keyboardType: inputType,
                     onChanged: onChanged,
                     readOnly: widget == null ? false : true,

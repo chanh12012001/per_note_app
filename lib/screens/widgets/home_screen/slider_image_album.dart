@@ -1,7 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:per_note/config/theme.dart';
+import 'package:per_note/models/first_image_album_slider_model.dart';
+import 'package:provider/provider.dart';
+
+import '../../../models/album_model.dart';
+import '../../../providers/album_provider.dart';
+import '../loader.dart';
+import '../storage_manage/album/images/image_list.dart';
 
 class CarouselSliderImageAlbum extends StatefulWidget {
   const CarouselSliderImageAlbum({Key? key}) : super(key: key);
@@ -14,76 +20,84 @@ class CarouselSliderImageAlbum extends StatefulWidget {
 class _CarouselSliderImageAlbumState extends State<CarouselSliderImageAlbum> {
   final CarouselController _controller = CarouselController();
 
-  List _isHovering = [false, false, false, false, false, false, false];
-  List _isSelected = [true, false, false, false, false, false, false];
-
   int _current = 0;
 
-  final List<String> images = [
-    'assets/images/main.png',
-    'assets/images/main.png',
-    'assets/images/animals.jpeg',
-    'assets/images/main.png',
-    'assets/images/animals.jpeg',
-    'assets/images/main.png',
-  ];
-
-  final List<String> places = [
-    'Du lich ha Long',
-    'Da Lat 2021',
-    'Xuan Nham Dan',
-    'SOUTH AMERICA',
-    'AUSTRALIA',
-    'ANTARCTICA',
-  ];
+  List<FirstImageAlbumSlider> images = [];
 
   List<Widget> generateImagesTiles() {
     return images
-        .map((element) => ClipRRect(
-              child: Image.asset(
-                element,
-                fit: BoxFit.cover,
+        .map((element) => GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        ImageList(album: element.album!),
+                  ),
+                );
+              },
+              child: ClipRRect(
+                child: Image.network(
+                  element.image!,
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(15),
               ),
-              borderRadius: BorderRadius.circular(15),
             ))
         .toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.transparent,
-      padding: const EdgeInsets.only(top: 20),
-      child: Column(
-        children: [
-          CarouselSlider(
-            items: generateImagesTiles(),
-            options: CarouselOptions(
-                enlargeCenterPage: true,
-                autoPlay: true,
-                aspectRatio: 5 / 3,
-                onPageChanged: (index, other) {
-                  setState(() {
-                    _current = index;
-                  });
-                }),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Center(
-              child: Text(
-                "Ảnh " + places[_current],
-                style: TextStyle(
-                  decoration: TextDecoration.none,
-                  color: blackColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+    AlbumProvider albumProvider = Provider.of<AlbumProvider>(context);
+    return FutureBuilder<List<FirstImageAlbumSlider>>(
+      future: albumProvider.getAllFirstImageAlbumSliderList(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text("${snapshot.error}");
+        }
+        if (snapshot.connectionState == ConnectionState.done) {
+          images = snapshot.data!;
+        }
+        return snapshot.hasData
+            ? Container(
+                color: Colors.transparent,
+                child: Column(
+                  children: [
+                    CarouselSlider(
+                      items: generateImagesTiles(),
+                      options: CarouselOptions(
+                          enlargeCenterPage: true,
+                          autoPlay: true,
+                          height: MediaQuery.of(context).size.width / 1.7,
+                          aspectRatio: 5 / 3,
+                          onPageChanged: (index, other) {
+                            setState(() {
+                              _current = index;
+                            });
+                          }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Center(
+                        child: Text(
+                          "Ảnh " + images[_current].album!.name!,
+                          style: TextStyle(
+                            decoration: TextDecoration.none,
+                            color: blackColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ),
-          ),
-        ],
-      ),
+              )
+            : const Center(
+                child: ColorLoader(),
+              );
+      },
     );
   }
 }

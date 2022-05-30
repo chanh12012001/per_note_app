@@ -3,7 +3,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../config/theme.dart';
 
-class StepInfomation extends StatelessWidget {
+class StepInfomation extends StatefulWidget {
   final int currentStepNumber;
   final int standardStepNumber;
   const StepInfomation({
@@ -12,6 +12,11 @@ class StepInfomation extends StatelessWidget {
     required this.standardStepNumber,
   }) : super(key: key);
 
+  @override
+  State<StepInfomation> createState() => _StepInfomationState();
+}
+
+class _StepInfomationState extends State<StepInfomation> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -68,7 +73,7 @@ class StepInfomation extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '$currentStepNumber',
+                          '${widget.currentStepNumber}',
                           style: TextStyle(
                             color: tealColor,
                             fontSize: 20,
@@ -77,7 +82,7 @@ class StepInfomation extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          ' / $standardStepNumber',
+                          ' / ${widget.standardStepNumber}',
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 20,

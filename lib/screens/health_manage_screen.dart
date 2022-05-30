@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:pedometer/pedometer.dart';
 import 'package:per_note/config/theme.dart';
 import 'package:per_note/screens/widgets/health_manage/add_edit_healthy_index_dialog.dart';
 import 'package:per_note/screens/widgets/health_manage/card_info_base_steps.dart';
@@ -22,6 +25,17 @@ class HealthManageScreen extends StatefulWidget {
 }
 
 class _HealthManageScreenState extends State<HealthManageScreen> {
+  late Stream<StepCount> _stepCountStream;
+  late Stream<PedestrianStatus> _pedestrianStatusStream;
+  String _status = '?', _steps = '0';
+  String _km = '0';
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
@@ -43,8 +57,8 @@ class _HealthManageScreenState extends State<HealthManageScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const StepInfomation(
-              currentStepNumber: 1000,
+            StepInfomation(
+              currentStepNumber: int.parse(_steps),
               standardStepNumber: 4000,
             ),
             const SizedBox(
@@ -58,8 +72,8 @@ class _HealthManageScreenState extends State<HealthManageScreen> {
                       endColorLinearGradient: const Color(0xff3BB2B8),
                       title: 'Distance',
                       image: Image.asset('assets/images/distance.png'),
-                      parameter: '2394',
-                      parameterUnit: 'm'),
+                      parameter: getDistanceRun(double.parse(_steps)),
+                      parameterUnit: 'km'),
                 ),
                 const SizedBox(
                   width: 10,
@@ -70,7 +84,7 @@ class _HealthManageScreenState extends State<HealthManageScreen> {
                     endColorLinearGradient: const Color(0xffFFA057),
                     title: 'Calories',
                     image: Image.asset('assets/images/calories.png'),
-                    parameter: '3435',
+                    parameter: calculateCalories(int.parse(_steps)).toString(),
                     parameterUnit: 'kCal',
                   ),
                 )
@@ -116,5 +130,58 @@ class _HealthManageScreenState extends State<HealthManageScreen> {
         ),
       ),
     );
+  }
+
+  void onStepCount(StepCount event) {
+    setState(() {
+      _steps = event.steps.toString();
+    });
+  }
+
+  void onPedestrianStatusChanged(PedestrianStatus event) {
+    setState(() {
+      _status = event.status;
+    });
+  }
+
+  void onPedestrianStatusError(error) {
+    setState(() {
+      _status = 'Pedestrian Status not available';
+    });
+  }
+
+  void onStepCountError(error) {
+    setState(() {
+      _steps = '0';
+    });
+  }
+
+  void initPlatformState() {
+    _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+    _pedestrianStatusStream
+        .listen(onPedestrianStatusChanged)
+        .onError(onPedestrianStatusError);
+
+    _stepCountStream = Pedometer.stepCountStream;
+    _stepCountStream.listen(onStepCount).onError(onStepCountError);
+
+    if (!mounted) return;
+  }
+
+  //function to determine the distance run in kilometers using number of steps
+  String getDistanceRun(double numStep) {
+    var distance = ((numStep * 78) / 100000);
+    distance = double.parse(distance.toStringAsFixed(2)); //dos decimales
+    var distancekmx = distance * 34;
+    distancekmx = double.parse(distancekmx.toStringAsFixed(2));
+    setState(() {
+      _km = "$distance";
+    });
+    return _km;
+  }
+
+  String calculateCalories(int steps) {
+    double caloriesValue = (steps * 0.0566);
+    return caloriesValue.toStringAsFixed(2);
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:per_note/models/album_model.dart';
+import 'package:per_note/models/first_image_album_slider_model.dart';
 import '../config/app_url_config.dart';
 import '../preferences/user_preference.dart';
 
@@ -47,6 +48,27 @@ class AlbumRepository {
       return jsonResponse.map((album) => Album.fromJson(album)).toList();
     } else {
       throw Exception('Failed to load task from the Internet');
+    }
+  }
+
+  Future<List<FirstImageAlbumSlider>> getAllFirstImageAlbumSliderList() async {
+    await getUserId().then((value) => userId = value);
+
+    Response response = await get(
+      Uri.parse(AppUrl.getAllFirstImageFromAlbum),
+      headers: {
+        'Content-Type': 'application/json',
+        'userid': userId!,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body)['imageList'];
+      return jsonResponse
+          .map((image) => FirstImageAlbumSlider.fromJson(image))
+          .toList();
+    } else {
+      throw Exception('Failed to load images from the Internet');
     }
   }
 
