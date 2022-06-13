@@ -2,13 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:per_note/screens/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import '../../../../config/theme.dart';
 import '../../../../models/user_model.dart';
 import '../../../../preferences/user_preference.dart';
+import '../../../providers/auth_provider.dart';
 import '../../../services/toast_service.dart';
+import '../../login_screen.dart';
 import '../input_field.dart';
-import '../loader.dart';
 
 class Profile extends StatefulWidget {
   final User user;
@@ -23,12 +25,26 @@ class _ProfileState extends State<Profile> {
   File? _image;
   UserPreferences userPreferences = UserPreferences();
   ToastService toast = ToastService();
+  String _selectedSex = '';
+  List<String> sexList = [
+    'Nam',
+    'Nữ',
+    'Khác',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _selectedSex = widget.user.sex!;
+  }
 
   @override
   Widget build(BuildContext context) {
     String? name = widget.user.name;
     String? sex = widget.user.sex;
     String? email = widget.user.email;
+
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
@@ -46,7 +62,8 @@ class _ProfileState extends State<Profile> {
                     setState(() {
                       enable = false;
                     });
-                    // _updateUserInfo(widget.user.userId, name, sex, email);
+                    _updateUserInfo(
+                        widget.user.userId, name, _selectedSex, email);
                   },
                   child: const Text(
                     'Lưu',
@@ -84,15 +101,18 @@ class _ProfileState extends State<Profile> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          // imagePicker(
-                          //     ImageSource.gallery, widget.user.userId);
+                          imagePicker(
+                            ImageSource.gallery,
+                            widget.user.userId,
+                          );
                         },
                         child: CircleAvatar(
                           radius: 42,
-                          // backgroundImage: snapshot.data!.avatarUrl != ""
-                          //     ? NetworkImage(snapshot.data!.avatarUrl!)
-                          //     : const AssetImage('assets/images/lecture.png')
-                          //         as ImageProvider,
+                          backgroundImage: snapshot.data!.avatarUrl != ""
+                              ? NetworkImage(snapshot.data!.avatarUrl!)
+                              : const AssetImage(
+                                      'assets/images/photo_gallery.png')
+                                  as ImageProvider,
                         ),
                       ),
                       const SizedBox(height: 15),
@@ -102,8 +122,7 @@ class _ProfileState extends State<Profile> {
                       ),
                       InputField(
                         onChanged: (value) {
-                          snapshot.data!.name = value;
-                          name = snapshot.data!.name;
+                          name = value;
                         },
                         enable: enable,
                         title: 'Tên',
@@ -111,33 +130,76 @@ class _ProfileState extends State<Profile> {
                       ),
                       InputField(
                         enable: false,
-                        //controller: _titleController,
                         title: 'Số điện thoại',
                         hint: widget.user.phoneNumber!,
                       ),
-                      // InputField(
-                      //   enable: enable,
-                      //   //controller: _titleController,
-                      //   title: 'Ngày sinh',
-                      //   hint: widget.user.dateOfBirth!,
-                      // ),
                       InputField(
-                        enable: enable,
-                        onChanged: (value) {
-                          snapshot.data!.sex = value;
-                          sex = snapshot.data!.sex;
-                        },
                         title: 'Giới tính',
-                        hint: snapshot.data!.sex!,
+                        hint: _selectedSex,
+                        onChanged: (value) {
+                          sex = value;
+                        },
+                        enable: false,
+                        widget: enable == true
+                            ? DropdownButton(
+                                icon: const Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: Colors.grey,
+                                ),
+                                iconSize: 32,
+                                elevation: 4,
+                                style: subTitleStyle,
+                                underline: Container(height: 0),
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    sex = value;
+                                    _selectedSex = value!;
+                                  });
+                                },
+                                items: sexList.map<DropdownMenuItem<String>>(
+                                    (String? value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(
+                                      value!,
+                                      style:
+                                          const TextStyle(color: Colors.grey),
+                                    ),
+                                  );
+                                }).toList())
+                            : null,
                       ),
                       InputField(
                         enable: enable,
                         onChanged: (value) {
-                          snapshot.data!.email = value;
-                          email = snapshot.data!.email;
+                          email = value;
                         },
                         title: 'Email',
                         hint: snapshot.data!.email!,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      RoundedButton(
+                        text: "ĐĂNG XUẤT",
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return MyAlertDialog(
+                                title: 'Warning !!!',
+                                subTitle: 'Thoát khỏi ứng dụng?',
+                                action: () {
+                                  userPreferences.removeUser();
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      LoginScreen.routeName, (route) => false);
+                                },
+                              );
+                            },
+                          );
+                          // loadingProvider.setLoading(false);
+                        },
+                        width: 1,
                       ),
                     ],
                   )
@@ -150,35 +212,35 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  // _updateUserInfo(userId, name, sex, email) {
-  //   AuthProvider authProvider =
-  //       Provider.of<AuthProvider>(context, listen: false);
+  _updateUserInfo(userId, name, sex, email) {
+    AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
 
-  //   authProvider.updateUserInfo(userId, name, sex, email).then(
-  //     (response) {
-  //       toast.showToast(
-  //         context: context,
-  //         message: 'Cập nhật thành công',
-  //         icon: Icons.error,
-  //         backgroundColor: Colors.green,
-  //       );
-  //       setState(() {});
-  //     },
-  //   );
-  // }
+    authProvider.updateUserInfo(userId, name, sex, email).then(
+      (response) {
+        toast.showToast(
+          context: context,
+          message: 'Cập nhật thành công',
+          icon: Icons.error,
+          backgroundColor: Colors.green,
+        );
+        setState(() {});
+      },
+    );
+  }
 
-  // void imagePicker(ImageSource imageSource, userId) async {
-  //   XFile? image = await ImagePicker().pickImage(source: imageSource);
-  //   AuthProvider authProvider =
-  //       Provider.of<AuthProvider>(context, listen: false);
-  //   if (image != null) {
-  //     setState(() {
-  //       _image = File(image.path);
-  //     });
+  void imagePicker(ImageSource imageSource, userId) async {
+    XFile? image = await ImagePicker().pickImage(source: imageSource);
+    AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
+    if (image != null) {
+      setState(() {
+        _image = File(image.path);
+      });
 
-  //     await authProvider.updateAvatar(userId, _image!);
+      await authProvider.updateAvatar(userId, _image!);
 
-  //     setState(() {});
-  //   }
-  // }
+      setState(() {});
+    }
+  }
 }

@@ -39,6 +39,7 @@ dependencies:
   convex_bottom_bar: ^3.0.0
   dialogflow_flutter: ^1.0.0
   bubble: ^1.2.1
+  pedometer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

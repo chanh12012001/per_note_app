@@ -13,7 +13,9 @@ class UserPreferences {
     prefs.setString("dateOfBirth", user.dateOfBirth!);
     prefs.setString("sex", user.sex!);
     prefs.setString("email", user.email!);
-    prefs.setString("token", user.token!);
+    if (user.token != null) prefs.setString("token", user.token!);
+    prefs.setString("avatarUrl", user.avatarUrl!);
+    prefs.setString("cloudinaryId", user.cloudinaryId!);
 
     return true;
   }
@@ -28,6 +30,8 @@ class UserPreferences {
     String? sex = prefs.getString("sex");
     String? email = prefs.getString("email");
     String? token = prefs.getString("token");
+    String? avatarUrl = prefs.getString("avatarUrl");
+    String? cloudinaryId = prefs.getString("cloudinaryId");
 
     return User(
       userId: userId,
@@ -37,6 +41,8 @@ class UserPreferences {
       sex: sex,
       email: email,
       token: token,
+      avatarUrl: avatarUrl,
+      cloudinaryId: cloudinaryId,
     );
   }
 
@@ -50,6 +56,8 @@ class UserPreferences {
     prefs.remove("sex");
     prefs.remove("email");
     prefs.remove("token");
+    prefs.remove("avatarUrl");
+    prefs.remove("cloudinaryId");
   }
 
   Future<String> getToken() async {

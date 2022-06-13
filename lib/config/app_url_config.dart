@@ -6,6 +6,8 @@ class AppUrl {
   static const String verifyOTP = baseURL + "/verifyOTP";
   static const String register = baseURL + "/register";
   static const String forgotPassword = baseURL + "/forgotPassword";
+  static const String updateAvatar = baseURL + "/updateAvatar";
+  static const String updateUserInfo = baseURL + "/updateUserInfo";
 
   static const String createNewTask = baseURL + "/createNewTask";
   static const String getAllTasks = baseURL + "/getAllTasks";
@@ -16,6 +18,8 @@ class AppUrl {
   static const String getAllAlbums = baseURL + "/getAllAlbums";
   static const String deleteAlbum = baseURL + "/deleteAlbum/";
   static const String updateAlbum = baseURL + "/updateAlbum/";
+  static const String getAllFirstImageFromAlbum =
+      baseURL + "/getAllFirstImageFromAlbum";
 
   static const String getAllImagesByAlbumId =
       baseURL + "/get-all-images-by-albumid";
@@ -38,4 +42,9 @@ class AppUrl {
       baseURL + "/get-all-detail-healthy-index/";
   static const String deleteDetailHealthyIndex =
       baseURL + "/delete-detail-healthy-index/";
+
+  static const String createNewAccount = baseURL + "/createNewAccount";
+  static const String getAllAccounts = baseURL + "/getAllAccounts";
+  static const String deleteAccount = baseURL + "/deleteAccount/";
+  static const String updateAccount = baseURL + "/updateAccount/";
 }

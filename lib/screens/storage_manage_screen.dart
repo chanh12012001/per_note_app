@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per_note/config/theme.dart';
+import 'package:per_note/screens/widgets/storage_manage/account/account_tab.dart';
 import 'package:per_note/screens/widgets/storage_manage/album/album_tab.dart';
 import 'package:per_note/screens/widgets/storage_manage/notes/note_tab.dart';
 
@@ -52,25 +53,14 @@ class _AssetManageScreenState extends State<AssetManageScreen> {
           ),
           titleSpacing: 20,
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
-            const NoteTab(),
-            const AlbumTab(),
-            buildPage('Profile Page'),
+            NoteTab(),
+            AlbumTab(),
+            AccountTab(),
           ],
         ),
       ),
     );
   }
-
-  Widget buildPage(String text) => Container(
-        margin: const EdgeInsets.all(20),
-        color: Colors.amber,
-        child: Center(
-          child: Text(
-            text,
-            style: const TextStyle(fontSize: 28),
-          ),
-        ),
-      );
 }

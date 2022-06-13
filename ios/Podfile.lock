@@ -8,6 +8,8 @@ PODS:
     - Flutter
   - path_provider_ios (0.0.1):
     - Flutter
+  - pedometer (0.0.1):
+    - Flutter
   - shared_preferences_ios (0.0.1):
     - Flutter
 
@@ -17,6 +19,7 @@ DEPENDENCIES:
   - flutter_native_timezone (from `.symlinks/plugins/flutter_native_timezone/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - pedometer (from `.symlinks/plugins/pedometer/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
 
 EXTERNAL SOURCES:
@@ -30,6 +33,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_picker/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
+  pedometer:
+    :path: ".symlinks/plugins/pedometer/ios"
   shared_preferences_ios:
     :path: ".symlinks/plugins/shared_preferences_ios/ios"
 
@@ -39,6 +44,7 @@ SPEC CHECKSUMS:
   flutter_native_timezone: 5f05b2de06c9776b4cc70e1839f03de178394d22
   image_picker: 541dcbb3b9cf32d87eacbd957845d8651d6c62c3
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  pedometer: 381969883680ade42559782cc41a3bbd453d8234
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
 
 PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea

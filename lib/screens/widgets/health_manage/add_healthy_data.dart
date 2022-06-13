@@ -50,58 +50,60 @@ class _AddHealthyDataState extends State<AddHealthyData> {
           style: const TextStyle(color: Colors.black),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            InputField(
-              controller: _dateController,
-              title: 'Ngày',
-              hint: DateFormat('dd/MM/yyyy').format(_selectedDate),
-              widget: IconButton(
-                icon: const Icon(
-                  Icons.calendar_today_outlined,
-                  color: Colors.grey,
-                ),
-                onPressed: () {
-                  _getDateFromUser();
-                },
-              ),
-            ),
-            InputField(
-              controller: _timeController,
-              title: 'Thời gian',
-              hint: _time,
-              widget: IconButton(
-                onPressed: () {
-                  _getTimeFromUser();
-                },
-                icon: const Icon(
-                  Icons.access_time_rounded,
-                  color: Colors.grey,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              InputField(
+                controller: _dateController,
+                title: 'Ngày',
+                hint: DateFormat('dd/MM/yyyy').format(_selectedDate),
+                widget: IconButton(
+                  icon: const Icon(
+                    Icons.calendar_today_outlined,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    _getDateFromUser();
+                  },
                 ),
               ),
-            ),
-            Flexible(
-                child: _buildTextFieldByHealthyIndex(widget.healthyIndex.name)),
-            loading == true
-                ? const ColorLoader()
-                : RoundedButton(
-                    text: "Gửi kết quả",
-                    onPressed: () {
-                      setState(() {
-                        loading = true;
-                      });
-                      _addDetailHealthyIndex(
-                        DateFormat('dd/MM/yyyy').format(_selectedDate),
-                        _time,
-                        _getIndexValueByHealthyIndex(widget.healthyIndex.name),
-                        widget.healthyIndex.id,
-                      );
-                    },
-                    width: 1,
-                  )
-          ],
+              InputField(
+                controller: _timeController,
+                title: 'Thời gian',
+                hint: _time,
+                widget: IconButton(
+                  onPressed: () {
+                    _getTimeFromUser();
+                  },
+                  icon: const Icon(
+                    Icons.access_time_rounded,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              _buildTextFieldByHealthyIndex(widget.healthyIndex.name),
+              loading == true
+                  ? const ColorLoader()
+                  : RoundedButton(
+                      text: "Gửi kết quả",
+                      onPressed: () {
+                        setState(() {
+                          loading = true;
+                        });
+                        _addDetailHealthyIndex(
+                          DateFormat('dd/MM/yyyy').format(_selectedDate),
+                          _time,
+                          _getIndexValueByHealthyIndex(
+                              widget.healthyIndex.name),
+                          widget.healthyIndex.id,
+                        );
+                      },
+                      width: 1,
+                    )
+            ],
+          ),
         ),
       ),
     );
@@ -173,6 +175,9 @@ class _AddHealthyDataState extends State<AddHealthyData> {
                 : "Cân nặng (kg)",
             hint: "Nhập nội dung",
           ),
+          const SizedBox(
+            height: 10,
+          )
         ],
       );
     }
