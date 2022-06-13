@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:per_note/models/user_model.dart';
+import 'package:per_note/screens/chatbot_screen.dart';
 import 'package:per_note/screens/widgets/health_manage/step_info.dart';
 import 'package:per_note/screens/widgets/home_screen/profile.dart';
 import 'package:per_note/screens/widgets/home_screen/slider_image_album.dart';
@@ -167,6 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+      floatingActionButton: buildFloatingButton(),
     );
   }
 
@@ -195,4 +197,21 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  Widget buildFloatingButton() => FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute<void>(
+            builder: (BuildContext context) {
+              return ChatBotScreen();
+            },
+          )).then((value) => setState(() {}));
+        },
+        child: Container(
+          height: 60,
+          width: 60,
+          child: CircleAvatar(
+            backgroundImage: AssetImage("assets/images/bot.png"),
+          ),
+        ),
+      );
 }
