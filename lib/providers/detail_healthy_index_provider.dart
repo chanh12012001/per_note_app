@@ -15,6 +15,15 @@ class DetailHealthyIndexProvider extends ChangeNotifier {
     return detailHealthyIndexList;
   }
 
+  Future<DetailHealthyIndex> getDetailHealthyIndexLastest(
+      healthyIndexId) async {
+    DetailHealthyIndex newDetailHealthyIndex =
+        await detailHealthyIndexRepository
+            .getDetailHealthyIndexLastest(healthyIndexId);
+    notifyListeners();
+    return newDetailHealthyIndex;
+  }
+
   Future<DetailHealthyIndex> createNewDetailHealthyIndex(
       date, time, value, healthyIndexId) async {
     DetailHealthyIndex newDetailHealthyIndex =

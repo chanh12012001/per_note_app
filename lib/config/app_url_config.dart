@@ -42,6 +42,8 @@ class AppUrl {
       baseURL + "/get-all-detail-healthy-index/";
   static const String deleteDetailHealthyIndex =
       baseURL + "/delete-detail-healthy-index/";
+  static const String getDetailHealthyIndexLastest =
+      baseURL + "/get-detail-healthy-index-lastest/";
 
   static const String createNewAccount = baseURL + "/createNewAccount";
   static const String getAllAccounts = baseURL + "/getAllAccounts";

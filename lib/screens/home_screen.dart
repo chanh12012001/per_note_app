@@ -226,7 +226,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: buildFloatingButton(),
     );
   }
 
@@ -255,21 +254,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  Widget buildFloatingButton() => FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute<void>(
-            builder: (BuildContext context) {
-              return ChatBotScreen();
-            },
-          )).then((value) => setState(() {}));
-        },
-        child: Container(
-          height: 60,
-          width: 60,
-          child: CircleAvatar(
-            backgroundImage: AssetImage("assets/images/bot.png"),
-          ),
-        ),
-      );
 }

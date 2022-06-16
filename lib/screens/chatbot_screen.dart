@@ -4,6 +4,7 @@ import 'package:dialogflow_flutter/googleAuth.dart';
 import 'package:dialogflow_flutter/language.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:per_note/config/theme.dart';
 
 class ChatBotScreen extends StatefulWidget {
   const ChatBotScreen({Key? key}) : super(key: key);
@@ -37,86 +38,84 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
       backgroundColor: Color.fromARGB(255, 218, 228, 243),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 146, 205, 245),
-        title: Text("Chat bot"),
+        title: const Text("Chat bot"),
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Center(
-              child: Container(
-                padding: EdgeInsets.only(top: 15, bottom: 10),
-                child: Text(
-                  "Today, ${DateFormat("Hm").format(DateTime.now())}",
-                  style: TextStyle(fontSize: 20),
+      body: Column(
+        children: [
+          // Center(
+          //   child: Container(
+          //     padding: EdgeInsets.only(top: 15, bottom: 10),
+          //     child: Text(
+          //       "Today, ${DateFormat("Hm").format(DateTime.now())}",
+          //       style: TextStyle(fontSize: 20),
+          //     ),
+          //   ),
+          // ),
+          Expanded(
+            child: ListView.builder(
+              reverse: true,
+              itemCount: messages.length,
+              itemBuilder: (context, index) => chat(
+                  messages[index]["message"].toString(),
+                  messages[index]["data"]),
+            ),
+          ),
+          // Divider(
+          //   height: 5,
+          // ),
+          Container(
+            child: ListTile(
+              title: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  color: whiteColor,
+                ),
+                padding: const EdgeInsets.only(left: 15),
+                child: TextFormField(
+                  controller: messageController,
+                  decoration: const InputDecoration(
+                    hintText: "Enter a Message...",
+                    hintStyle: TextStyle(color: Colors.black26),
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                  ),
+                  style: const TextStyle(fontSize: 16, color: Colors.black),
+                  onChanged: (value) {},
                 ),
               ),
-            ),
-            Flexible(
-              child: ListView.builder(
-                reverse: true,
-                itemCount: messages.length,
-                itemBuilder: (context, index) => chat(
-                    messages[index]["message"].toString(),
-                    messages[index]["data"]),
+              trailing: IconButton(
+                icon: Icon(
+                  Icons.send,
+                  size: 30,
+                  color: Colors.blue,
+                ),
+                onPressed: () {
+                  if (messageController.text.isEmpty) {
+                    print("Empty");
+                  } else {
+                    setState(() {
+                      messages.insert(
+                          0, {"data": 1, "message": messageController.text});
+                    });
+                    response(messageController.text);
+                    messageController.clear();
+                  }
+                  FocusScopeNode currentFocus = FocusScope.of(context);
+                  if (!currentFocus.hasPrimaryFocus) {
+                    currentFocus.unfocus();
+                  }
+                },
               ),
             ),
-            Divider(
-              height: 5,
-            ),
-            Container(
-              child: ListTile(
-                title: Container(
-                  height: 35,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    color: Color.fromARGB(255, 243, 224, 224),
-                  ),
-                  padding: EdgeInsets.only(left: 15),
-                  child: TextFormField(
-                    controller: messageController,
-                    decoration: InputDecoration(
-                      hintText: "Enter a Message...",
-                      hintStyle: TextStyle(color: Colors.black26),
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                    ),
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                    onChanged: (value) {},
-                  ),
-                ),
-                trailing: IconButton(
-                  icon: Icon(
-                    Icons.send,
-                    size: 30,
-                    color: Colors.blue,
-                  ),
-                  onPressed: () {
-                    if (messageController.text.isEmpty) {
-                      print("Empty");
-                    } else {
-                      setState(() {
-                        messages.insert(
-                            0, {"data": 1, "message": messageController.text});
-                      });
-                      response(messageController.text);
-                      messageController.clear();
-                    }
-                    FocusScopeNode currentFocus = FocusScope.of(context);
-                    if (!currentFocus.hasPrimaryFocus) {
-                      currentFocus.unfocus();
-                    }
-                  },
-                ),
-              ),
-            ),
-            Divider(
-              height: 50,
-            )
-          ],
-        ),
+          ),
+          Divider(
+            height: 50,
+          )
+        ],
       ),
     );
   }
@@ -173,7 +172,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               ? Container(
                   height: 60,
                   width: 60,
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     backgroundImage:
                         AssetImage("assets/images/avt_default.png"),
                   ),

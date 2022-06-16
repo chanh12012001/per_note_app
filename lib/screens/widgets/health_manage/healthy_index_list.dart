@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:per_note/config/theme.dart';
+import 'package:per_note/models/detail_healthy_index_model.dart';
 import 'package:per_note/models/healthy_index_model.dart';
+import 'package:per_note/providers/detail_healthy_index_provider.dart';
 import 'package:per_note/providers/healthy_index_provider.dart';
 import 'package:per_note/screens/widgets/health_manage/statistical_chart.dart';
 import 'package:per_note/screens/widgets/loader.dart';
@@ -18,6 +20,7 @@ class _HealthyIndexListState extends State<HealthyIndexList> {
   Widget build(BuildContext context) {
     HealthyIndexProvider healthyIndexProvider =
         Provider.of<HealthyIndexProvider>(context);
+
     return Padding(
         padding: const EdgeInsets.only(top: 15.0),
         child: FutureBuilder<List<HealthyIndex>>(
@@ -59,6 +62,8 @@ class _HealthyIndexListState extends State<HealthyIndexList> {
   }
 
   _buildHealthyIndexCard(HealthyIndex healthyIndex) {
+    DetailHealthyIndexProvider detailHealthyIndexProvider =
+        Provider.of<DetailHealthyIndexProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
 
     return Container(
@@ -102,12 +107,23 @@ class _HealthyIndexListState extends State<HealthyIndexList> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '144',
-                      style: TextStyle(
-                          fontSize: 17,
-                          color: blueColor,
-                          fontWeight: FontWeight.w600),
+                    FutureBuilder<DetailHealthyIndex>(
+                      future: detailHealthyIndexProvider
+                          .getDetailHealthyIndexLastest(healthyIndex.id),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return Text("${snapshot.error}");
+                        }
+                        return snapshot.hasData
+                            ? Text(
+                                snapshot.data!.indexValue!,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    color: blueColor,
+                                    fontWeight: FontWeight.w600),
+                              )
+                            : const Text("...");
+                      },
                     ),
                     SizedBox(
                       width: size.width / 5,
@@ -144,12 +160,25 @@ class _HealthyIndexListState extends State<HealthyIndexList> {
             const SizedBox(
               height: 5,
             ),
-            Text(
-              '10:30 - 12/03/2022',
-              style: TextStyle(
-                fontSize: 14,
-                color: blackColor,
-              ),
+            FutureBuilder<DetailHealthyIndex>(
+              future: detailHealthyIndexProvider
+                  .getDetailHealthyIndexLastest(healthyIndex.id),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+                return snapshot.hasData
+                    ? Text(
+                        snapshot.data!.createAtTime! +
+                            " - " +
+                            snapshot.data!.createAtDate!,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: blackColor,
+                        ),
+                      )
+                    : const Text("...");
+              },
             ),
           ],
         ),

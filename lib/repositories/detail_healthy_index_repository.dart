@@ -59,6 +59,28 @@ class DetailHealthyIndexRepository {
     }
   }
 
+  Future<DetailHealthyIndex> getDetailHealthyIndexLastest(
+      healthyIndexId) async {
+    await getUserId().then((value) => userId = value);
+
+    Response response = await get(
+      Uri.parse(AppUrl.getDetailHealthyIndexLastest + healthyIndexId),
+      headers: {
+        'Content-Type': 'application/json',
+        'userid': userId!,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final responseBody =
+          await json.decode(response.body)['detailHealthyIndex'];
+
+      return DetailHealthyIndex.fromJson(responseBody);
+    } else {
+      throw Exception('Failed to load detail healthy index from the Internet');
+    }
+  }
+
   Future<Map<String, dynamic>> deleteDetailHealthyIndex(
       DetailHealthyIndex detailHealthyIndex) async {
     Map<String, dynamic> result;

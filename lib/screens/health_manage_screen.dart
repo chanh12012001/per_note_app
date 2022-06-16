@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:per_note/config/theme.dart';
+import 'package:per_note/screens/chatbot_screen.dart';
 import 'package:per_note/screens/widgets/health_manage/add_edit_healthy_index_dialog.dart';
 import 'package:per_note/screens/widgets/health_manage/card_info_base_steps.dart';
 import 'package:per_note/screens/widgets/health_manage/healthy_index_list.dart';
@@ -51,7 +52,10 @@ class _HealthManageScreenState extends State<HealthManageScreen> {
           'Thông tin sức khoẻ',
           style: TextStyle(color: Colors.black),
         ),
+        actions: [],
       ),
+      floatingActionButton: buildFloatingButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(25, 10, 25, 25),
         child: Column(
@@ -184,4 +188,21 @@ class _HealthManageScreenState extends State<HealthManageScreen> {
     double caloriesValue = (steps * 0.0566);
     return caloriesValue.toStringAsFixed(2);
   }
+
+  Widget buildFloatingButton() => FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute<void>(
+            builder: (BuildContext context) {
+              return const ChatBotScreen();
+            },
+          )).then((value) => setState(() {}));
+        },
+        child: const SizedBox(
+          height: 80,
+          width: 80,
+          child: CircleAvatar(
+            backgroundImage: AssetImage("assets/images/bot.png"),
+          ),
+        ),
+      );
 }
