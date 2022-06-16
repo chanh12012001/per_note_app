@@ -33,6 +33,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isKeyBoard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color.fromARGB(255, 218, 228, 243),
@@ -51,18 +52,23 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           //     ),
           //   ),
           // ),
-          Expanded(
-            child: ListView.builder(
-              reverse: true,
-              itemCount: messages.length,
-              itemBuilder: (context, index) => chat(
-                  messages[index]["message"].toString(),
-                  messages[index]["data"]),
+          Container(
+            height: isKeyBoard
+                ? MediaQuery.of(context).size.height * 0.45
+                : MediaQuery.of(context).size.height * 0.78,
+            child: Flexible(
+              child: ListView.builder(
+                reverse: true,
+                itemCount: messages.length,
+                itemBuilder: (context, index) => chat(
+                    messages[index]["message"].toString(),
+                    messages[index]["data"]),
+              ),
             ),
           ),
-          // Divider(
-          //   height: 5,
-          // ),
+          Divider(
+            height: 5,
+          ),
           Container(
             child: ListTile(
               title: Container(
@@ -112,9 +118,6 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               ),
             ),
           ),
-          Divider(
-            height: 50,
-          )
         ],
       ),
     );
