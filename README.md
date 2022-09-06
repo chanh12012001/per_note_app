@@ -15,7 +15,7 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
    
    1. [Ghi chú](#ghi-chú)
 
-   1. [Xem thông tin tài khoản](#xem-thông-tin-tài-khoản)
+   1. [Album ảnh](#album-ảnh)
    
 1. [Yêu cầu thiết bị](#yêu-cầu-thiết-bị)
 
@@ -68,4 +68,14 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
    <img src="https://user-images.githubusercontent.com/73011753/188636237-6450d134-ee7f-451e-b0ea-6918e214f2e2.jpg" height = "490" width="270">
    <img src="https://user-images.githubusercontent.com/73011753/188636362-91cb91ba-2d36-41f5-beac-55e4a7762d7e.jpg" height = "490" width="270">
    </p>
+   
+### Album ảnh
+   * tạo và lưu các ảnh theo album
+
+   <p align="center">
+   <img src="https://user-images.githubusercontent.com/73011753/188636996-4256f9c5-65de-4019-99bb-0358bed8cf8c.jpg" height = "490" width="270"> 
+   <img src="https://user-images.githubusercontent.com/73011753/188637104-b308777c-cec7-451b-b00c-d5b593912fe0.jpg" height = "490" width="270">
+   <img src="https://user-images.githubusercontent.com/73011753/188637199-c4db4cd5-b1b6-467a-b23a-7922d0f45367.jpg" height = "490" width="270">
+   </p>
+
 
