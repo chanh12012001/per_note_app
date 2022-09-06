@@ -9,7 +9,7 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 
    1. [Trang chủ](#trang-chủ)
    
-   1. [Xem thông tin sản phẩm](#xem-thông-tin-sản-phẩm)
+   1. [Thông tin cá nhân](#thông-tin-cá-nhân)
 
    1. [Tìm kiếm sản phẩm trong 1 cửa hàng đang chọn](#tìm-kiếm-sản-phẩm-trong-1-cửa-hàng-đang-chọn)
    
@@ -36,10 +36,17 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 
 ### Trang chủ
    * Màn hình chính
-  
-   * Chi tiết thông tin 1 cửa hàng
 
    <p align="center">
    <img src="https://user-images.githubusercontent.com/73011753/188633696-3086adba-da5f-4032-b31d-02027d91c2a6.jpg" height = "490" width="270"> 
    <img src="https://user-images.githubusercontent.com/73011753/188633816-028ad07d-2df0-4dac-bae5-5aa005a805fc.png" height = "490" width="270">
+   </p>
+
+### Thông tin cá nhân
+   * Tài khoản cá nhân
+  
+   * Cập nhật thông tin tài khoản!
+
+   <p align="center">
+   <img src="https://user-images.githubusercontent.com/73011753/188634327-fe177542-44e1-44ab-8f12-01c8fbba490e.jpg" height = "480" width="270">
    </p>
