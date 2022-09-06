@@ -30,7 +30,7 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
    * Đăng nhập
 
    <p align="center">
-   <img src="https://user-images.githubusercontent.com/73011753/188632326-87c52442-c935-4991-8452-decb862351d4.jpg" height = "480" width="270">
-   <img src="https://user-images.githubusercontent.com/73011753/188632341-dc085164-3d09-45fc-a500-be28d106ac41.jpg" height = "480" width="270">
+   <img src="https://user-images.githubusercontent.com/73011753/188632326-87c52442-c935-4991-8452-decb862351d4.jpg" height = "480" width="280">
+   <img src="https://user-images.githubusercontent.com/73011753/188632341-dc085164-3d09-45fc-a500-be28d106ac41.jpg" height = "480" width="280">
    </p>
 
