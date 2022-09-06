@@ -1,16 +1,26 @@
-# per_note
+# Ứng dụng sổ tay cá nhân và chatbot hỗ trợ chăm sóc sức khoẻ
 
-A new Flutter project.
+Với mong muốn giúp người dùng quản lý được thời gian, kế hoạch cho riêng mình. Giúp quản lý chi tiêu cá nhân để bạn biết sử dụng đồng tiền một cách hợp lý, hiệu quả hơn. Giúp ghi chú lại những thứ quan trọng, đặc biệt lưu trữ thông tin trình trạng sức khoẻ và hệ thống chatbot hỗ trợ trả lời các câu hỏi về sức khoẻ, bệnh lý và các triệu chứng thông thường mà mỗi cá nhân chúng ta gặp phải..
 
-## Getting Started
+## Nội dung
+1. [Chức năng](#chức-năng)
 
-This project is a starting point for a Flutter application.
+   1. [Đăng nhập](#đăng-nhập)
 
-A few resources to get you started if this is your first Flutter project:
+   1. [Xem thông tin cửa hàng](#xem-thông-tin-cửa-hàng)
+   
+   1. [Xem thông tin sản phẩm](#xem-thông-tin-sản-phẩm)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+   1. [Tìm kiếm sản phẩm trong 1 cửa hàng đang chọn](#tìm-kiếm-sản-phẩm-trong-1-cửa-hàng-đang-chọn)
+   
+   1. [Giỏ hàng, chi tiết đơn đặt hàng](#giỏ-hàng,-chi-tiết-đơn-đặt-hàng)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   1. [Xem thông tin tài khoản](#xem-thông-tin-tài-khoản)
+   
+1. [Yêu cầu thiết bị](#yêu-cầu-thiết-bị)
+
+1. [Thư viện và công nghệ](#thư-viện-và-công-nghệ)
+
+1. [Tác giả](#tác-giả)
+
+1. [Giấy phép](#giấy-phép)
