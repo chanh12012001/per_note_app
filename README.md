@@ -24,3 +24,11 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 1. [Tác giả](#tác-giả)
 
 1. [Giấy phép](#giấy-phép)
+
+## Chức năng
+### Đăng nhập
+   * Đăng nhập
+
+   <p align="center">
+   <img src="https://user-images.githubusercontent.com/73011753/124382970-43a5c380-dcf4-11eb-93f7-7e00c4792eb3.png" height = "480" width="270">
+   </p>
