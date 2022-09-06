@@ -7,7 +7,7 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 
    1. [Đăng nhập](#đăng-nhập)
 
-   1. [Xem thông tin cửa hàng](#xem-thông-tin-cửa-hàng)
+   1. [Trang chủ](#trang-chủ)
    
    1. [Xem thông tin sản phẩm](#xem-thông-tin-sản-phẩm)
 
@@ -34,3 +34,12 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
    <img src="https://user-images.githubusercontent.com/73011753/188632341-dc085164-3d09-45fc-a500-be28d106ac41.jpg" height = "490" width="270">
    </p>
 
+### Trang chủ
+   * Màn hình chính
+  
+   * Chi tiết thông tin 1 cửa hàng
+
+   <p align="center">
+   <img src="https://user-images.githubusercontent.com/73011753/188633696-3086adba-da5f-4032-b31d-02027d91c2a6.jpg" height = "490" width="270"> 
+   <img src="https://user-images.githubusercontent.com/73011753/188633816-028ad07d-2df0-4dac-bae5-5aa005a805fc.png" height = "490" width="270">
+   </p>
