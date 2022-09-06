@@ -13,7 +13,7 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 
    1. [Lập kế hoạch](#lập-kế-hoạch)
    
-   1. [Giỏ hàng, chi tiết đơn đặt hàng](#giỏ-hàng,-chi-tiết-đơn-đặt-hàng)
+   1. [Ghi chú](#ghi-chú)
 
    1. [Xem thông tin tài khoản](#xem-thông-tin-tài-khoản)
    
@@ -55,7 +55,17 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
    * Thêm task hằng ngày, tương tự todo-list
 
    <p align="center">
-   <img src="https://user-images.githubusercontent.com/73011753/188635024-c7886894-b015-4d03-b8ec-d373aa092647.jpg"> 
-   <img src="https://user-images.githubusercontent.com/73011753/188635039-21c75117-7ead-40c7-9c8d-8f5c0cfa356d.jpg">
-   <img src="https://user-images.githubusercontent.com/73011753/188635388-afc5b1e4-e989-40de-92f5-3efd42da3f3a.jpg">
+   <img src="https://user-images.githubusercontent.com/73011753/188635024-c7886894-b015-4d03-b8ec-d373aa092647.jpg" height = "490" width="270"> 
+   <img src="https://user-images.githubusercontent.com/73011753/188635039-21c75117-7ead-40c7-9c8d-8f5c0cfa356d.jpg" height = "490" width="270">
+   <img src="https://user-images.githubusercontent.com/73011753/188635388-afc5b1e4-e989-40de-92f5-3efd42da3f3a.jpg" height = "490" width="270">
    </p>
+   
+### Ghi chú
+   * Ghi chú 
+
+   <p align="center">
+   <img src="https://user-images.githubusercontent.com/73011753/188636163-7dff674b-3577-4d44-bd98-1e25cacdf04c.jpg" height = "490" width="270"> 
+   <img src="https://user-images.githubusercontent.com/73011753/188636237-6450d134-ee7f-451e-b0ea-6918e214f2e2.jpg" height = "490" width="270">
+   <img src="https://user-images.githubusercontent.com/73011753/188636362-91cb91ba-2d36-41f5-beac-55e4a7762d7e.jpg" height = "490" width="270">
+   </p>
+
