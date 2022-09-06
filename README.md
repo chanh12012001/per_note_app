@@ -112,29 +112,29 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 
 - Language : Dart
 
-- FrameWork : Flutter 2.2.2
+- FrameWork : Flutter 3.0.5
 
-- Database: Firebase
+- Database: MongoDB
 
-* flutter - https://github.com/flutter/flutter
+- Backend: Nodejs 
 
-* google maps platform - https://console.cloud.google.com/
+* flutter - https://github.com/flutter/flutter/
 
-* geolocator - https://pub.dev/packages/geolocator
+* provider - https://pub.dev/packages/provider
 
-* persistent bottom nar bar -  https://pub.dev/packages/persistent_bottom_nav_bar
-
-* map launcher - https://pub.dev/packages/map_launcher
-
-* toggle bar - https://pub.dev/packages/toggle_bar
-
-* search page - https://pub.dev/packages/search_page
+* shared preferences - https://pub.dev/packages/shared_preferences
 
 * carousel slider - https://pub.dev/packages/carousel_slider
 
-* stripe payment - https://pub.dev/packages/stripe_payment
+* image picker -  https://pub.dev/packages/image_picker
 
-* flutter slidable - https://pub.dev/packages/flutter_slidable
+* photo view - https://github.com/bluefireteam/photo_view.git
+
+* dialogflow flutter - https://pub.dev/packages/dialogflow_flutter   
+
+* table calendar - https://pub.dev/packages/table_calendar
+
+* ...
 
 ## Tác giả
 Phạm Văn Chánh - 19521274@gm.uit.edu.vn
@@ -159,11 +159,8 @@ Hồ Quang - 19520875@gm.uit.edu.vn
 
 
 
-# Link source code dành cho người quản lý :
-https://github.com/chanh12012001/Grocery_Admin_App_Flutter
-# Link source code dành cho người bán hàng (cửa hàng tiện lợi):
-https://github.com/chanh12012001/Grocery_Vendor_App_Flutter
-# Link source code dành cho người giao hàng :
-https://github.com/chanh12012001/Grocery_Delivery_App_Flutter
+# Link source code backend:
+https://github.com/chanh12012001/per_node
+
 # DEMO APP :
-https://drive.google.com/file/d/15gtEt_DxNxTxPhn8CNEyrPkdsEyIIwBN/view?usp=sharing
+https://drive.google.com/drive/u/0/folders/1O_97vlRRsipvVaYRcio5ToKczAuRq3VB
