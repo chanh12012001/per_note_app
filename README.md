@@ -16,6 +16,10 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
    1. [Ghi chú](#ghi-chú)
 
    1. [Album ảnh](#album-ảnh)
+
+   1. [Hồ sơ sức khoẻ](#hồ-sơ-sức-khoẻ)
+
+   1. [Chatbot chăm sóc sức khoẻ](#chatbot-chăm-sóc-sức-khoẻ)
    
 1. [Yêu cầu thiết bị](#yêu-cầu-thiết-bị)
 
@@ -76,6 +80,90 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
    <img src="https://user-images.githubusercontent.com/73011753/188636996-4256f9c5-65de-4019-99bb-0358bed8cf8c.jpg" height = "490" width="270"> 
    <img src="https://user-images.githubusercontent.com/73011753/188637104-b308777c-cec7-451b-b00c-d5b593912fe0.jpg" height = "490" width="270">
    <img src="https://user-images.githubusercontent.com/73011753/188637199-c4db4cd5-b1b6-467a-b23a-7922d0f45367.jpg" height = "490" width="270">
+   <img src="https://user-images.githubusercontent.com/73011753/188637438-b32bf5ef-294b-439f-bb42-f2ea1c1e27fc.jpg" height = "490" width="270">
    </p>
 
+### Hồ sơ sức khoẻ
 
+   <p align="center">
+   <img src="https://user-images.githubusercontent.com/73011753/188637856-630ef87a-24cd-4397-a083-687dd3c4d84b.jpg" height = "490" width="270"> 
+   <img src="https://user-images.githubusercontent.com/73011753/188637874-136ee6d8-c8d5-4c3f-8a12-1de34baf74ab.jpg" height = "490" width="270">
+   <img src="https://user-images.githubusercontent.com/73011753/188637885-5be8b386-61b3-4a25-a057-cd418586327c.jpg" height = "490" width="270">
+   </p>
+   
+### Chatbot hỗ trợ chăm sóc sức khoẻ
+
+   <p align="center">
+   <img src="https://user-images.githubusercontent.com/73011753/188638259-3b929995-37cd-4c46-9303-a20dc275dad6.jpg" height = "490" width="270"> 
+   </p>
+
+## Yêu cầu thiết bị
+-Android:
+
+   +Android studio : 3.0.1
+
+   +Gradle : 4.1
+
+   +Min sdk : 21
+
+   +Target sdk : 30
+
+## Thư viện và công nghệ
+
+- Language : Dart
+
+- FrameWork : Flutter 2.2.2
+
+- Database: Firebase
+
+* flutter - https://github.com/flutter/flutter
+
+* google maps platform - https://console.cloud.google.com/
+
+* geolocator - https://pub.dev/packages/geolocator
+
+* persistent bottom nar bar -  https://pub.dev/packages/persistent_bottom_nav_bar
+
+* map launcher - https://pub.dev/packages/map_launcher
+
+* toggle bar - https://pub.dev/packages/toggle_bar
+
+* search page - https://pub.dev/packages/search_page
+
+* carousel slider - https://pub.dev/packages/carousel_slider
+
+* stripe payment - https://pub.dev/packages/stripe_payment
+
+* flutter slidable - https://pub.dev/packages/flutter_slidable
+
+## Tác giả
+Phạm Văn Chánh - 19521274@gm.uit.edu.vn
+
+Hồ Quang - 19520875@gm.uit.edu.vn
+
+## Giấy phép
+
+    Copyright 2014
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+
+
+# Link source code dành cho người quản lý :
+https://github.com/chanh12012001/Grocery_Admin_App_Flutter
+# Link source code dành cho người bán hàng (cửa hàng tiện lợi):
+https://github.com/chanh12012001/Grocery_Vendor_App_Flutter
+# Link source code dành cho người giao hàng :
+https://github.com/chanh12012001/Grocery_Delivery_App_Flutter
+# DEMO APP :
+https://drive.google.com/file/d/15gtEt_DxNxTxPhn8CNEyrPkdsEyIIwBN/view?usp=sharing
