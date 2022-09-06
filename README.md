@@ -11,7 +11,7 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
    
    1. [Thông tin cá nhân](#thông-tin-cá-nhân)
 
-   1. [Tìm kiếm sản phẩm trong 1 cửa hàng đang chọn](#tìm-kiếm-sản-phẩm-trong-1-cửa-hàng-đang-chọn)
+   1. [Lập kế hoạch](#lập-kế-hoạch)
    
    1. [Giỏ hàng, chi tiết đơn đặt hàng](#giỏ-hàng,-chi-tiết-đơn-đặt-hàng)
 
@@ -49,4 +49,12 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 
    <p align="center">
    <img src="https://user-images.githubusercontent.com/73011753/188634327-fe177542-44e1-44ab-8f12-01c8fbba490e.jpg" height = "480" width="270">
+   </p>
+
+### Lập kế hoạch
+   * Thêm task hằng ngày, tương tự todo-list
+
+   <p align="center">
+   <img src="https://user-images.githubusercontent.com/73011753/188635024-c7886894-b015-4d03-b8ec-d373aa092647.jpg" height = "490" width="270"> 
+   <img src="https://user-images.githubusercontent.com/73011753/188635039-21c75117-7ead-40c7-9c8d-8f5c0cfa356d.jpg" height = "490" width="270">
    </p>
