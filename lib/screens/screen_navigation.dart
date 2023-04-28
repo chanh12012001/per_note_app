@@ -12,36 +12,55 @@ class ScreenNavigation extends StatefulWidget {
   State<ScreenNavigation> createState() => _ScreenNavigationState();
 }
 
-class _ScreenNavigationState extends State<ScreenNavigation> {
+class _ScreenNavigationState extends State<ScreenNavigation>
+    with SingleTickerProviderStateMixin {
   int selectedPage = 0;
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+        length: 4, vsync: this, initialIndex: 0); // đặt initialIndex tại đây
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final _pageOption = [
-      HomeScreen(user: widget.user),
-      const ScheduleScreen(),
-      const AssetManageScreen(),
-      const HealthManageScreen(),
-    ];
-
-    return Scaffold(
-      body: _pageOption[selectedPage],
-      bottomNavigationBar: ConvexAppBar(
-        backgroundColor: whiteColor,
-        activeColor: tealColor,
-        color: grey2Color,
-        items: const [
-          TabItem(icon: Icons.home, title: 'Home'),
-          TabItem(icon: Icons.schedule, title: 'Kế hoạch'),
-          TabItem(icon: Icons.storage, title: 'Lưu trữ'),
-          TabItem(icon: Icons.health_and_safety, title: 'Sức khoẻ'),
-        ],
-        initialActiveIndex: selectedPage,
-        onTap: (int index) {
-          setState(() {
-            selectedPage = index;
-          });
-        },
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            HomeScreen(user: widget.user),
+            const ScheduleScreen(),
+            const AssetManageScreen(),
+            const HealthManageScreen(),
+          ],
+        ),
+        bottomNavigationBar: ConvexAppBar(
+          backgroundColor: whiteColor,
+          activeColor: tealColor,
+          color: grey2Color,
+          items: const [
+            TabItem(icon: Icons.home, title: 'Home'),
+            TabItem(icon: Icons.schedule, title: 'Kế hoạch'),
+            TabItem(icon: Icons.storage, title: 'Lưu trữ'),
+            TabItem(icon: Icons.health_and_safety, title: 'Sức khoẻ'),
+          ],
+          controller: _tabController,
+          // onTap: (int index) {
+          //   setState(() {
+          //     selectedPage = index;
+          //   });
+          // },
+        ),
       ),
     );
   }
