@@ -1,8 +1,6 @@
 class AppUrl {
   static const String baseURL = "https://per-node-be.onrender.com";
 
-  // static const String baseURL = "http://localhost:3000";
-
   static const String login = baseURL + "/login";
   static const String otpRegister = baseURL + "/otpRegister";
   static const String verifyOTP = baseURL + "/verifyOTP";
