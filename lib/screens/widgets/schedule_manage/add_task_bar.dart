@@ -292,15 +292,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   }
 
   _getDateFromUser() async {
-    DateTime? _pickerDate = await showDatePicker(
+    DateTime? pickerDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2016),
       lastDate: DateTime(2122),
     );
-    if (_pickerDate != null) {
+    if (pickerDate != null) {
       setState(() {
-        _selectedDate = _pickerDate;
+        _selectedDate = pickerDate;
       });
     } else {}
   }
@@ -311,16 +311,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       debugPrint('Time cancel');
     } else {
       DateTime tempDate = DateFormat("hh:mm").parse(
-          pickedTime.hour.toString() + ":" + pickedTime.minute.toString());
+          "${pickedTime.hour}:${pickedTime.minute}");
       var dateFormat = DateFormat("h:mm a"); // you can change the format here
-      String _formatedDate = dateFormat.format(tempDate);
+      String formatedDate = dateFormat.format(tempDate);
       if (isStartTime) {
         setState(() {
-          _startTime = _formatedDate;
+          _startTime = formatedDate;
         });
       } else if (!isStartTime) {
         setState(() {
-          _endTime = _formatedDate;
+          _endTime = formatedDate;
         });
       }
     }

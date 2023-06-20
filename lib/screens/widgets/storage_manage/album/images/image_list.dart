@@ -30,8 +30,8 @@ class ImageList extends StatefulWidget {
 class _ImageListState extends State<ImageList> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final ImagePicker _imagePicker = ImagePicker();
-  final List<XFile>? _imageFileList = [];
-  final List<File>? _imageFiles = [];
+  final List<XFile> _imageFileList = [];
+  final List<File> _imageFiles = [];
   HashSet selectedItems = HashSet();
   bool isSelected = false;
   List<dynamic> imageIds = [];
@@ -39,7 +39,7 @@ class _ImageListState extends State<ImageList> {
 
   @override
   Widget build(BuildContext context) {
-    ImagesProvider _imageProvider = Provider.of<ImagesProvider>(context);
+    ImagesProvider imageProvider = Provider.of<ImagesProvider>(context);
 
     return Scaffold(
       key: _scaffoldKey,
@@ -73,7 +73,7 @@ class _ImageListState extends State<ImageList> {
                     ),
                     IconButton(
                       onPressed: () {
-                        selectAndUploadImages(widget.album.id, _imageFiles!);
+                        selectAndUploadImages(widget.album.id, _imageFiles);
                       },
                       icon: const Icon(Icons.add_a_photo),
                     ),
@@ -101,7 +101,7 @@ class _ImageListState extends State<ImageList> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FutureBuilder<List<ImageModel>>(
-            future: _imageProvider.getAllImagesByAlbumId(widget.album.id),
+            future: imageProvider.getAllImagesByAlbumId(widget.album.id),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Text("${snapshot.error}");
@@ -174,8 +174,7 @@ class _ImageListState extends State<ImageList> {
                       ),
                       Text(
                         selectedItems.isNotEmpty
-                            ? selectedItems.length.toString() +
-                                " Image Selected"
+                            ? "${selectedItems.length} Image Selected"
                             : 'No Image Selected',
                         style: TextStyle(
                           color: blackColor,
@@ -232,19 +231,19 @@ class _ImageListState extends State<ImageList> {
   }
 
   void selectAndUploadImages(albumId, List<File> images) async {
-    final List<XFile>? selectedImages = await _imagePicker.pickMultiImage();
+    final List<XFile> selectedImages = await _imagePicker.pickMultiImage();
     try {
-      if (selectedImages!.isNotEmpty) {
-        _imageFileList!.addAll(selectedImages);
+      if (selectedImages.isNotEmpty) {
+        _imageFileList.addAll(selectedImages);
       }
-      _imageFileList?.forEach((xFile) {
-        _imageFiles?.add(File(xFile.path));
-      });
+      for (var xFile in _imageFileList) {
+        _imageFiles.add(File(xFile.path));
+      }
       ImagesProvider imagesProvider =
           Provider.of<ImagesProvider>(context, listen: false);
       await imagesProvider.uploadImagesToAlbum(albumId, images).then((value) {
-        _imageFileList?.clear();
-        _imageFiles?.clear();
+        _imageFileList.clear();
+        _imageFiles.clear();
       });
     } catch (e) {
       debugPrint(
@@ -262,7 +261,7 @@ class _ImageListState extends State<ImageList> {
 
     if (imageIds.isNotEmpty) {
       for (var imageId in imageIds) {
-        imagesIdApi = imagesIdApi + imageId + ",";
+        imagesIdApi = "${imagesIdApi + imageId},";
       }
     }
 

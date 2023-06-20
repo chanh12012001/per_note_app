@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:per_note/providers/account_provider.dart';
 import 'package:per_note/providers/album_provider.dart';
 import 'package:per_note/providers/auth_provider.dart';
+import 'package:per_note/providers/category_provider.dart';
 import 'package:per_note/providers/detail_healthy_index_provider.dart';
 import 'package:per_note/providers/healthy_index_provider.dart';
 import 'package:per_note/providers/image_provider.dart';
 import 'package:per_note/providers/loading_provider.dart';
 import 'package:per_note/providers/note_provider.dart';
 import 'package:per_note/providers/task_provider.dart';
+import 'package:per_note/providers/task_to_do_provider.dart';
 import 'package:per_note/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'config/app_router.dart';
@@ -23,6 +26,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent)
+    );
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => LoadingProvider()),
@@ -35,6 +41,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HealthyIndexProvider()),
         ChangeNotifierProvider(create: (_) => DetailHealthyIndexProvider()),
         ChangeNotifierProvider(create: (_) => AccountProvider()),
+        ChangeNotifierProvider(create: (_) => CategoryProvider()),
+        ChangeNotifierProvider(create: (_) => TaskToDoProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -124,7 +124,7 @@ class _AlbumCardState extends State<AlbumCard> {
                         }
                         return snapshot.hasData
                             ? Text(
-                                snapshot.data.toString() + " ảnh",
+                                "${snapshot.data} ảnh",
                                 style: const TextStyle(
                                     fontSize: 17, fontWeight: FontWeight.w500),
                               )
@@ -185,18 +185,18 @@ class _AlbumCardState extends State<AlbumCard> {
   }
 
   Future<int> _getQualityImageByAlbumId(albumId) async {
-    ImagesProvider _imageProvider = Provider.of<ImagesProvider>(context);
+    ImagesProvider imageProvider = Provider.of<ImagesProvider>(context);
     List<ImageModel> images =
-        await _imageProvider.getAllImagesByAlbumId(albumId);
+        await imageProvider.getAllImagesByAlbumId(albumId);
     return images.length;
   }
 
   Future<String?> _getFirstImageByAlbumId(albumId) async {
-    ImagesProvider _imageProvider = Provider.of<ImagesProvider>(context);
+    ImagesProvider imageProvider = Provider.of<ImagesProvider>(context);
     String imagePhotoGallery =
         "https://res.cloudinary.com/chanhpham/image/upload/v1648918401/per-note/photo_gallery_agkbwk.jpg";
     List<ImageModel> images =
-        await _imageProvider.getAllImagesByAlbumId(albumId);
+        await imageProvider.getAllImagesByAlbumId(albumId);
     if (images.isNotEmpty) {
       return images[0].imageUrl;
     }

@@ -76,7 +76,6 @@ class _AccountTabState extends State<AccountTab> {
                     ),
                   ),
                   TextButton(
-                    child: const Text("Nhập mật khẩu"),
                     onPressed: () {
                       _showDialogInputPassword();
                     },
@@ -86,6 +85,7 @@ class _AccountTabState extends State<AccountTab> {
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.white),
                     ),
+                    child: const Text("Nhập mật khẩu"),
                   ),
                 ],
               ),

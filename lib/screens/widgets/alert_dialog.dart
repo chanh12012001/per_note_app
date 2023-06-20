@@ -113,15 +113,6 @@ class MyAlertDialog extends StatelessWidget {
     return ConstrainedBox(
       constraints: const BoxConstraints.tightFor(width: 100, height: 40),
       child: ElevatedButton(
-        child: Text(
-          text,
-          style: GoogleFonts.lato(
-            textStyle: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
         onPressed: () {
           onPressed();
         },
@@ -132,6 +123,15 @@ class MyAlertDialog extends StatelessWidget {
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+        ),
+        child: Text(
+          text,
+          style: GoogleFonts.lato(
+            textStyle: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),

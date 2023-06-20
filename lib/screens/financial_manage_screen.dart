@@ -25,7 +25,7 @@ class FinancialScreen extends StatelessWidget {
             leading: Row(children: [
               Container(
                 width: 56,
-                padding: EdgeInsets.only(left: 1.5),
+                padding: const EdgeInsets.only(left: 1.5),
                 child: CircleAvatar(
                   radius: 30,
                   backgroundColor: Colors.white,
@@ -36,11 +36,11 @@ class FinancialScreen extends StatelessWidget {
                 ),
               ),
             ]),
-            title: Column(
+            title: const Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                const Text(
+                Text(
                   'HO QUANG',
                   style: TextStyle(
                       color: Colors.white,
@@ -50,7 +50,7 @@ class FinancialScreen extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                const Text(
+                Text(
                   'Xem thông tin',
                   style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
@@ -66,7 +66,7 @@ class FinancialScreen extends StatelessWidget {
           ),
         ],
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Column(children: <Widget>[
@@ -77,7 +77,7 @@ class FinancialScreen extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       height: size.height * 0.07,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(30),
@@ -105,18 +105,17 @@ class FinancialScreen extends StatelessWidget {
                                 size: 30,
                               ),
                               onPressed: () {},
-                              label: Text(
+                              label: const Text(
                                 'Ví tiền',
                                 style: TextStyle(fontSize: 25),
                               ),
                               style: ElevatedButton.styleFrom(
-                                shape: new RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(20),
-                                ),
-                                primary: Color.fromARGB(255, 254, 135, 111),
-                                padding: EdgeInsets.symmetric(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ), backgroundColor: const Color.fromARGB(255, 254, 135, 111),
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 35, vertical: 40),
-                                shadowColor: Color.fromARGB(255, 245, 145, 145),
+                                shadowColor: const Color.fromARGB(255, 245, 145, 145),
                               ),
                             ),
                           ],
@@ -130,18 +129,17 @@ class FinancialScreen extends StatelessWidget {
                                 size: 30,
                               ),
                               onPressed: () {},
-                              label: Text(
+                              label: const Text(
                                 'Báo cáo',
                                 style: TextStyle(fontSize: 25),
                               ),
                               style: ElevatedButton.styleFrom(
-                                shape: new RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(20),
-                                ),
-                                primary: Color.fromARGB(255, 254, 135, 111),
-                                padding: EdgeInsets.symmetric(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ), backgroundColor: const Color.fromARGB(255, 254, 135, 111),
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 30, vertical: 40),
-                                shadowColor: Color.fromARGB(255, 177, 227, 247),
+                                shadowColor: const Color.fromARGB(255, 177, 227, 247),
                               ),
                             ),
                           ],
@@ -153,14 +151,14 @@ class FinancialScreen extends StatelessWidget {
                       children: [
                         Container(
                           padding:
-                              EdgeInsets.only(left: 20, right: 20, top: 10),
+                              const EdgeInsets.only(left: 20, right: 20, top: 10),
                           height: size.height * 0.4,
                           width: size.width * 0.4,
-                          color: Color.fromARGB(255, 254, 135, 111)
+                          color: const Color.fromARGB(255, 254, 135, 111)
                               .withOpacity(0.1),
                           child: Column(
                             children: [
-                              Text(
+                              const Text(
                                 'Số tiền',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -169,120 +167,120 @@ class FinancialScreen extends StatelessWidget {
                               ),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Icons.remove_red_eye,
+                                  icon: const Icon(Icons.remove_red_eye,
                                       color: Colors.grey)),
-                              Text(
+                              const Text(
                                 '5.000.000vnđ',
                                 textAlign: TextAlign.center,
                                 style:
                                     TextStyle(fontSize: 20, color: Colors.grey),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Container(
+                              SizedBox(
                                 height: size.height * 0.07,
                                 child: ElevatedButton(
                                   onPressed: () {},
-                                  child: Text(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 2, 175, 174)),
+                                  child: const Text(
                                     'Nộp thêm tiền vào ví',
                                     textAlign: TextAlign.center,
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                      primary: const Color.fromARGB(
-                                          255, 2, 175, 174)),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Container(
+                              SizedBox(
                                 height: size.height * 0.07,
                                 child: ElevatedButton(
                                   onPressed: () {},
-                                  child: Text(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 2, 175, 174)),
+                                  child: const Text(
                                     'Trừ số tiền đã sử dụng',
                                     textAlign: TextAlign.center,
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                      primary: const Color.fromARGB(
-                                          255, 2, 175, 174)),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Container(
+                              SizedBox(
                                 height: size.height * 0.07,
                                 child: ElevatedButton(
                                   onPressed: () {},
-                                  child: Text(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 2, 175, 174)),
+                                  child: const Text(
                                     'Đặt hạn mức',
                                     textAlign: TextAlign.center,
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                      primary: const Color.fromARGB(
-                                          255, 2, 175, 174)),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Container(
                           padding:
-                              EdgeInsets.only(left: 20, right: 20, top: 10),
+                              const EdgeInsets.only(left: 20, right: 20, top: 10),
                           height: size.height * 0.4,
                           width: size.width * 0.4,
-                          color: Color.fromARGB(255, 254, 135, 111)
+                          color: const Color.fromARGB(255, 254, 135, 111)
                               .withOpacity(0.1),
                           child: Column(
                             children: [
-                              Container(
+                              SizedBox(
                                 height: size.height * 0.07,
                                 child: ElevatedButton(
                                   onPressed: () {},
-                                  child: Text(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 2, 175, 174)),
+                                  child: const Text(
                                     'Báo cáo ngày',
                                     textAlign: TextAlign.center,
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                      primary: const Color.fromARGB(
-                                          255, 2, 175, 174)),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
-                              Container(
+                              SizedBox(
                                 height: size.height * 0.07,
                                 child: ElevatedButton(
                                   onPressed: () {},
-                                  child: Text(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 2, 175, 174)),
+                                  child: const Text(
                                     'Báo cáo tuần',
                                     textAlign: TextAlign.center,
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                      primary: const Color.fromARGB(
-                                          255, 2, 175, 174)),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
-                              Container(
+                              SizedBox(
                                 height: size.height * 0.07,
                                 child: ElevatedButton(
                                   onPressed: () {},
-                                  child: Text(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 2, 175, 174)),
+                                  child: const Text(
                                     'Báo cáo tháng',
                                     textAlign: TextAlign.center,
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                      primary: const Color.fromARGB(
-                                          255, 2, 175, 174)),
                                 ),
                               ),
                             ],

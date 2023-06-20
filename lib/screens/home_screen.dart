@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pedometer/pedometer.dart';
+import 'package:per_note/models/category_model.dart';
 import 'package:per_note/models/user_model.dart';
-import 'package:per_note/screens/chatbot_screen.dart';
+import 'package:per_note/providers/category_provider.dart';
 import 'package:per_note/screens/widgets/health_manage/step_info.dart';
 import 'package:per_note/screens/widgets/home_screen/profile.dart';
 import 'package:per_note/screens/widgets/home_screen/slider_image_album.dart';
 import 'package:per_note/screens/widgets/schedule_manage/task_list.dart';
+import 'package:per_note/screens/widgets/task_to_do/add_new_task.dart';
+import 'package:per_note/screens/widgets/task_to_do/dialog_add_new.dart';
+import 'package:per_note/screens/widgets/task_to_do/task_to_do.dart';
 import 'package:per_note/screens/widgets/widgets.dart';
 import 'package:per_note/services/notification_service.dart';
 import 'package:provider/provider.dart';
@@ -85,7 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     UserPreferences userPreferences = UserPreferences();
-
+    CategoryProvider categoryProvider =
+        Provider.of<CategoryProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -131,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             radius: 30,
                                             backgroundImage: snapshot
                                                         .data!.avatarUrl !=
-                                                    ""
+                                                    null
                                                 ? NetworkImage(
                                                     snapshot.data!.avatarUrl!)
                                                 : const AssetImage(
@@ -204,6 +209,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   CircleAvatar(
                     radius: 15,
+                    child: Image.asset('assets/images/ic_listcheck.png'),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Việc cần làm',
+                    style: GoogleFonts.roboto(
+                      textStyle: TextStyle(
+                        fontSize: 20.0,
+                        color: grey2Color,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            _showTaskToDo(categoryProvider),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 15,
                     child: Image.asset('assets/images/ic_date.png'),
                   ),
                   const SizedBox(
@@ -253,5 +283,73 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
     );
+  }
+
+  _showTaskToDo(CategoryProvider categoryProvider) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      child: SizedBox(
+        height: 500,
+        child: FutureBuilder<List<Category>>(
+          future: categoryProvider.getCategoriesList(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text("${snapshot.hasError}");
+            }
+            return snapshot.hasData
+                ? Column(
+                    children: [
+                      AddTaskButton(
+                        categories: snapshot.data!,
+                        reload: reload,
+                        ),
+                      Expanded(
+                        child: GridView.builder(
+                            // physics: const NeverScrollableScrollPhysics(),
+                            itemCount: snapshot.data!.length + 1,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10),
+                            itemBuilder: (context, index) =>
+                                index == snapshot.data!.length
+                                    ? AddNewTask(
+                                        reload: reload,
+                                      )
+                                    : TaskToDo(
+                                        category: snapshot.data![index],
+                                        reload: reload,
+                                      )),
+                      ),
+                    ],
+                  )
+                : const Center(
+                    child: ColorLoader(),
+                  );
+          },
+        ),
+      ),
+    );
+  }
+
+  Future<String> reload() async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text('Việc cần làm'),
+        content: Text('Thành công'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              setState(() {});
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
+    return "";
   }
 }

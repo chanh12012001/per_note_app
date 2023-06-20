@@ -169,9 +169,7 @@ class _HealthyIndexListState extends State<HealthyIndexList> {
                 }
                 return snapshot.hasData
                     ? Text(
-                        snapshot.data!.createAtTime! +
-                            " - " +
-                            snapshot.data!.createAtDate!,
+                        "${snapshot.data!.createAtTime!} - ${snapshot.data!.createAtDate!}",
                         style: TextStyle(
                           fontSize: 14,
                           color: blackColor,

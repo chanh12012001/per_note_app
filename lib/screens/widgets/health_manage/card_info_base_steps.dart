@@ -20,14 +20,14 @@ class CardInfomationBaseSteps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double _borderRadius = 24;
+    const double borderRadius = 24;
 
     return Stack(
       children: [
         Container(
           height: 100,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(_borderRadius),
+            borderRadius: BorderRadius.circular(borderRadius),
             gradient: LinearGradient(
               colors: [
                 startColorLinearGradient,
@@ -45,7 +45,7 @@ class CardInfomationBaseSteps extends StatelessWidget {
           child: CustomPaint(
             size: const Size(100, 150),
             painter: CustomCardShapePainter(
-              _borderRadius,
+              borderRadius,
               startColorLinearGradient,
               endColorLinearGradient,
             ),
@@ -55,8 +55,8 @@ class CardInfomationBaseSteps extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Expanded(
-                child: image,
                 flex: 2,
+                child: image,
               ),
               Expanded(
                 flex: 3,

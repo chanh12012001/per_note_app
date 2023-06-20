@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:per_note/models/note_model.dart';
 import '../../../../config/theme.dart';
@@ -97,9 +96,9 @@ class _NoteCardState extends State<NoteCard> {
     );
   }
 
-  _getFormatedDate(_date) {
+  _getFormatedDate(date) {
     final format = DateFormat('yyyy-MM-ddTHH:mm:ssZ', 'en-US');
-    var inputDate = format.parse(_date);
+    var inputDate = format.parse(date);
 
     var outputFormat = DateFormat('MM/dd/yyyy hh:mm a');
     return outputFormat.format(inputDate);

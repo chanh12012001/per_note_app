@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:per_note/config/theme.dart';
 import 'package:per_note/screens/widgets/storage_manage/account/account_tab.dart';
 import 'package:per_note/screens/widgets/storage_manage/album/album_tab.dart';
+// import 'package:per_note/screens/widgets/storage_manage/document/document_tab.dart';
 import 'package:per_note/screens/widgets/storage_manage/notes/note_tab.dart';
 
 class AssetManageScreen extends StatefulWidget {
@@ -49,6 +50,7 @@ class _AssetManageScreenState extends State<AssetManageScreen> {
               Tab(icon: Icon(Icons.note_alt), text: 'Ghi chú'),
               Tab(icon: Icon(Icons.photo_album), text: 'Album'),
               Tab(icon: Icon(Icons.account_box), text: 'Tài khoản'),
+              //  Tab(icon: Icon(Icons.edit_document), text: 'Tài liệu'),
             ],
           ),
           titleSpacing: 20,
@@ -58,6 +60,7 @@ class _AssetManageScreenState extends State<AssetManageScreen> {
             NoteTab(),
             AlbumTab(),
             AccountTab(),
+            // DocumentTab()
           ],
         ),
       ),

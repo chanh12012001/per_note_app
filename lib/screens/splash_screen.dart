@@ -38,8 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     Timer(
         const Duration(seconds: 4),
-        () => {
-              getUserData().then((value) => value.token == null
+        () => getUserData().then((value) => value.token == null
                   ? Navigator.pushNamedAndRemoveUntil(
                       context, LoginScreen.routeName, (route) => false)
                   : Navigator.push(context, MaterialPageRoute<void>(
@@ -47,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
                         return ScreenNavigation(user: value);
                       },
                     )))
-            });
+            );
 
     super.initState();
   }

@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
@@ -39,7 +38,7 @@ class _HealthManageScreenState extends State<HealthManageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -52,7 +51,7 @@ class _HealthManageScreenState extends State<HealthManageScreen> {
           'Thông tin sức khoẻ',
           style: TextStyle(color: Colors.black),
         ),
-        actions: [],
+        actions: const [],
       ),
       floatingActionButton: buildFloatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,

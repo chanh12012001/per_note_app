@@ -115,9 +115,9 @@ class _NoteViewState extends State<NoteView> {
     );
   }
 
-  _getFormatedDate(_date) {
+  _getFormatedDate(date) {
     final format = DateFormat('yyyy-MM-ddTHH:mm:ssZ', 'en-US');
-    var inputDate = format.parse(_date);
+    var inputDate = format.parse(date);
 
     var outputFormat = DateFormat('MM/dd/yyyy hh:mm a');
     return outputFormat.format(inputDate);

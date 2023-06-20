@@ -4,7 +4,6 @@ import 'package:per_note/config/theme.dart';
 import 'package:per_note/models/first_image_album_slider_model.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/album_model.dart';
 import '../../../providers/album_provider.dart';
 import '../loader.dart';
 import '../storage_manage/album/images/image_list.dart';
@@ -37,11 +36,11 @@ class _CarouselSliderImageAlbumState extends State<CarouselSliderImageAlbum> {
                 );
               },
               child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
                 child: Image.network(
                   element.image!,
                   fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.circular(15),
               ),
             ))
         .toList();
@@ -77,11 +76,11 @@ class _CarouselSliderImageAlbumState extends State<CarouselSliderImageAlbum> {
                             });
                           }),
                     ),
-                    Padding(
+                    snapshot.data!.isNotEmpty ? Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Center(
                         child: Text(
-                          "Ảnh " + images[_current].album!.name!,
+                          "Ảnh ${images[_current].album!.name!}",
                           style: TextStyle(
                             decoration: TextDecoration.none,
                             color: blackColor,
@@ -90,7 +89,7 @@ class _CarouselSliderImageAlbumState extends State<CarouselSliderImageAlbum> {
                           ),
                         ),
                       ),
-                    ),
+                    ):Container(),
                   ],
                 ),
               )

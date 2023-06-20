@@ -120,7 +120,7 @@ class _AccountCardState extends State<AccountCard> {
                 height: size.width / 40,
               ),
               Text(
-                widget.account.username! + " - " + widget.account.password!,
+                "${widget.account.username!} - ${widget.account.password!}",
                 style: TextStyle(
                   color: blackColor,
                   fontSize: 18,

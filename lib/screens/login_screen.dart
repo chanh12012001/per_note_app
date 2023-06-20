@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:per_note/config/theme.dart';
 import 'package:per_note/screens/screen_navigation.dart';
 import 'package:per_note/screens/screens.dart';
+import 'package:per_note/screens/widgets/login/google_sign_in.dart';
+import 'package:per_note/screens/widgets/other_login_method.dart';
 import 'package:per_note/services/toast_service.dart';
 import 'package:provider/provider.dart';
 import '../models/user_model.dart';
@@ -34,6 +37,81 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     AuthProvider auth = Provider.of<AuthProvider>(context);
+    Future googleSignIn(AuthProvider authGg) async {
+      final googleUser = await GoogleSignInApi.login();
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
+
+      final Future<Map<String, dynamic>> successfulMessageLogin =
+          authGg.googleLogin(googleUser.email);
+      successfulMessageLogin.then((value) async {
+        if(value['status']){
+        User user = value['user'];
+              Provider.of<UserProvider>(context, listen: false).setUser(user);
+
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
+                    return ScreenNavigation(
+                      user: user,
+                    );
+                  },
+                ),
+                (route) => false,
+              );
+
+              toast.showToast(
+                context: context,
+                message: 'Đăng nhập thành công',
+                icon: Icons.check,
+                backgroundColor: Colors.green,
+              );
+            } else {
+              final Future<Map<String, dynamic>> successfulMessage =
+          authGg.registerGoogle(
+              googleUser.displayName, googleUser.email, googleUser.photoUrl);
+             successfulMessage.then((response) async {
+        if (response['status']) {
+          successfulMessageLogin.then((value) async {
+            print(value);
+            if (value['status']) {
+              User user = value['user'];
+              Provider.of<UserProvider>(context, listen: false).setUser(user);
+
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
+                    return ScreenNavigation(
+                      user: user,
+                    );
+                  },
+                ),
+                (route) => false,
+              );
+
+              toast.showToast(
+                context: context,
+                message: 'Đăng nhập thành công',
+                icon: Icons.check,
+                backgroundColor: Colors.green,
+              );
+            } else {
+              toast.showToast(
+                context: context,
+                message: 'Gmail hiện đang có lỗi hoặc bạn nhập sai gmail!',
+                icon: Icons.error,
+                backgroundColor: Colors.redAccent,
+              );
+            }
+          });
+        }
+      });
+            }
+      });
+    }
+
     _login(phone, pass) {
       String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
       RegExp regExp = RegExp(pattern);
@@ -127,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
               SizedBox(
                 width: size.width * 0.8,
-                height: size.width * 0.08,
+                height: size.width * 0.05,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -156,6 +234,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.pushReplacementNamed(
                       context, RegisterScreen.routeName);
                 },
+              ),
+              SizedBox(height: size.height * 0.02),
+              const Text(
+                "Bằng cách khác",
+                style: TextStyle(color: kPrimaryColor, fontSize: 16),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  OtherLoginMethod(
+                    borderColor: const Color(0xffFF0000),
+                    textColor: const Color(0xffFF0000),
+                    text: "Google",
+                    image: "assets/images/google.png",
+                    onTap: () {
+                      googleSignIn(auth);
+                    },
+                  ),
+                ],
               ),
             ],
           ),

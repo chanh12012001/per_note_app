@@ -4,7 +4,6 @@ import 'package:per_note/screens/widgets/widgets.dart';
 import 'package:per_note/services/toast_service.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
-import 'widgets/toast.dart' as toast;
 
 class InputPasswordScreen extends StatefulWidget {
   static const String routeName = '/input-password';
@@ -27,8 +26,8 @@ class _InputPasswordScreenState extends State<InputPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _passwordController = TextEditingController();
-    TextEditingController _confirmPasswordController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController confirmPasswordController = TextEditingController();
     Size size = MediaQuery.of(context).size;
     AuthProvider auth = Provider.of<AuthProvider>(context);
 
@@ -101,12 +100,12 @@ class _InputPasswordScreenState extends State<InputPasswordScreen> {
               height: 30,
             ),
             RoundedPasswordField(
-              controller: _passwordController,
+              controller: passwordController,
               hintText: 'Mật khẩu',
               onChanged: (value) {},
             ),
             RoundedPasswordField(
-              controller: _confirmPasswordController,
+              controller: confirmPasswordController,
               hintText: 'Xác nhận mật khẩu',
               onChanged: (value) {},
             ),
@@ -116,8 +115,8 @@ class _InputPasswordScreenState extends State<InputPasswordScreen> {
                     width: 0.8,
                     text: "TIẾP TỤC",
                     onPressed: () {
-                      _register(_passwordController.text,
-                          _confirmPasswordController.text);
+                      _register(passwordController.text,
+                          confirmPasswordController.text);
                     },
                   ),
           ],

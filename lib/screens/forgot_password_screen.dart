@@ -33,7 +33,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    TextEditingController _phoneController = TextEditingController();
+    TextEditingController phoneController = TextEditingController();
     AuthProvider auth = Provider.of<AuthProvider>(context);
 
     _forgotPassword(phoneNumber) {
@@ -113,7 +113,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             RoundedInputField(
               hintText: 'Số điện thoại',
               onChanged: (value) {},
-              controller: _phoneController,
+              controller: phoneController,
             ),
             auth.sentOtpStatus == Status.sendingOtp
                 ? const ColorLoader()
@@ -121,7 +121,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     width: 0.8,
                     text: 'TIẾP TỤC',
                     onPressed: () {
-                      _forgotPassword(_phoneController.text);
+                      _forgotPassword(phoneController.text);
                     },
                   ),
             SizedBox(

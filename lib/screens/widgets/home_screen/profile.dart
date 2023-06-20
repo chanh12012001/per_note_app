@@ -108,7 +108,7 @@ class _ProfileState extends State<Profile> {
                         },
                         child: CircleAvatar(
                           radius: 42,
-                          backgroundImage: snapshot.data!.avatarUrl != ""
+                          backgroundImage: snapshot.data!.avatarUrl != null
                               ? NetworkImage(snapshot.data!.avatarUrl!)
                               : const AssetImage(
                                       'assets/images/photo_gallery.png')
@@ -117,7 +117,7 @@ class _ProfileState extends State<Profile> {
                       ),
                       const SizedBox(height: 15),
                       Text(
-                        "ID: " + widget.user.userId!,
+                        "ID: ${widget.user.userId!}",
                         style: const TextStyle(fontSize: 15),
                       ),
                       InputField(

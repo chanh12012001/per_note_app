@@ -3,7 +3,6 @@ import 'package:dialogflow_flutter/dialogflowFlutter.dart';
 import 'package:dialogflow_flutter/googleAuth.dart';
 import 'package:dialogflow_flutter/language.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:per_note/config/theme.dart';
 
 class ChatBotScreen extends StatefulWidget {
@@ -36,9 +35,9 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     final isKeyBoard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color.fromARGB(255, 218, 228, 243),
+      backgroundColor: const Color.fromARGB(255, 218, 228, 243),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 146, 205, 245),
+        backgroundColor: const Color.fromARGB(255, 146, 205, 245),
         title: const Text("Chat bot"),
       ),
       body: Column(
@@ -52,7 +51,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           //     ),
           //   ),
           // ),
-          Container(
+          SizedBox(
             height: isKeyBoard
                 ? MediaQuery.of(context).size.height * 0.45
                 : MediaQuery.of(context).size.height * 0.78,
@@ -66,7 +65,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               ),
             ),
           ),
-          Divider(
+          const Divider(
             height: 5,
           ),
           Container(
@@ -74,7 +73,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               title: Container(
                 height: 50,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
                   color: whiteColor,
                 ),
                 padding: const EdgeInsets.only(left: 15),
@@ -94,7 +93,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                 ),
               ),
               trailing: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.send,
                   size: 30,
                   color: Colors.blue,
@@ -125,13 +124,13 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
   Widget chat(String mess, int data) {
     return Container(
-      padding: EdgeInsets.only(left: 20, right: 20),
+      padding: const EdgeInsets.only(left: 20, right: 20),
       child: Row(
         mainAxisAlignment:
             data == 1 ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           data == 0
-              ? Container(
+              ? const SizedBox(
                   height: 60,
                   width: 60,
                   child: CircleAvatar(
@@ -140,28 +139,28 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                 )
               : Container(),
           Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Bubble(
-                radius: Radius.circular(15),
+                radius: const Radius.circular(15),
                 color: data == 0
-                    ? Color.fromARGB(255, 255, 255, 255)
-                    : Color.fromARGB(255, 183, 214, 240),
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : const Color.fromARGB(255, 183, 214, 240),
                 elevation: 0,
                 child: Padding(
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Flexible(
                           child: Container(
-                        padding: EdgeInsets.all(5),
-                        constraints: BoxConstraints(maxWidth: 200),
+                        padding: const EdgeInsets.all(5),
+                        constraints: const BoxConstraints(maxWidth: 200),
                         child: Text(
                           mess,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
@@ -172,10 +171,10 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                 ),
               )),
           data == 1
-              ? Container(
+              ? const SizedBox(
                   height: 60,
                   width: 60,
-                  child: const CircleAvatar(
+                  child: CircleAvatar(
                     backgroundImage:
                         AssetImage("assets/images/avt_default.png"),
                   ),

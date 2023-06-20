@@ -144,9 +144,7 @@ class _AddHealthyDataState extends State<AddHealthyData> {
   _getIndexValueByHealthyIndex(healthyIndexName) {
     switch (healthyIndexName) {
       case "Huyết áp":
-        return _indexSubValueController1.text +
-            "/" +
-            _indexSubValueController2.text;
+        return "${_indexSubValueController1.text}/${_indexSubValueController2.text}";
       case "BMI":
         double meters = (double.parse(_indexSubValueController1.text) / 100);
         double resultBMI =
@@ -183,7 +181,7 @@ class _AddHealthyDataState extends State<AddHealthyData> {
     }
     return InputField(
       controller: _indexValueController,
-      title: widget.healthyIndex.name! + " (" + widget.healthyIndex.unit! + ")",
+      title: "${widget.healthyIndex.name!} (${widget.healthyIndex.unit!})",
       hint: "Nhập nội dung",
     );
   }
@@ -194,12 +192,12 @@ class _AddHealthyDataState extends State<AddHealthyData> {
       debugPrint('Time cancel');
     } else {
       DateTime tempDate = DateFormat("hh:mm").parse(
-          pickedTime.hour.toString() + ":" + pickedTime.minute.toString());
+          "${pickedTime.hour}:${pickedTime.minute}");
       var dateFormat = DateFormat("HH:mm"); // you can change the format here
-      String _formatedDate = dateFormat.format(tempDate);
+      String formatedDate = dateFormat.format(tempDate);
 
       setState(() {
-        _time = _formatedDate;
+        _time = formatedDate;
       });
     }
   }
@@ -220,15 +218,15 @@ class _AddHealthyDataState extends State<AddHealthyData> {
   }
 
   _getDateFromUser() async {
-    DateTime? _pickerDate = await showDatePicker(
+    DateTime? pickerDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2016),
       lastDate: DateTime(2122),
     );
-    if (_pickerDate != null) {
+    if (pickerDate != null) {
       setState(() {
-        _selectedDate = _pickerDate;
+        _selectedDate = pickerDate;
       });
     } else {}
   }

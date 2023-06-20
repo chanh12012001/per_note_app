@@ -66,7 +66,7 @@ class _ValueHealthyIndexListState extends State<ValueHealthyIndexList> {
                 },
               ),
               title: Text(
-                detailHealthyIndex.indexValue! + " ${widget.healthyIndex.unit}",
+                "${detailHealthyIndex.indexValue!} ${widget.healthyIndex.unit}",
                 style: GoogleFonts.roboto(
                   textStyle: const TextStyle(
                     fontSize: 18.0,
