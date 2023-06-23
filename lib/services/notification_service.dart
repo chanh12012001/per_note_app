@@ -73,18 +73,18 @@ class NotificationService {
     );
   }
 
-  DateTimeComponents? matchDateTimeComponents(String repeat) {
-    switch (repeat) {
-      case 'None':
-        return null;
-      case 'Ngày':
-        return DateTimeComponents.time;
-      case 'Tuần':
-        return DateTimeComponents.dayOfWeekAndTime;
-      default:
-        return null;
-    }
-  }
+  // DateTimeComponents? matchDateTimeComponents(String repeat) {
+  //   switch (repeat) {
+  //     case 'None':
+  //       return null;
+  //     case 'Ngày':
+  //       return DateTimeComponents.time;
+  //     case 'Tuần':
+  //       return DateTimeComponents.dayOfWeekAndTime;
+  //     default:
+  //       return null;
+  //   }
+  // }
 
   tz.TZDateTime _convertTime(int hour, int minutes, String repeat) {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);

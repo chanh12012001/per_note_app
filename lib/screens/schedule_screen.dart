@@ -61,7 +61,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 251, 248, 248),
       appBar: AppBar(
@@ -82,7 +81,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   onPressed: () {
                     setState(() {
                       Navigator.pushNamed(context, CategoryScreen.routeName)
-                  .then((_) => setState(() {}));
+                          .then((_) => setState(() {}));
                     });
                   },
                   icon: Icon(
@@ -112,7 +111,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           _addTaskBar(),
           _isTableCalendar ? _addCalendarView() : _addDateBar(),
           const SizedBox(height: 10),
-           _showTasks(),
+          _showTasks(),
           const SizedBox(height: 15),
         ],
       ),
@@ -139,8 +138,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       ),
     );
   }
-
-
 
   _addDateBar() {
     return Container(
@@ -226,37 +223,16 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     DateFormat dateFormat = DateFormat("dd/MM/yyyy");
     for (var task in tasks) {
       DateTime date = dateFormat.parse(task.date!);
-      mySelectedEvents[day] = [task];
-      // if (task.repeat == 'Ngày') {
-      //   if (mySelectedEvents[day] != null) {
-      //     mySelectedEvents[day]?.add(task);
-      //   } else {
-      //     mySelectedEvents[day] = [task];
-      //   }
-      // }
 
-      // if (task.repeat == 'Tuần') {
-      //   int distance = daysBetween(date, day);
-      //   if (distance % 7 == 0) {
-      //     if (mySelectedEvents[day] != null) {
-      //       mySelectedEvents[day]?.add(task);
-      //     } else {
-      //       mySelectedEvents[day] = [task];
-      //     }
-      //   }
-      // }
-
-      // if (day.day == date.day &&
-      //     day.month == date.month &&
-      //     day.year == day.year &&
-      //     task.repeat != 'Ngày' &&
-      //     task.repeat != 'Tuần') {
-      //   if (mySelectedEvents[day] != null) {
-      //     mySelectedEvents[day]?.add(task);
-      //   } else {
-      //     mySelectedEvents[day] = [task];
-      //   }
-      // }
+      if (day.day == date.day &&
+          day.month == date.month &&
+          day.year == day.year) {
+        if (mySelectedEvents[day] != null) {
+          mySelectedEvents[day]?.add(task);
+        } else {
+          mySelectedEvents[day] = [task];
+        }
+      }
     }
     return mySelectedEvents[day] ?? [];
   }

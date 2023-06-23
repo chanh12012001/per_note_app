@@ -34,75 +34,75 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   NotificationService notifyService = NotificationService();
-  // late Stream<StepCount> _stepCountStream;
-  // late Stream<PedestrianStatus> _pedestrianStatusStream;
+  late Stream<StepCount> _stepCountStream;
+  late Stream<PedestrianStatus> _pedestrianStatusStream;
 
-  // String _status = '?', _steps = '0';
-  // String _km = '0';
+  String _status = '?', _steps = '0';
+  String _km = '0';
 
   @override
   void initState() {
     super.initState();
-    // initPlatformState();
+    initPlatformState();
   }
 
-  // void onStepCount(StepCount event) {
-  //   print(event);
-  //   setState(() {
-  //     _steps = event.steps.toString();
-  //   });
-  // }
+  void onStepCount(StepCount event) {
+    print(event);
+    setState(() {
+      _steps = event.steps.toString();
+    });
+  }
 
-  // void onPedestrianStatusChanged(PedestrianStatus event) {
-  //   print(event);
-  //   setState(() {
-  //     _status = event.status;
-  //   });
-  // }
+  void onPedestrianStatusChanged(PedestrianStatus event) {
+    print(event);
+    setState(() {
+      _status = event.status;
+    });
+  }
 
-  // void onPedestrianStatusError(error) {
-  //   print('onPedestrianStatusError: $error');
-  //   setState(() {
-  //     _status = 'Pedestrian Status not available';
-  //   });
-  //   print(_status);
-  // }
+  void onPedestrianStatusError(error) {
+    print('onPedestrianStatusError: $error');
+    setState(() {
+      _status = 'Pedestrian Status not available';
+    });
+    print(_status);
+  }
 
-  // void onStepCountError(error) {
-  //   print('onStepCountError: $error');
-  //   setState(() {
-  //     _steps = '0';
-  //   });
-  // }
+  void onStepCountError(error) {
+    print('onStepCountError: $error');
+    setState(() {
+      _steps = '0';
+    });
+  }
 
-  // void initPlatformState() {
-  //   _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
-  //   _pedestrianStatusStream
-  //       .listen(onPedestrianStatusChanged)
-  //       .onError(onPedestrianStatusError);
+  void initPlatformState() {
+    _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+    _pedestrianStatusStream
+        .listen(onPedestrianStatusChanged)
+        .onError(onPedestrianStatusError);
 
-  //   _stepCountStream = Pedometer.stepCountStream;
-  //   _stepCountStream.listen(onStepCount).onError(onStepCountError);
+    _stepCountStream = Pedometer.stepCountStream;
+    _stepCountStream.listen(onStepCount).onError(onStepCountError);
 
-  //   if (!mounted) return;
-  // }
+    if (!mounted) return;
+  }
 
-  //function to determine the distance run in kilometers using number of steps
-  // String getDistanceRun(double numStep) {
-  //   var distance = ((numStep * 78) / 100000);
-  //   distance = double.parse(distance.toStringAsFixed(2)); //dos decimales
-  //   var distancekmx = distance * 34;
-  //   distancekmx = double.parse(distancekmx.toStringAsFixed(2));
-  //   setState(() {
-  //     _km = "$distance";
-  //   });
-  //   return _km;
-  // }
+  // function to determine the distance run in kilometers using number of steps
+  String getDistanceRun(double numStep) {
+    var distance = ((numStep * 78) / 100000);
+    distance = double.parse(distance.toStringAsFixed(2)); //dos decimales
+    var distancekmx = distance * 34;
+    distancekmx = double.parse(distancekmx.toStringAsFixed(2));
+    setState(() {
+      _km = "$distance";
+    });
+    return _km;
+  }
 
-  // String calculateCalories(int steps) {
-  //   double caloriesValue = (steps * 0.0566);
-  //   return caloriesValue.toStringAsFixed(2);
-  // }
+  String calculateCalories(int steps) {
+    double caloriesValue = (steps * 0.0566);
+    return caloriesValue.toStringAsFixed(2);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -266,15 +266,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                // Text(
-                                //   '${int.parse(_steps)}',
-                                //   style: TextStyle(
-                                //     color: tealColor,
-                                //     fontSize: 16,
-                                //     fontFamily: 'Bebas',
-                                //     fontWeight: FontWeight.bold,
-                                //   ),
-                                // ),
+                                Text(
+                                  '${int.parse(_steps)}',
+                                  style: TextStyle(
+                                    color: tealColor,
+                                    fontSize: 16,
+                                    fontFamily: 'Bebas',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                                 Text(
                                   ' / ${4000}',
                                   style: TextStyle(
@@ -305,29 +305,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox(width: 15),
-                  // Expanded(
-                  //   child: Column(
-                  //     children: [
-                  //       CardInfomationBaseSteps(
-                  //           startColorLinearGradient: const Color(0xff42E695),
-                  //           endColorLinearGradient: const Color(0xff3BB2B8),
-                  //           title: 'Distance',
-                  //           image: Image.asset('assets/images/distance.png'),
-                  //           parameter: getDistanceRun(double.parse(_steps)),
-                  //           parameterUnit: 'km'),
-                  //       const SizedBox(height: 10),
-                  //       CardInfomationBaseSteps(
-                  //         startColorLinearGradient: const Color(0xffFFB157),
-                  //         endColorLinearGradient: const Color(0xffFFA057),
-                  //         title: 'Calories',
-                  //         image: Image.asset('assets/images/calories.png'),
-                  //         parameter:
-                  //             calculateCalories(int.parse(_steps)).toString(),
-                  //         parameterUnit: 'kCal',
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        CardInfomationBaseSteps(
+                            startColorLinearGradient: const Color(0xff42E695),
+                            endColorLinearGradient: const Color(0xff3BB2B8),
+                            title: 'Distance',
+                            image: Image.asset('assets/images/distance.png'),
+                            parameter: getDistanceRun(double.parse(_steps)),
+                            parameterUnit: 'km'),
+                        const SizedBox(height: 10),
+                        CardInfomationBaseSteps(
+                          startColorLinearGradient: const Color(0xffFFB157),
+                          endColorLinearGradient: const Color(0xffFFA057),
+                          title: 'Calories',
+                          image: Image.asset('assets/images/calories.png'),
+                          parameter:
+                              calculateCalories(int.parse(_steps)).toString(),
+                          parameterUnit: 'kCal',
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

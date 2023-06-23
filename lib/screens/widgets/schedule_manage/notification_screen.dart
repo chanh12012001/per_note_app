@@ -127,7 +127,7 @@ class NotificationScreen extends StatelessWidget {
                               style: GoogleFonts.lato(
                                 textStyle: const TextStyle(
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 24,
+                                  fontSize: 22,
                                   color: Colors.white,
                                 ),
                               ),

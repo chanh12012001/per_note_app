@@ -7,6 +7,7 @@ import 'package:per_note/models/task_model.dart';
 import 'package:per_note/models/task_to_do_model.dart';
 import 'package:per_note/providers/task_provider.dart';
 import 'package:per_note/screens/widgets/loader.dart';
+import 'package:per_note/screens/widgets/schedule_manage/task_card.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -44,36 +45,11 @@ class _DetailToDoState extends State<DetailToDo> {
                 return snapshot.hasData
                     ? ListView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, taskIndex) {
                           final task = snapshot.data![taskIndex];
-                          return ListTile(
-                            title: Text(task.title!),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                //Hiển thị ngày làm việc khi lưu
-                                // Text('${calculateDailyProgress}%'),
-                                Text('Ngày cần làm: ${task.date.toString()}'),
-                                Row(
-                                  children: [
-                                    Checkbox(
-                                      value:
-                                          task.isCompleted == 0 ? false : true,
-                                      onChanged: (value) {
-                                        // Đánh dấu công việc đã hoàn thành
-                                        task.isCompleted =
-                                            value == false ? 0 : 1;
-                                        setState(() {});
-                                      },
-                                    ),
-                                    Text('Đã hoàn thành'),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
+                          return TaskCard(task: task);
                         })
                     : const Center(
                         child: ColorLoader(),

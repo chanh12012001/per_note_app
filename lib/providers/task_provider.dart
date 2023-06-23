@@ -104,13 +104,12 @@ class TaskProvider extends ChangeNotifier {
   }
 
   TaskRepository taskRepository = TaskRepository();
-  Future<List<Task>> getAllTasksByCategoryId(
-      taskcategoryid, date) async {
-    tasks =
-        await taskRepository.getAllTasksByCategoryId(taskcategoryid, date);
+  Future<List<Task>> getAllTasksByCategoryId(taskcategoryid, date) async {
+    tasks = await taskRepository.getAllTasksByCategoryId(taskcategoryid, date);
     // notifyListeners();
     return tasks;
   }
+
   Future<bool> deleteTask(Task task) async {
     _processedStatus = Status.processing;
     notifyListeners();
@@ -155,5 +154,4 @@ class TaskProvider extends ChangeNotifier {
       return false;
     }
   }
-
 }

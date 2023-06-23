@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:per_note/config/app_url_config.dart';
 import 'package:per_note/models/task_model.dart';
-import 'package:per_note/models/task_to_do_model.dart';
 
-class TaskRepository{
-    Future<List<Task>> getAllTasksByCategoryId(
-      taskcategoryid, date) async {
+class TaskRepository {
+  Future<List<Task>> getAllTasksByCategoryId(taskcategoryid, date) async {
     Response response = await get(
       Uri.parse(AppUrl.getAllTasksByCategoryId),
       headers: {
