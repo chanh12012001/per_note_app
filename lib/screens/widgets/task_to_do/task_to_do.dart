@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:per_note/models/category_model.dart';
 import 'package:per_note/models/task_to_do_model.dart';
 import 'package:per_note/providers/category_provider.dart';
-import 'package:per_note/providers/task_to_do_provider.dart';
 import 'package:per_note/screens/widgets/loader.dart';
 import 'package:per_note/screens/widgets/task_to_do/change_task.dart';
 import 'package:per_note/screens/widgets/task_to_do/detail_to_do.dart';

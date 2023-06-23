@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:per_note/config/app_url_config.dart';
 import 'package:per_note/models/task_model.dart';
+import 'package:per_note/models/task_to_do_model.dart';
 import 'package:per_note/preferences/user_preference.dart';
+import 'package:per_note/repositories/task_repository.dart';
 
 enum Status {
   notProcess,
@@ -101,6 +103,14 @@ class TaskProvider extends ChangeNotifier {
     }
   }
 
+  TaskRepository taskRepository = TaskRepository();
+  Future<List<Task>> getAllTasksByCategoryId(
+      taskcategoryid, date) async {
+    tasks =
+        await taskRepository.getAllTasksByCategoryId(taskcategoryid, date);
+    // notifyListeners();
+    return tasks;
+  }
   Future<bool> deleteTask(Task task) async {
     _processedStatus = Status.processing;
     notifyListeners();
@@ -145,4 +155,5 @@ class TaskProvider extends ChangeNotifier {
       return false;
     }
   }
+
 }

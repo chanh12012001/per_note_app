@@ -9,7 +9,6 @@ import 'package:per_note/screens/widgets/home_screen/profile.dart';
 import 'package:per_note/screens/widgets/home_screen/slider_image_album.dart';
 import 'package:per_note/screens/widgets/schedule_manage/task_list.dart';
 import 'package:per_note/screens/widgets/task_to_do/add_new_task.dart';
-import 'package:per_note/screens/widgets/task_to_do/dialog_add_new.dart';
 import 'package:per_note/screens/widgets/task_to_do/task_to_do.dart';
 import 'package:per_note/screens/widgets/widgets.dart';
 import 'package:per_note/services/notification_service.dart';
