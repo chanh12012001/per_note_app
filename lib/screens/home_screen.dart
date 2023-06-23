@@ -266,15 +266,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                // Text(
-                                //   '${int.parse(_steps)}',
-                                //   style: TextStyle(
-                                //     color: tealColor,
-                                //     fontSize: 16,
-                                //     fontFamily: 'Bebas',
-                                //     fontWeight: FontWeight.bold,
-                                //   ),
-                                // ),
+                                Text(
+                                  '${int.parse(_steps)}',
+                                  style: TextStyle(
+                                    color: tealColor,
+                                    fontSize: 16,
+                                    fontFamily: 'Bebas',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                                 Text(
                                   ' / ${4000}',
                                   style: TextStyle(
@@ -305,29 +305,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox(width: 15),
-                  // Expanded(
-                  //   child: Column(
-                  //     children: [
-                  //       CardInfomationBaseSteps(
-                  //           startColorLinearGradient: const Color(0xff42E695),
-                  //           endColorLinearGradient: const Color(0xff3BB2B8),
-                  //           title: 'Distance',
-                  //           image: Image.asset('assets/images/distance.png'),
-                  //           parameter: getDistanceRun(double.parse(_steps)),
-                  //           parameterUnit: 'km'),
-                  //       const SizedBox(height: 10),
-                  //       CardInfomationBaseSteps(
-                  //         startColorLinearGradient: const Color(0xffFFB157),
-                  //         endColorLinearGradient: const Color(0xffFFA057),
-                  //         title: 'Calories',
-                  //         image: Image.asset('assets/images/calories.png'),
-                  //         parameter:
-                  //             calculateCalories(int.parse(_steps)).toString(),
-                  //         parameterUnit: 'kCal',
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        CardInfomationBaseSteps(
+                            startColorLinearGradient: const Color(0xff42E695),
+                            endColorLinearGradient: const Color(0xff3BB2B8),
+                            title: 'Distance',
+                            image: Image.asset('assets/images/distance.png'),
+                            parameter: getDistanceRun(double.parse(_steps)),
+                            parameterUnit: 'km'),
+                        const SizedBox(height: 10),
+                        CardInfomationBaseSteps(
+                          startColorLinearGradient: const Color(0xffFFB157),
+                          endColorLinearGradient: const Color(0xffFFA057),
+                          title: 'Calories',
+                          image: Image.asset('assets/images/calories.png'),
+                          parameter:
+                              calculateCalories(int.parse(_steps)).toString(),
+                          parameterUnit: 'kCal',
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -60,10 +60,10 @@ class _HealthManageScreenState extends State<HealthManageScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // StepInfomation(
-              //   currentStepNumber: int.parse(_steps),
-              //   standardStepNumber: 4000,
-              // ),
+              StepInfomation(
+                currentStepNumber: int.parse(_steps),
+                standardStepNumber: 4000,
+              ),
               const SizedBox(
                 height: 10,
               ),
