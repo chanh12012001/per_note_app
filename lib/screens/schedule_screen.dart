@@ -39,7 +39,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   CalendarFormat _selectedCalendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   bool _isTableCalendar = false;
-  bool _isCategoryFilter = false;
 
   @override
   void initState() {
