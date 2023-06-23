@@ -21,7 +21,7 @@ class _ScreenNavigationState extends State<ScreenNavigation>
   void initState() {
     super.initState();
     _tabController = TabController(
-        length: 4, vsync: this, initialIndex: 1); // đặt initialIndex tại đây
+        length: 4, vsync: this, initialIndex: 0); // đặt initialIndex tại đây
   }
 
   @override
