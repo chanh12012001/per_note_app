@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Stack(
               children: [
                 Container(
-                  height: 430,
+                  height: 420,
                 ),
                 ClipPath(
                   clipper: OvalBottomBorderClipper(),

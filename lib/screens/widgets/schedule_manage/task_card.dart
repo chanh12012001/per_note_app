@@ -135,19 +135,4 @@ class _TaskCardState extends State<TaskCard> {
       ),
     );
   }
-
-  _getColor(int color) {
-    switch (color) {
-      case 0:
-        return kPrimaryColor;
-      case 1:
-        return Colors.yellow[800];
-      case 2:
-        return Colors.pink[400];
-      case 3:
-        return Colors.teal[300];
-      default:
-        return kPrimaryColor;
-    }
-  }
 }

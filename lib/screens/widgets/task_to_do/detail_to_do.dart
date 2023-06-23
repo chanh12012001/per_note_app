@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:per_note/config/theme.dart';
 import 'package:per_note/models/category_model.dart';
 import 'package:per_note/models/task_model.dart';
-import 'package:per_note/models/task_to_do_model.dart';
 import 'package:per_note/providers/task_provider.dart';
 import 'package:per_note/screens/widgets/loader.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:per_note/screens/widgets/schedule_manage/task_card.dart';
 import 'package:provider/provider.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DetailToDo extends StatefulWidget {
   final Category? category;
@@ -84,8 +82,8 @@ class _DetailToDoState extends State<DetailToDo> {
             width: size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
               ),
               gradient: LinearGradient(colors: [
                 Color(int.parse(widget.category!.color!, radix: 16))
@@ -94,75 +92,79 @@ class _DetailToDoState extends State<DetailToDo> {
                     .withOpacity(0.9)
               ]),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(Icons.arrow_back),
-                      color: Colors.white,
+            child: Column(children: [
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back),
+                    color: Colors.white,
+                  ),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        '${widget.category!.name}',
+                        style: GoogleFonts.lato(
+                          textStyle: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
                     ),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          '${widget.category!.name}',
+                  ),
+                  Spacer(),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "Kế hoạch của bạn",
                           style: GoogleFonts.lato(
                             textStyle: const TextStyle(
-                                fontSize: 30,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           ),
                         ),
+                        Text(
+                          "Đã hoàn thành ${count} / ${snapshot.data!.length}",
+                          style: GoogleFonts.lato(
+                            textStyle: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                    CircularPercentIndicator(
+                      radius: 50,
+                      lineWidth: 10,
+                      percent: count / snapshot.data!.length,
+                      progressColor: Colors.black,
+                      backgroundColor: Colors.white,
+                      circularStrokeCap: CircularStrokeCap.round,
+                      center: Text(
+                        "${(snapshot.data!.isNotEmpty ? (count * 100 / snapshot.data!.length).toStringAsFixed(1) : 0)}%",
+                        style: TextStyle(fontSize: 20),
                       ),
                     ),
-                    Spacer(),
                   ],
                 ),
-                SizedBox(
-                  height: 50,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            "Kế hoạch của bạn",
-                            style: GoogleFonts.lato(
-                              textStyle: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ),
-                          Text(
-                            "Đã hoàn thành ${count} / ${snapshot.data!.length}",
-                            style: GoogleFonts.lato(
-                              textStyle: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                      // SfCircularChart(
-                      //   series: <CircularSeries>[
-                      //   PieSeries<Task, String>(
-                      //     dataSource: <Task>[],
-                      //   ),
-                      // ]),
-                    ],
-                  ),
-                )
-              ]),
-            ),
+              )
+            ]),
           );
         } else {
           return const Center(
