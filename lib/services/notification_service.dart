@@ -60,7 +60,7 @@ class NotificationService {
       createIdNotification(task.id!),
       task.title,
       task.note,
-      _convertTime(hour, minutes, task.repeat!),
+      _convertTime(hour, minutes, "1"),
       const NotificationDetails(
           android: AndroidNotificationDetails(
               'your channel id', 'your channel name',
@@ -68,7 +68,7 @@ class NotificationService {
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: matchDateTimeComponents(task.repeat!),
+      // matchDateTimeComponents: matchDateTimeComponents(task.repeat!),
       payload: "${task.title}|${task.note}|${task.startTime}|${task.endTime}",
     );
   }

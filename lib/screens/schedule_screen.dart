@@ -56,7 +56,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 251, 248, 248),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         iconTheme: const IconThemeData(color: Colors.black38),
@@ -201,37 +201,37 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     DateFormat dateFormat = DateFormat("dd/MM/yyyy");
     for (var task in tasks) {
       DateTime date = dateFormat.parse(task.date!);
+      mySelectedEvents[day] = [task];
+      // if (task.repeat == 'Ngày') {
+      //   if (mySelectedEvents[day] != null) {
+      //     mySelectedEvents[day]?.add(task);
+      //   } else {
+      //     mySelectedEvents[day] = [task];
+      //   }
+      // }
 
-      if (task.repeat == 'Ngày') {
-        if (mySelectedEvents[day] != null) {
-          mySelectedEvents[day]?.add(task);
-        } else {
-          mySelectedEvents[day] = [task];
-        }
-      }
+      // if (task.repeat == 'Tuần') {
+      //   int distance = daysBetween(date, day);
+      //   if (distance % 7 == 0) {
+      //     if (mySelectedEvents[day] != null) {
+      //       mySelectedEvents[day]?.add(task);
+      //     } else {
+      //       mySelectedEvents[day] = [task];
+      //     }
+      //   }
+      // }
 
-      if (task.repeat == 'Tuần') {
-        int distance = daysBetween(date, day);
-        if (distance % 7 == 0) {
-          if (mySelectedEvents[day] != null) {
-            mySelectedEvents[day]?.add(task);
-          } else {
-            mySelectedEvents[day] = [task];
-          }
-        }
-      }
-
-      if (day.day == date.day &&
-          day.month == date.month &&
-          day.year == day.year &&
-          task.repeat != 'Ngày' &&
-          task.repeat != 'Tuần') {
-        if (mySelectedEvents[day] != null) {
-          mySelectedEvents[day]?.add(task);
-        } else {
-          mySelectedEvents[day] = [task];
-        }
-      }
+      // if (day.day == date.day &&
+      //     day.month == date.month &&
+      //     day.year == day.year &&
+      //     task.repeat != 'Ngày' &&
+      //     task.repeat != 'Tuần') {
+      //   if (mySelectedEvents[day] != null) {
+      //     mySelectedEvents[day]?.add(task);
+      //   } else {
+      //     mySelectedEvents[day] = [task];
+      //   }
+      // }
     }
     return mySelectedEvents[day] ?? [];
   }
@@ -249,8 +249,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           side: BorderSide(color: blackCoffeeColor!, width: 1.0),
         ),
         child: TableCalendar(
-          firstDay: DateTime.utc(2022, 1, 1),
-          lastDay: DateTime.utc(2022, 5, 14),
+          firstDay: DateTime.utc(2023, 6, 20),
+          lastDay: DateTime.utc(2023, 8, 20),
           daysOfWeekHeight: 40.0,
           rowHeight: 60.0,
           focusedDay: _focusedDay,

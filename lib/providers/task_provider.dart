@@ -41,9 +41,8 @@ class TaskProvider extends ChangeNotifier {
       'date': task.date,
       'startTime': task.startTime,
       'endTime': task.endTime,
-      'color': task.color,
       'remind': task.remind,
-      'repeat': task.repeat,
+      'taskCategoryId': task.taskCategoryId,
       'userId': userId,
     };
 

@@ -1,9 +1,6 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:per_note/models/album_model.dart';
 import 'package:per_note/models/category_model.dart';
-import 'package:per_note/models/first_image_album_slider_model.dart';
 import '../config/app_url_config.dart';
 import '../preferences/user_preference.dart';
 
@@ -12,7 +9,8 @@ class CategoryRepository {
   String? userId;
   Future<String> getUserId() => UserPreferences().getUserId();
 
-  Future<Category> createNewCategory(String nameCategory, String color, String icon) async {
+  Future<Category> createNewCategory(
+      String nameCategory, String color, String icon) async {
     await getUserId().then((value) => userId = value);
 
     final Map<String, dynamic> categoryData = {
@@ -81,16 +79,16 @@ class CategoryRepository {
   }
 
   Future<Map<String, dynamic>> updateCategory(
-      String nameCategory, String color, String icon,Category category) async {
+      String nameCategory, String color, String icon, Category category) async {
     Map<String, dynamic> result;
     final Map<String, dynamic> categoryData = {
-            'name': nameCategory,
+      'name': nameCategory,
       'color': color,
       'icon': icon,
       'userId': userId,
     };
     Response response = await put(
-      Uri.parse(AppUrl.updateCategory +category.id!),
+      Uri.parse(AppUrl.updateCategory + category.id!),
       body: json.encode(categoryData),
       headers: {'Content-Type': 'application/json'},
     );
