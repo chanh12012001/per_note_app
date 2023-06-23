@@ -68,28 +68,31 @@ class _CarouselSliderImageAlbumState extends State<CarouselSliderImageAlbum> {
                       options: CarouselOptions(
                           enlargeCenterPage: true,
                           autoPlay: true,
-                          height: MediaQuery.of(context).size.width / 1.7,
+                          height: MediaQuery.of(context).size.width / 1.65,
                           aspectRatio: 5 / 3,
+                          viewportFraction: 0.8,
                           onPageChanged: (index, other) {
                             setState(() {
                               _current = index;
                             });
                           }),
                     ),
-                    snapshot.data!.isNotEmpty ? Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Center(
-                        child: Text(
-                          "Ảnh ${images[_current].album!.name!}",
-                          style: TextStyle(
-                            decoration: TextDecoration.none,
-                            color: blackColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ):Container(),
+                    snapshot.data!.isNotEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Center(
+                              child: Text(
+                                "Ảnh ${images[_current].album!.name!}",
+                                style: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  color: grey2Color,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container(),
                   ],
                 ),
               )

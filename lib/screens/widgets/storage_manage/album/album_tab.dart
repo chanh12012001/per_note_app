@@ -31,7 +31,7 @@ class _AlbumTabState extends State<AlbumTab> {
             },
           );
         },
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blue,
         child: const Icon(Icons.add_box),
       ),
       body: _showAlbums(),

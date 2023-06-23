@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:per_note/config/theme.dart';
 import 'package:per_note/providers/note_provider.dart';
@@ -9,6 +11,7 @@ import '../../../../services/toast_service.dart';
 
 class NoteEdit extends StatefulWidget {
   final Note? note;
+
   const NoteEdit({
     Key? key,
     this.note,
@@ -25,6 +28,47 @@ class _NoteEditState extends State<NoteEdit> {
   final contentController = TextEditingController();
   File? _image;
   final picker = ImagePicker();
+  Color _selectedColor = Colors.blue;
+  int chooseColor = 0;
+
+  //chọn màu khi chỉnh sửa
+  void _showColorPicker() {
+    _selectedColor = Color(int.parse(
+        widget.note != null ? widget.note!.color! : "FF2196F3",
+        radix: 16));
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Chọn màu'),
+          content: SingleChildScrollView(
+            child: ColorPicker(
+              pickerColor: Color(int.parse(
+                  widget.note != null ? widget.note!.color! : "FF2196F3",
+                  radix: 16)),
+              onColorChanged: (Color color) {
+                setState(() {
+                  _selectedColor = color;
+                });
+              },
+              pickerAreaHeightPercent: 0.8,
+            ),
+          ),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('Chọn'),
+              onPressed: () {
+                chooseColor++;
+                Navigator.of(context).pop();
+                setState(() {});
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     NoteProvider noteProvider = Provider.of<NoteProvider>(context);
@@ -40,27 +84,33 @@ class _NoteEditState extends State<NoteEdit> {
           color: Colors.black,
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.photo_camera),
-            color: Colors.black,
-            onPressed: () {
-              imagePicker(ImageSource.camera);
-            },
+          GestureDetector(
+            onTap: () => imagePicker(ImageSource.camera),
+            child: Image.asset(
+              "assets/icons/ic_camera.png",
+              width: 25,
+              height: 25,
+            ),
           ),
-          IconButton(
-            icon: const Icon(Icons.insert_photo),
-            color: Colors.black,
-            onPressed: () {
-              imagePicker(ImageSource.gallery);
-            },
+          const SizedBox(width: 13),
+          GestureDetector(
+            onTap: () => imagePicker(ImageSource.gallery),
+            child: Image.asset(
+              "assets/icons/ic_add_photo.png",
+              width: 25,
+              height: 25,
+            ),
           ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            color: Colors.black,
-            onPressed: () {
-              Navigator.pop(context);
-            },
+          const SizedBox(width: 13),
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Image.asset(
+              "assets/icons/ic_delete.png",
+              width: 25,
+              height: 25,
+            ),
           ),
+          const SizedBox(width: 12),
         ],
       ),
       body: SingleChildScrollView(
@@ -80,15 +130,26 @@ class _NoteEditState extends State<NoteEdit> {
                 },
                 maxLines: null,
                 textCapitalization: TextCapitalization.sentences,
-                style: createTitle,
-                decoration: const InputDecoration(
-                    hintText: 'Enter Note Title', border: InputBorder.none),
+                style: GoogleFonts.roboto(
+                    textStyle: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                )),
+                decoration: InputDecoration(
+                  hintText: 'Nhập tiêu đề cho ghi chú',
+                  hintStyle: GoogleFonts.roboto(
+                      textStyle: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  )),
+                  border: InputBorder.none,
+                ),
               ),
             ),
             Container(
               padding: const EdgeInsets.all(10.0),
               width: MediaQuery.of(context).size.width,
-              height: 300.0,
+              // height: 300.0,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: widget.note == null
@@ -98,9 +159,7 @@ class _NoteEditState extends State<NoteEdit> {
                             height: 300,
                             fit: BoxFit.cover,
                           )
-                        : const Center(
-                            child: Text('chọn ảnh'),
-                          )
+                        : Container()
                     : _image != null
                         ? Image.file(
                             _image!,
@@ -141,11 +200,38 @@ class _NoteEditState extends State<NoteEdit> {
                   }
                 },
                 maxLines: null,
-                style: createContent,
-                decoration: const InputDecoration(
-                  hintText: 'Enter Something...',
+                // style: createContent,
+                decoration: InputDecoration(
+                  hintText: 'Viết nội dung...',
+                  // hintStyle: createContent,
                   border: InputBorder.none,
                 ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(12),
+              child: Row(
+                children: <Widget>[
+                  const Text('Chọn màu:'),
+                  const SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: _showColorPicker,
+                    child: Container(
+                      width: 24,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        color: chooseColor != 0
+                            ? _selectedColor
+                            : Color(int.parse(
+                                widget.note != null
+                                    ? widget.note!.color!
+                                    : "FF2196F3",
+                                radix: 16)),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -194,7 +280,11 @@ class _NoteEditState extends State<NoteEdit> {
         backgroundColor: Colors.redAccent,
       );
     } else {
-      await noteProvider.createNewAlbum(title, content, imageFile);
+      await noteProvider.createNewNote(
+          title,
+          _selectedColor.value.toRadixString(16).toUpperCase(),
+          content,
+          imageFile);
       Navigator.pop(context);
       toast.showToast(
         context: context,
@@ -212,7 +302,10 @@ class _NoteEditState extends State<NoteEdit> {
     NoteProvider noteProvider =
         Provider.of<NoteProvider>(context, listen: false);
 
-    noteProvider.updateNote(id, title, content, file).then(
+    noteProvider
+        .updateNote(id, title,
+            _selectedColor.value.toRadixString(16).toUpperCase(), content, file)
+        .then(
       (response) {
         if (response['status']) {
           Navigator.pop(context);

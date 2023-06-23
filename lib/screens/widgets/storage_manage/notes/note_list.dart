@@ -23,9 +23,17 @@ class _NoteListState extends State<NoteList> {
   @override
   Widget build(BuildContext context) {
     return Consumer<NoteProvider>(builder: ((context, noteProvider, child) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 25),
-        child: ListView.builder(
+      return Container(
+        margin: const EdgeInsets.only(top: 8),
+        padding: const EdgeInsets.all(15),
+        child: GridView.builder(
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio: 0.9 / 1.2,
+            crossAxisCount: 2,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+          ),
           itemCount: widget.notes.length,
           itemBuilder: (context, index) {
             Note note = widget.notes[index];

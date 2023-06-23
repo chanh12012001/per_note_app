@@ -3,6 +3,7 @@ class Note {
   String? title;
   String? content;
   String? imageUrl;
+  String? color;
   String? cloudinaryId;
   String? userId;
   String? id;
@@ -12,6 +13,7 @@ class Note {
       this.title,
       this.content,
       this.imageUrl,
+      this.color,
       this.cloudinaryId,
       this.userId,
       this.id});
@@ -21,6 +23,7 @@ class Note {
     title = json['title'];
     content = json['content'];
     imageUrl = json['imageUrl'];
+    color = json['color'];
     cloudinaryId = json['cloudinaryId'];
     userId = json['userId'];
     id = json['id'];
@@ -32,6 +35,7 @@ class Note {
     data['title'] = title;
     data['content'] = content;
     data['imageUrl'] = imageUrl;
+    data['color'] = color;
     data['cloudinaryId'] = cloudinaryId;
     data['userId'] = userId;
     data['id'] = id;

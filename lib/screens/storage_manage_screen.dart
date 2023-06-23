@@ -21,7 +21,21 @@ class AssetManageScreen extends StatefulWidget {
   State<AssetManageScreen> createState() => _AssetManageScreenState();
 }
 
-class _AssetManageScreenState extends State<AssetManageScreen> {
+class _AssetManageScreenState extends State<AssetManageScreen>
+    with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: 3);
+    _tabController.addListener(_handleTabSelection);
+  }
+
+  void _handleTabSelection() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -38,29 +52,61 @@ class _AssetManageScreenState extends State<AssetManageScreen> {
             style: TextStyle(color: blackColor),
           ),
           bottom: TabBar(
+            controller: _tabController,
             padding: const EdgeInsets.only(left: 10, right: 10),
             indicator: BoxDecoration(
               color: tealColor,
-              borderRadius: BorderRadius.circular(25.0),
+              borderRadius: BorderRadius.circular(15.0),
             ),
             overlayColor: MaterialStateProperty.all(whiteColor),
             labelColor: Colors.white,
             unselectedLabelColor: Colors.black,
-            tabs: const [
-              Tab(icon: Icon(Icons.note_alt), text: 'Ghi chú'),
-              Tab(icon: Icon(Icons.photo_album), text: 'Album'),
-              Tab(icon: Icon(Icons.account_box), text: 'Tài khoản'),
-              //  Tab(icon: Icon(Icons.edit_document), text: 'Tài liệu'),
+            labelStyle:
+                const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            tabs: [
+              Tab(
+                icon: Image.asset(
+                  "assets/icons/ic_note.png",
+                  color: _tabController.index == 0
+                      ? Colors.white
+                      : const Color.fromARGB(255, 7, 72, 125),
+                  width: 30,
+                  height: 30,
+                ),
+                text: 'Ghi chú',
+              ),
+              Tab(
+                icon: Image.asset(
+                  "assets/icons/ic_photo.png",
+                  color: _tabController.index == 1
+                      ? Colors.white
+                      : const Color.fromARGB(255, 7, 72, 125),
+                  width: 30,
+                  height: 30,
+                ),
+                text: 'Album ảnh',
+              ),
+              Tab(
+                icon: Image.asset(
+                  "assets/icons/ic_profile.png",
+                  color: _tabController.index == 2
+                      ? Colors.white
+                      : const Color.fromARGB(255, 7, 72, 125),
+                  width: 30,
+                  height: 30,
+                ),
+                text: 'Tài khoản',
+              ),
             ],
           ),
           titleSpacing: 20,
         ),
-        body: const TabBarView(
-          children: [
+        body: TabBarView(
+          controller: _tabController,
+          children: const [
             NoteTab(),
             AlbumTab(),
             AccountTab(),
-            // DocumentTab()
           ],
         ),
       ),

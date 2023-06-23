@@ -72,36 +72,32 @@ class _AlbumCardState extends State<AlbumCard> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         width: MediaQuery.of(context).size.width,
         margin: const EdgeInsets.only(bottom: 15),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              FutureBuilder<String?>(
-                future: _getFirstImageByAlbumId(widget.album.id),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Text("${snapshot.error}");
-                  }
-                  return snapshot.hasData
-                      ? _buildImageAlbumBackground(
-                          NetworkImage(
-                            snapshot.data!,
-                          ),
-                        )
-                      : _buildImageAlbumBackground(
-                          const AssetImage(
-                            'assets/images/photo_gallery.png',
-                          ),
-                        );
-                },
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
+        child: Stack(
+          children: [
+            FutureBuilder<String?>(
+              future: _getFirstImageByAlbumId(widget.album.id),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+                return snapshot.hasData
+                    ? _buildImageAlbumBackground(
+                        NetworkImage(
+                          snapshot.data!,
+                        ),
+                      )
+                    : _buildImageAlbumBackground(
+                        const AssetImage(
+                          'assets/images/photo_gallery.png',
+                        ),
+                      );
+              },
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              child: Container(
+                padding: const EdgeInsets.all(15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -109,9 +105,9 @@ class _AlbumCardState extends State<AlbumCard> {
                       widget.album.name!,
                       maxLines: 2,
                       style: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
                     ),
                     const SizedBox(
                       height: 15,
@@ -126,16 +122,18 @@ class _AlbumCardState extends State<AlbumCard> {
                             ? Text(
                                 "${snapshot.data} ảnh",
                                 style: const TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.w500),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white),
                               )
                             : const Text('Đang tải');
                       },
                     )
                   ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -171,8 +169,8 @@ class _AlbumCardState extends State<AlbumCard> {
 
   Widget _buildImageAlbumBackground(ImageProvider image) {
     return Container(
-      width: 150,
-      height: 100,
+      // width: 150,
+      height: 150,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: image,

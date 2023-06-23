@@ -17,7 +17,7 @@ class NoteRepository {
   Future<String> getUserId() => UserPreferences().getUserId();
 
   Future<Note> createNewNote(
-      String title, String content, File? imageFile) async {
+      String title, String color, String content, File? imageFile) async {
     await getUserId().then((value) => userId = value);
     var stream =
         imageFile != null ? http.ByteStream(imageFile.openRead()) : null;
@@ -34,6 +34,7 @@ class NoteRepository {
         : null;
 
     request.fields["title"] = title;
+    request.fields["color"] = color;
     request.fields["content"] = content;
     request.fields["userId"] = userId!;
     if (imageFile != null) request.files.add(multipartFile!);
@@ -89,7 +90,7 @@ class NoteRepository {
   }
 
   Future<Map<String, dynamic>> updateNote(
-      id, title, content, File? imageFile) async {
+      id, title, color, content, File? imageFile) async {
     Map<String, dynamic> result;
     if (imageFile != null) {
       var stream = http.ByteStream(imageFile.openRead());
@@ -102,6 +103,7 @@ class NoteRepository {
       var request = http.MultipartRequest("PUT", uri);
       request.files.add(multipartFile);
       request.fields["title"] = title;
+      request.fields["color"] = color;
       request.fields["content"] = content;
       var streamedResponse = await request.send();
       var response = await http.Response.fromStream(streamedResponse);

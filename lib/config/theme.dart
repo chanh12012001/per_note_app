@@ -98,13 +98,11 @@ var createTitle = GoogleFonts.roboto(
   fontSize: 28.0,
   fontWeight: FontWeight.w900,
 ));
-var createContent = GoogleFonts.roboto(
-  textStyle: const TextStyle(
-    letterSpacing: 1.0,
-    fontSize: 20.0,
-    height: 1.5,
-    fontWeight: FontWeight.w400,
-  ),
+var createContent = TextStyle(
+  letterSpacing: 1.0,
+  fontSize: 14.0,
+  height: 1.5,
+  fontWeight: FontWeight.w400,
 );
 
 Color? tealColor = Colors.teal[300];

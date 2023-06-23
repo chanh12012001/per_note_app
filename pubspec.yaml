@@ -40,8 +40,7 @@ dependencies:
   dialogflow_flutter: ^1.0.0
   bubble: ^1.2.1
   file: ^6.1.4
-  pedometer: ^3.0.0
-  flutter_facebook_auth: ^5.0.11
+  pedometer: ^4.0.1
   google_sign_in: ^6.1.1
   dotted_border: ^2.0.0+3
   flutter_colorpicker: ^1.0.3
@@ -69,6 +68,30 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/json/
+    - assets/svg/
+    - assets/lottie/
+
+  fonts:
+    - family: InterThin
+      fonts:
+        - asset: assets/fonts/Inter_thin.ttf
+          style: italic
+
+    - family: Inter_Medium
+      fonts:
+        - asset: assets/fonts/Inter_Medium.ttf
+
+    - family: Inter_Bold
+      fonts:
+        - asset: assets/fonts/Inter_Bold.ttf
+
+    - family: Inter-SemiBold
+      fonts:
+        - asset: assets/fonts/Inter-SemiBold.ttf
+
+    - family: Inter-Regular
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

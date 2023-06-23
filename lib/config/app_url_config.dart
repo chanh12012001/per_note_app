@@ -1,5 +1,6 @@
 class AppUrl {
-  static const String baseURL = "https://per-node-be.onrender.com";
+  // static const String baseURL = "https://per-node-be.onrender.com";
+  static const String baseURL = "http://localhost:3000";
 
   static const String login = "$baseURL/login";
   static const String googleLogin = "$baseURL/googleLogin";
@@ -26,8 +27,7 @@ class AppUrl {
   static const String getAllImagesByAlbumId =
       "$baseURL/get-all-images-by-albumid";
   static const String uploadImagesToAlbum = "$baseURL/upload-images-album";
-  static const String deleteImagesOfAlbum =
-      "$baseURL/delete-images-of-album/";
+  static const String deleteImagesOfAlbum = "$baseURL/delete-images-of-album/";
 
   static const String createNewNote = "$baseURL/create-new-note";
   static const String getAllNotes = "$baseURL/get-all-notes";
@@ -52,17 +52,17 @@ class AppUrl {
   static const String deleteAccount = "$baseURL/deleteAccount/";
   static const String updateAccount = "$baseURL/updateAccount/";
 
-    static const String createNewDocument = "$baseURL/createNewDocument";
+  static const String createNewDocument = "$baseURL/createNewDocument";
   static const String getAllDocuments = "$baseURL/getAllDocuments";
   static const String deleteDocument = "$baseURL/deleteDocument/";
   static const String updateDocument = "$baseURL/updateDocument/";
 
-    static const String createNewCategory = "$baseURL/createNewCategory";
+  static const String createNewCategory = "$baseURL/createNewCategory";
   static const String getAllCategories = "$baseURL/getAllCategories";
   static const String deleteCategory = "$baseURL/deleteCategory/";
   static const String updateCategory = "$baseURL/updateCategory/";
 
-    static const String getAllTasksByCategoryId =
+  static const String getAllTasksByCategoryId =
       "$baseURL/get-all-tasks-by-categoryid";
   static const String uploadTasksToCategory = "$baseURL/upload-tasks-category";
   static const String deleteTasksOfCategory =

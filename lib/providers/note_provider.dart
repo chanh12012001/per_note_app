@@ -14,10 +14,10 @@ class NoteProvider extends ChangeNotifier {
     return notes;
   }
 
-  Future<Note> createNewAlbum(
-      String title, String content, File? imageFile) async {
+  Future<Note> createNewNote(
+      String title, String color, String content, File? imageFile) async {
     Note newNote =
-        await noteRepository.createNewNote(title, content, imageFile);
+        await noteRepository.createNewNote(title, color, content, imageFile);
     notes.add(newNote);
     notifyListeners();
     return newNote;
@@ -32,9 +32,9 @@ class NoteProvider extends ChangeNotifier {
   }
 
   Future<Map<String, dynamic>> updateNote(
-      id, title, content, File? file) async {
+      id, title, color, content, File? file) async {
     Map<String, dynamic> result;
-    result = await noteRepository.updateNote(id, title, content, file);
+    result = await noteRepository.updateNote(id, title, color, content, file);
     notifyListeners();
     return result;
   }

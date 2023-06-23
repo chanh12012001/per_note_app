@@ -29,10 +29,15 @@ class _NoteTabState extends State<NoteTab> {
             builder: (BuildContext context) {
               return const NoteEdit();
             },
-          ));
+          )).then((value) => setState(() {}));
         },
-        backgroundColor: Colors.green,
-        child: const Icon(Icons.add_box),
+        backgroundColor: const Color.fromARGB(255, 31, 119, 233),
+        child: Image.asset(
+          "assets/icons/ic_add_note.png",
+          color: Colors.white,
+          width: 25,
+          height: 25,
+        ),
       ),
       body: _showNotes(),
     );

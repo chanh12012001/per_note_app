@@ -33,6 +33,7 @@ class _HealthyIndexListState extends State<HealthyIndexList> {
                 ? GridView.builder(
                     itemCount: snapshot.data!.length,
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,

@@ -23,74 +23,73 @@ class _NoteCardState extends State<NoteCard> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 135.0,
-      margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+      // margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: shadow,
-          borderRadius: BorderRadius.circular(15.0),
-          border: Border.all(color: greyColor!, width: 1.0),
+          color:
+              Color(int.parse(widget.note.color!, radix: 16)).withOpacity(0.2),
+          borderRadius: BorderRadius.circular(25.0),
+          // border: Border.all(color: greyColor!, width: 1.0),
         ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.note.title!,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: itemTitle,
-                    ),
-                    const SizedBox(height: 4.0),
-                    Text(
-                      _getFormatedDate(widget.note.createdAt),
-                      overflow: TextOverflow.ellipsis,
-                      style: itemDateStyle,
-                    ),
-                    const SizedBox(
-                      height: 8.0,
-                    ),
-                    Expanded(
-                      child: Text(
-                        widget.note.content!,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: itemContentStyle,
-                      ),
-                    ),
-                  ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                alignment: Alignment.center,
+                child: Image.asset(
+                  "assets/icons/ic_ghim.png",
+                  width: 25,
+                  height: 25,
                 ),
               ),
-            ),
-            widget.note.imageUrl != ''
-                ? Row(
-                    children: [
-                      const SizedBox(
-                        width: 12.0,
-                      ),
-                      Container(
-                        width: 80.0,
-                        height: 95.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.0),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              widget.note.imageUrl!,
-                            ),
-                            fit: BoxFit.cover,
+              const SizedBox(height: 10),
+              widget.note.imageUrl != ''
+                  ? Container(
+                      height: 95.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.0),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            widget.note.imageUrl!,
                           ),
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ],
-                  )
-                : Container(),
-          ],
+                    )
+                  : Container(),
+              const SizedBox(height: 5),
+              Text(
+                widget.note.title!,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 5.0),
+              Text(
+                _getFormatedDate(widget.note.createdAt),
+                overflow: TextOverflow.ellipsis,
+                style: itemDateStyle,
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              Expanded(
+                child: Text(
+                  widget.note.content!,
+                  maxLines: widget.note.imageUrl != '' ? 2 : 5,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: blackColor,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

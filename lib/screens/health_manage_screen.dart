@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:per_note/config/theme.dart';
@@ -57,79 +56,82 @@ class _HealthManageScreenState extends State<HealthManageScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(25, 10, 25, 25),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            StepInfomation(
-              currentStepNumber: int.parse(_steps),
-              standardStepNumber: 4000,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: CardInfomationBaseSteps(
-                      startColorLinearGradient: const Color(0xff42E695),
-                      endColorLinearGradient: const Color(0xff3BB2B8),
-                      title: 'Distance',
-                      image: Image.asset('assets/images/distance.png'),
-                      parameter: getDistanceRun(double.parse(_steps)),
-                      parameterUnit: 'km'),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: CardInfomationBaseSteps(
-                    startColorLinearGradient: const Color(0xffFFB157),
-                    endColorLinearGradient: const Color(0xffFFA057),
-                    title: 'Calories',
-                    image: Image.asset('assets/images/calories.png'),
-                    parameter: calculateCalories(int.parse(_steps)).toString(),
-                    parameterUnit: 'kCal',
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              StepInfomation(
+                currentStepNumber: int.parse(_steps),
+                standardStepNumber: 4000,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: CardInfomationBaseSteps(
+                        startColorLinearGradient: const Color(0xff42E695),
+                        endColorLinearGradient: const Color(0xff3BB2B8),
+                        title: 'Distance',
+                        image: Image.asset('assets/images/distance.png'),
+                        parameter: getDistanceRun(double.parse(_steps)),
+                        parameterUnit: 'km'),
                   ),
-                )
-              ],
-            ),
-            Divider(
-              height: 25,
-              color: Colors.grey[300],
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 10),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Chỉ số sức khoẻ',
-                  style: TextStyle(
-                    color: blueColor,
-                    fontSize: 23,
-                    fontFamily: 'Bebas',
-                    fontWeight: FontWeight.bold,
+                  const SizedBox(
+                    width: 10,
                   ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const AddAndEditHealthyIndexDialog();
-                      },
-                    );
-                  },
-                  icon: Icon(
-                    Icons.add_circle_outline,
-                    color: greyColor,
+                  Expanded(
+                    child: CardInfomationBaseSteps(
+                      startColorLinearGradient: const Color(0xffFFB157),
+                      endColorLinearGradient: const Color(0xffFFA057),
+                      title: 'Calories',
+                      image: Image.asset('assets/images/calories.png'),
+                      parameter:
+                          calculateCalories(int.parse(_steps)).toString(),
+                      parameterUnit: 'kCal',
+                    ),
+                  )
+                ],
+              ),
+              Divider(
+                height: 25,
+                color: Colors.grey[300],
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 10),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Chỉ số sức khoẻ',
+                    style: TextStyle(
+                      color: blueColor,
+                      fontSize: 23,
+                      fontFamily: 'Bebas',
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const Expanded(child: HealthyIndexList()),
-          ],
+                  IconButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const AddAndEditHealthyIndexDialog();
+                        },
+                      );
+                    },
+                    icon: Icon(
+                      Icons.add_circle_outline,
+                      color: greyColor,
+                    ),
+                  ),
+                ],
+              ),
+              const HealthyIndexList(),
+            ],
+          ),
         ),
       ),
     );
