@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:per_note/screens/widgets/task_to_do/category_screen.dart';
 import 'package:per_note/screens/widgets/widgets.dart';
 import '../screens/screens.dart';
 
@@ -29,6 +30,8 @@ class AppRouter {
         return AssetManageScreen.route();
       case HealthManageScreen.routeName:
         return HealthManageScreen.route();
+      case CategoryScreen.routeName:
+        return CategoryScreen.route();
       default:
         return _errorRoute();
     }

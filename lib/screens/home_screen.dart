@@ -35,82 +35,81 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   NotificationService notifyService = NotificationService();
-  late Stream<StepCount> _stepCountStream;
+  // late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
 
-  String _status = '?', _steps = '0';
-  String _km = '0';
+  // String _status = '?', _steps = '0';
+  // String _km = '0';
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    // initPlatformState();
   }
 
-  void onStepCount(StepCount event) {
-    print(event);
-    setState(() {
-      _steps = event.steps.toString();
-    });
-  }
+  // void onStepCount(StepCount event) {
+  //   print(event);
+  //   setState(() {
+  //     _steps = event.steps.toString();
+  //   });
+  // }
 
-  void onPedestrianStatusChanged(PedestrianStatus event) {
-    print(event);
-    setState(() {
-      _status = event.status;
-    });
-  }
+  // void onPedestrianStatusChanged(PedestrianStatus event) {
+  //   print(event);
+  //   setState(() {
+  //     _status = event.status;
+  //   });
+  // }
 
-  void onPedestrianStatusError(error) {
-    print('onPedestrianStatusError: $error');
-    setState(() {
-      _status = 'Pedestrian Status not available';
-    });
-    print(_status);
-  }
+  // void onPedestrianStatusError(error) {
+  //   print('onPedestrianStatusError: $error');
+  //   setState(() {
+  //     _status = 'Pedestrian Status not available';
+  //   });
+  //   print(_status);
+  // }
 
-  void onStepCountError(error) {
-    print('onStepCountError: $error');
-    setState(() {
-      _steps = '0';
-    });
-  }
+  // void onStepCountError(error) {
+  //   print('onStepCountError: $error');
+  //   setState(() {
+  //     _steps = '0';
+  //   });
+  // }
 
-  void initPlatformState() {
-    _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
-    _pedestrianStatusStream
-        .listen(onPedestrianStatusChanged)
-        .onError(onPedestrianStatusError);
+  // void initPlatformState() {
+  //   _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+  //   _pedestrianStatusStream
+  //       .listen(onPedestrianStatusChanged)
+  //       .onError(onPedestrianStatusError);
 
-    _stepCountStream = Pedometer.stepCountStream;
-    _stepCountStream.listen(onStepCount).onError(onStepCountError);
+  //   _stepCountStream = Pedometer.stepCountStream;
+  //   _stepCountStream.listen(onStepCount).onError(onStepCountError);
 
-    if (!mounted) return;
-  }
+  //   if (!mounted) return;
+  // }
 
   //function to determine the distance run in kilometers using number of steps
-  String getDistanceRun(double numStep) {
-    var distance = ((numStep * 78) / 100000);
-    distance = double.parse(distance.toStringAsFixed(2)); //dos decimales
-    var distancekmx = distance * 34;
-    distancekmx = double.parse(distancekmx.toStringAsFixed(2));
-    setState(() {
-      _km = "$distance";
-    });
-    return _km;
-  }
+  // String getDistanceRun(double numStep) {
+  //   var distance = ((numStep * 78) / 100000);
+  //   distance = double.parse(distance.toStringAsFixed(2)); //dos decimales
+  //   var distancekmx = distance * 34;
+  //   distancekmx = double.parse(distancekmx.toStringAsFixed(2));
+  //   setState(() {
+  //     _km = "$distance";
+  //   });
+  //   return _km;
+  // }
 
-  String calculateCalories(int steps) {
-    double caloriesValue = (steps * 0.0566);
-    return caloriesValue.toStringAsFixed(2);
-  }
+  // String calculateCalories(int steps) {
+  //   double caloriesValue = (steps * 0.0566);
+  //   return caloriesValue.toStringAsFixed(2);
+  // }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     UserPreferences userPreferences = UserPreferences();
-    CategoryProvider categoryProvider =
-        Provider.of<CategoryProvider>(context, listen: false);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -268,15 +267,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  '${int.parse(_steps)}',
-                                  style: TextStyle(
-                                    color: tealColor,
-                                    fontSize: 16,
-                                    fontFamily: 'Bebas',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                // Text(
+                                //   '${int.parse(_steps)}',
+                                //   style: TextStyle(
+                                //     color: tealColor,
+                                //     fontSize: 16,
+                                //     fontFamily: 'Bebas',
+                                //     fontWeight: FontWeight.bold,
+                                //   ),
+                                // ),
                                 Text(
                                   ' / ${4000}',
                                   style: TextStyle(
@@ -307,58 +306,33 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox(width: 15),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        CardInfomationBaseSteps(
-                            startColorLinearGradient: const Color(0xff42E695),
-                            endColorLinearGradient: const Color(0xff3BB2B8),
-                            title: 'Distance',
-                            image: Image.asset('assets/images/distance.png'),
-                            parameter: getDistanceRun(double.parse(_steps)),
-                            parameterUnit: 'km'),
-                        const SizedBox(height: 10),
-                        CardInfomationBaseSteps(
-                          startColorLinearGradient: const Color(0xffFFB157),
-                          endColorLinearGradient: const Color(0xffFFA057),
-                          title: 'Calories',
-                          image: Image.asset('assets/images/calories.png'),
-                          parameter:
-                              calculateCalories(int.parse(_steps)).toString(),
-                          parameterUnit: 'kCal',
-                        )
-                      ],
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: Column(
+                  //     children: [
+                  //       CardInfomationBaseSteps(
+                  //           startColorLinearGradient: const Color(0xff42E695),
+                  //           endColorLinearGradient: const Color(0xff3BB2B8),
+                  //           title: 'Distance',
+                  //           image: Image.asset('assets/images/distance.png'),
+                  //           parameter: getDistanceRun(double.parse(_steps)),
+                  //           parameterUnit: 'km'),
+                  //       const SizedBox(height: 10),
+                  //       CardInfomationBaseSteps(
+                  //         startColorLinearGradient: const Color(0xffFFB157),
+                  //         endColorLinearGradient: const Color(0xffFFA057),
+                  //         title: 'Calories',
+                  //         image: Image.asset('assets/images/calories.png'),
+                  //         parameter:
+                  //             calculateCalories(int.parse(_steps)).toString(),
+                  //         parameterUnit: 'kCal',
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ),
             const Divider(),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 15,
-                    child: Image.asset('assets/images/ic_listcheck.png'),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Việc cần làm',
-                    style: GoogleFonts.roboto(
-                      textStyle: TextStyle(
-                        fontSize: 20.0,
-                        color: grey2Color,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            _showTaskToDo(categoryProvider),
             Padding(
               padding: const EdgeInsets.all(15),
               child: Row(
@@ -414,74 +388,6 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
     );
-  }
-
-  _showTaskToDo(CategoryProvider categoryProvider) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: SizedBox(
-        height: 500,
-        child: FutureBuilder<List<Category>>(
-          future: categoryProvider.getCategoriesList(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Text("${snapshot.hasError}");
-            }
-            return snapshot.hasData
-                ? Column(
-                    children: [
-                      AddTaskButton(
-                        categories: snapshot.data!,
-                        reload: reload,
-                      ),
-                      Expanded(
-                        child: GridView.builder(
-                            // physics: const NeverScrollableScrollPhysics(),
-                            itemCount: snapshot.data!.length + 1,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 10,
-                                    mainAxisSpacing: 10),
-                            itemBuilder: (context, index) =>
-                                index == snapshot.data!.length
-                                    ? AddNewTask(
-                                        reload: reload,
-                                      )
-                                    : TaskToDo(
-                                        category: snapshot.data![index],
-                                        reload: reload,
-                                      )),
-                      ),
-                    ],
-                  )
-                : const Center(
-                    child: ColorLoader(),
-                  );
-          },
-        ),
-      ),
-    );
-  }
-
-  Future<String> reload() async {
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text('Việc cần làm'),
-        content: Text('Thành công'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              setState(() {});
-            },
-            child: Text('OK'),
-          ),
-        ],
-      ),
-    );
-    return "";
   }
 }
 
