@@ -39,49 +39,47 @@ class TaskToDo extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color:
-            //chuyển đổi màu để thể hiện ra ngoài
-                Color(int.parse(category!.color!, radix: 16)).withOpacity(0.2),
-            borderRadius: BorderRadius.circular(10)),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(int.parse(category!.color!, radix: 16)).withOpacity(0.8),
+                Color(int.parse(category!.color!, radix: 16)).withOpacity(0.5),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(20)),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //chuyển đổi icon để thể hiện ra ngoài
-            Icon(
-              IconData(int.parse(category!.icon!), fontFamily: 'MaterialIcons'),
-              color: Color(int.parse(category!.color!, radix: 16))
-                  .withOpacity(0.5),
-              size: 35,
+            CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 20,
+              child: Icon(
+                IconData(int.parse(category!.icon!),
+                    fontFamily: 'MaterialIcons'),
+                color: Colors.black,
+                size: 25,
+              ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
+
             Text(
               category!.name!,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
-            const SizedBox(
-              height: 20,
+
+            // Hiển thị số task
+            const Text(
+              "4 Tasks",
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white),
             ),
-            //Hiển thị số task còn lại và đã hoàn thành
-            // Row(
-            //   children: [
-            //     _buildTaskStatus(
-            //         Color(int.parse(category!.color!, radix: 16))
-            //             .withOpacity(0.1),
-            //         Color(int.parse(category!.color!, radix: 16))
-            //             .withOpacity(0.5),
-            //         '0 left'),
-            //     const SizedBox(
-            //       width: 5,
-            //     ),
-            //     _buildTaskStatus(
-            //         Colors.white,
-            //         Color(int.parse(category!.color!, radix: 16))
-            //             .withOpacity(0.5),
-            //         '1 done'),
-            //   ],
-            // ),
           ],
         ),
       ),

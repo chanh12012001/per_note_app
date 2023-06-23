@@ -36,7 +36,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   NotificationService notifyService = NotificationService();
   // late Stream<StepCount> _stepCountStream;
-  late Stream<PedestrianStatus> _pedestrianStatusStream;
+  // late Stream<PedestrianStatus> _pedestrianStatusStream;
 
   // String _status = '?', _steps = '0';
   // String _km = '0';
@@ -369,7 +369,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Provider.of<TaskProvider>(context, listen: false);
 
     return SizedBox(
-      height: 140,
+      height: 150,
       child: FutureBuilder<List<Task>>(
         future: taskProvider.getTasksList(),
         builder: (context, snapshot) {

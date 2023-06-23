@@ -1,5 +1,3 @@
-import 'package:per_note/models/user_model.dart';
-
 class Category {
   String? id;
   String? name;
@@ -7,7 +5,7 @@ class Category {
   String? icon;
   String? userid;
 
-  Category({this.id,this.name, this.color, this.icon, this.userid});
+  Category({this.id, this.name, this.color, this.icon, this.userid});
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(

@@ -60,6 +60,7 @@ class AppUrl {
   static const String createNewCategory = "$baseURL/createNewCategory";
   static const String getAllCategories = "$baseURL/getAllCategories";
   static const String deleteCategory = "$baseURL/deleteCategory/";
+  static const String getCategoryById = "$baseURL/getCategoryById/";
   static const String updateCategory = "$baseURL/updateCategory/";
 
   static const String getAllTasksByCategoryId =

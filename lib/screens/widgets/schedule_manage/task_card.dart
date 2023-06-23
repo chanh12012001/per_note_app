@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:per_note/config/theme.dart';
+import 'package:per_note/models/category_model.dart';
+import 'package:per_note/providers/category_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../models/task_model.dart';
 
@@ -18,6 +21,8 @@ class TaskCard extends StatefulWidget {
 class _TaskCardState extends State<TaskCard> {
   @override
   Widget build(BuildContext context) {
+    CategoryProvider categoryProvider =
+        Provider.of<CategoryProvider>(context, listen: false);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       width: MediaQuery.of(context).size.width,
@@ -26,7 +31,7 @@ class _TaskCardState extends State<TaskCard> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          // border: Border.all(),
+          border: Border.all(color: const Color.fromARGB(255, 230, 228, 228)),
           color: Colors.white,
         ),
         child: Row(
@@ -73,10 +78,47 @@ class _TaskCardState extends State<TaskCard> {
                   ),
                   Row(
                     children: [
+                      FutureBuilder<Category>(
+                        future: categoryProvider
+                            .getCategoryById(widget.task.taskCategoryId!),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Text("${snapshot.error}");
+                          }
+                          return snapshot.hasData
+                              ? Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 4, horizontal: 5),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Color(int.parse(
+                                            snapshot.data!.color!,
+                                            radix: 16))
+                                        .withOpacity(0.2),
+                                  ),
+                                  child: Text(
+                                    snapshot.data!.name!,
+                                    style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black54),
+                                  ),
+                                )
+                              : Container();
+                        },
+                      ),
+                      const SizedBox(width: 10),
                       Container(
-                        decoration: BoxDecoration(color: Colors.green),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: widget.task.isCompleted == 1
+                              ? const Color.fromARGB(255, 91, 225, 95)
+                              : const Color.fromARGB(255, 230, 148, 234),
+                        ),
                         child: Text(
-                          "Done",
+                          widget.task.isCompleted == 1 ? "Done" : "On Going",
                           style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,

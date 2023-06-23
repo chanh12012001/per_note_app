@@ -9,34 +9,21 @@ class AddNewTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return  AddTaskDialog(reload: reload,);
-                },
-              );
-      },
+      onTap: () {},
       //Nút thêm loại công việc
       child: DottedBorder(
         borderType: BorderType.RRect,
         radius: const Radius.circular(20),
-        dashPattern: const [
-          10,10
-        ],
+        dashPattern: const [10, 10],
         color: Colors.grey,
         strokeWidth: 2,
         child: const Center(
-          child: Text("+ Add",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold
-          ),
+          child: Text(
+            "+ Add",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
-        ),
+      ),
     );
   }
-
-
 }

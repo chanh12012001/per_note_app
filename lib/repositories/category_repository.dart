@@ -55,6 +55,22 @@ class CategoryRepository {
     }
   }
 
+  Future<Category> getCategoryById(String categoryId) async {
+    Response response = await post(
+      Uri.parse(AppUrl.getCategoryById + categoryId),
+      // body: json.encode(categoryData),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      final responseBody = await json.decode(response.body);
+
+      return Category.fromJson(responseBody);
+    } else {
+      throw Exception('Failed to load category from the Internet');
+    }
+  }
+
   Future<Map<String, dynamic>> deleteCategory(Category category) async {
     Map<String, dynamic> result;
 
