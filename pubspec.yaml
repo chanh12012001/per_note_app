@@ -29,7 +29,7 @@ dependencies:
   another_flushbar: ^1.10.28
   flutter_slidable: ^3.0.0
   image_picker: ^0.8.4+11
-  percent_indicator: ^4.0.0
+  percent_indicator: ^4.2.3
   syncfusion_flutter_charts: ^21.2.4
   flutter_custom_clippers: ^2.0.0
   photo_view:
