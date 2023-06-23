@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:per_note/config/theme.dart';
+import 'package:per_note/models/category_model.dart';
+import 'package:per_note/providers/category_provider.dart';
 import 'package:per_note/screens/widgets/schedule_manage/task_list.dart';
+import 'package:per_note/screens/widgets/task_to_do/add_new_task.dart';
+import 'package:per_note/screens/widgets/task_to_do/category_screen.dart';
+import 'package:per_note/screens/widgets/task_to_do/dialog_add_new.dart';
+import 'package:per_note/screens/widgets/task_to_do/task_to_do.dart';
 import 'package:per_note/screens/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -34,6 +40,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   CalendarFormat _selectedCalendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   bool _isTableCalendar = false;
+  bool _isCategoryFilter = false;
 
   @override
   void initState() {
@@ -55,6 +62,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 251, 248, 248),
       appBar: AppBar(
@@ -67,19 +75,35 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           style: TextStyle(color: Colors.black),
         ),
         actions: [
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                _isTableCalendar = !_isTableCalendar;
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: Icon(
-                Icons.calendar_month_outlined,
-                size: 30,
-                color: _isTableCalendar ? Colors.blue : Colors.grey,
-              ),
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      Navigator.pushNamed(context, CategoryScreen.routeName)
+                  .then((_) => setState(() {}));
+                    });
+                  },
+                  icon: Icon(
+                    Icons.filter_list_alt,
+                    size: 30,
+                    color: Colors.grey,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    _isTableCalendar = !_isTableCalendar;
+                    setState(() {});
+                  },
+                  icon: Icon(
+                    Icons.calendar_month_outlined,
+                    size: 30,
+                    color: _isTableCalendar ? Colors.blue : Colors.grey,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -89,7 +113,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           _addTaskBar(),
           _isTableCalendar ? _addCalendarView() : _addDateBar(),
           const SizedBox(height: 10),
-          _showTasks(),
+           _showTasks(),
           const SizedBox(height: 15),
         ],
       ),
@@ -116,6 +140,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       ),
     );
   }
+
+
 
   _addDateBar() {
     return Container(

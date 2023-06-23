@@ -26,6 +26,7 @@ TextStyle get headingStyle {
     textStyle: const TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.bold,
+      color: Colors.black
     ),
   );
 }
