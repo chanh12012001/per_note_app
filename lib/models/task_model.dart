@@ -6,9 +6,8 @@ class Task {
   String? date;
   String? startTime;
   String? endTime;
-  int? color;
   int? remind;
-  String? repeat;
+  String? taskCategoryId;
   String? userId;
 
   Task({
@@ -19,9 +18,8 @@ class Task {
     this.date,
     this.startTime,
     this.endTime,
-    this.color,
     this.remind,
-    this.repeat,
+    this.taskCategoryId,
     this.userId,
   });
 
@@ -34,9 +32,8 @@ class Task {
       date: json['date'],
       startTime: json['startTime'],
       endTime: json['endTime'],
-      color: json['color'],
       remind: json['remind'],
-      repeat: json['repeat'],
+      taskCategoryId: json['taskCategoryId'],
       userId: json['userId'],
     );
   }

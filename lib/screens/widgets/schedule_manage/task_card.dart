@@ -25,8 +25,10 @@ class _TaskCardState extends State<TaskCard> {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: _getColor(widget.task.color ?? 0)),
+          borderRadius: BorderRadius.circular(16),
+          // border: Border.all(),
+          color: Colors.white,
+        ),
         child: Row(
           children: [
             Expanded(
@@ -37,22 +39,20 @@ class _TaskCardState extends State<TaskCard> {
                     widget.task.title ?? "",
                     style: GoogleFonts.lato(
                       textStyle: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 12,
-                  ),
+                  const SizedBox(height: 10),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.access_time_rounded,
-                        color: Colors.grey[200],
-                        size: 18,
+                      const Icon(
+                        Icons.access_time_filled,
+                        color: Color.fromARGB(255, 175, 70, 231),
+                        size: 20,
                       ),
                       const SizedBox(
                         width: 4,
@@ -60,9 +60,9 @@ class _TaskCardState extends State<TaskCard> {
                       Text(
                         "${widget.task.startTime} - ${widget.task.endTime}",
                         style: GoogleFonts.lato(
-                          textStyle: TextStyle(
-                            fontSize: 13,
-                            color: Colors.grey[100],
+                          textStyle: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black45,
                           ),
                         ),
                       )
@@ -71,35 +71,21 @@ class _TaskCardState extends State<TaskCard> {
                   const SizedBox(
                     height: 12,
                   ),
-                  Text(
-                    widget.task.note!,
-                    style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                        fontSize: 15,
-                        color: Colors.grey[100],
+                  Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(color: Colors.green),
+                        child: Text(
+                          "Done",
+                          style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black54),
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              height: 60,
-              width: 0.5,
-              color: Colors.grey[200]!.withOpacity(0.7),
-            ),
-            RotatedBox(
-              quarterTurns: 3,
-              child: Text(
-                widget.task.isCompleted == 1 ? "ĐÃ HOÀN THÀNH" : "TODO",
-                style: GoogleFonts.lato(
-                  textStyle: const TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    ],
                   ),
-                ),
+                ],
               ),
             ),
           ],

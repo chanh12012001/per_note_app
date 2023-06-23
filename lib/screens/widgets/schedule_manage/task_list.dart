@@ -40,47 +40,7 @@ class _TaskListState extends State<TaskList> {
           itemCount: tasks.length,
           itemBuilder: (context, index) {
             Task task = tasks[index];
-            if (task.repeat == 'Ngày') {
-              return AnimationConfiguration.staggeredList(
-                position: index,
-                child: SlideAnimation(
-                  child: FadeInAnimation(
-                      child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          _showBottomSheet(context, task);
-                        },
-                        child: TaskCard(task: task),
-                      ),
-                    ],
-                  )),
-                ),
-              );
-            }
-            if (task.repeat == 'Tuần') {
-              DateTime weeklyTask = DateFormat("dd/MM/yyyy").parse(task.date!);
-              DateTime date = widget.selectedDate;
-              int distance = daysBetween(date, weeklyTask);
-              if (distance % 7 == 0) {
-                return AnimationConfiguration.staggeredList(
-                  position: index,
-                  child: SlideAnimation(
-                    child: FadeInAnimation(
-                        child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            _showBottomSheet(context, task);
-                          },
-                          child: TaskCard(task: task),
-                        ),
-                      ],
-                    )),
-                  ),
-                );
-              }
-            }
+
             if (task.date ==
                 DateFormat('dd/MM/yyyy').format(widget.selectedDate)) {
               return AnimationConfiguration.staggeredList(

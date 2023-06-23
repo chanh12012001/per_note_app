@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:per_note/config/theme.dart';
+import 'package:per_note/models/category_model.dart';
 import 'package:per_note/models/task_model.dart';
+import 'package:per_note/providers/category_provider.dart';
 import 'package:per_note/providers/task_provider.dart';
 import 'package:per_note/screens/widgets/input_field.dart';
 import 'package:per_note/services/toast_service.dart';
@@ -35,18 +37,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   DateTime _selectedDate = DateTime.now();
   String _startTime = DateFormat('hh:mm a').format(DateTime.now()).toString();
   String _endTime = '11:59 PM';
-  String _selectedRepeat = 'None';
-  List<String> repeatList = [
-    'None',
-    'Ngày',
-    'Tuần',
-    'Tháng',
-  ];
-  int _selectedColor = 0;
+  Category? _selectedTaskcategory;
 
   @override
   Widget build(BuildContext context) {
     TaskProvider taskProvider = Provider.of<TaskProvider>(context);
+    CategoryProvider categoryProvider =
+        Provider.of<CategoryProvider>(context, listen: false);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -132,33 +129,53 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 hint: 'Nhắc nhở trước ... phút. Ví dụ: 5, 10, 15,...',
                 inputType: TextInputType.number,
               ),
-              InputField(
-                title: 'Lặp lại',
-                hint: _selectedRepeat,
-                widget: DropdownButton(
-                    icon: const Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.grey,
-                    ),
-                    iconSize: 32,
-                    elevation: 4,
-                    style: subTitleStyle,
-                    underline: Container(height: 0),
-                    onChanged: (String? value) {
-                      setState(() {
-                        _selectedRepeat = value!;
-                      });
-                    },
-                    items: repeatList
-                        .map<DropdownMenuItem<String>>((String? value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value!,
-                          style: const TextStyle(color: Colors.grey),
-                        ),
-                      );
-                    }).toList()),
+              FutureBuilder<List<Category>>(
+                future: categoryProvider.getCategoriesList(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Text("${snapshot.hasError}");
+                  }
+                  return snapshot.hasData
+                      ? InputField(
+                          title: 'Loại công việc',
+                          hint: _selectedTaskcategory == null
+                              ? "Chọn loại công việc"
+                              : _selectedTaskcategory!.name!,
+                          widget: DropdownButton(
+                              icon: const Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Colors.grey,
+                              ),
+                              iconSize: 32,
+                              elevation: 4,
+                              style: subTitleStyle,
+                              underline: Container(height: 0),
+                              onChanged: (Category? value) {
+                                setState(() {
+                                  _selectedTaskcategory = value!;
+                                });
+                              },
+                              items: snapshot.data!
+                                  .map<DropdownMenuItem<Category>>(
+                                      (Category? category) {
+                                return DropdownMenuItem<Category>(
+                                  value: category,
+                                  child: Text(
+                                    category!.name!,
+                                    style: const TextStyle(color: Colors.grey),
+                                  ),
+                                );
+                              }).toList()),
+                        )
+                      : InputField(
+                          title: 'Loại công việc',
+                          hint: "Chọn loại công việc",
+                          widget: DropdownButton<String>(
+                            items: [],
+                            onChanged: (String? value) {},
+                          ),
+                        );
+                },
               ),
               const SizedBox(
                 height: 18,
@@ -167,12 +184,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _colorPallete(),
+                  // _colorPallete(),
                   taskProvider.processedStatus == Status.processing
                       ? const ColorLoader()
                       : RoundedButton(
                           color: Colors.indigo[700],
-                          text: '+ Thêm',
+                          text: 'THÊM',
                           onPressed: () async {
                             Task task = Task(
                               title: _titleController.text,
@@ -181,14 +198,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                                   .format(_selectedDate),
                               startTime: _startTime,
                               endTime: _endTime,
-                              color: _selectedColor,
                               remind: int.tryParse(_remindController.text),
-                              repeat: _selectedRepeat,
+                              taskCategoryId: _selectedTaskcategory!.id,
                             );
 
                             await _addNewTask(task);
                           },
-                          width: 0.3,
+                          width: 0.9,
                         ),
                 ],
               ),
@@ -242,54 +258,54 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     }
   }
 
-  _colorPallete() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Màu sắc',
-          style: titleStyle,
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        Wrap(
-          children: List<Widget>.generate(
-            4,
-            (index) {
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedColor = index;
-                  });
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: CircleAvatar(
-                    radius: 14,
-                    backgroundColor: index == 0
-                        ? kPrimaryColor
-                        : index == 1
-                            ? Colors.yellow[600]
-                            : index == 2
-                                ? Colors.pink[400]
-                                : Colors.teal[300],
-                    child: _selectedColor == index
-                        ? const Icon(
-                            Icons.done,
-                            color: Colors.white,
-                            size: 16,
-                          )
-                        : Container(),
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
+  // _colorPallete() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text(
+  //         'Màu sắc',
+  //         style: titleStyle,
+  //       ),
+  //       const SizedBox(
+  //         height: 8,
+  //       ),
+  //       Wrap(
+  //         children: List<Widget>.generate(
+  //           4,
+  //           (index) {
+  //             return GestureDetector(
+  //               onTap: () {
+  //                 setState(() {
+  //                   _selectedColor = index;
+  //                 });
+  //               },
+  //               child: Padding(
+  //                 padding: const EdgeInsets.only(right: 8.0),
+  //                 child: CircleAvatar(
+  //                   radius: 14,
+  //                   backgroundColor: index == 0
+  //                       ? kPrimaryColor
+  //                       : index == 1
+  //                           ? Colors.yellow[600]
+  //                           : index == 2
+  //                               ? Colors.pink[400]
+  //                               : Colors.teal[300],
+  //                   child: _selectedColor == index
+  //                       ? const Icon(
+  //                           Icons.done,
+  //                           color: Colors.white,
+  //                           size: 16,
+  //                         )
+  //                       : Container(),
+  //                 ),
+  //               ),
+  //             );
+  //           },
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   _getDateFromUser() async {
     DateTime? pickerDate = await showDatePicker(
@@ -310,8 +326,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     if (pickedTime == null) {
       debugPrint('Time cancel');
     } else {
-      DateTime tempDate = DateFormat("hh:mm").parse(
-          "${pickedTime.hour}:${pickedTime.minute}");
+      DateTime tempDate =
+          DateFormat("hh:mm").parse("${pickedTime.hour}:${pickedTime.minute}");
       var dateFormat = DateFormat("h:mm a"); // you can change the format here
       String formatedDate = dateFormat.format(tempDate);
       if (isStartTime) {
