@@ -186,4 +186,4 @@ Hồ Quang - 19520875@gm.uit.edu.vn
 [https://github.com/chanh12012001/per_node](https://github.com/chanh12012001/per-note-be)
 
 # DEMO APP :
-https://drive.google.com/drive/u/0/folders/1O_97vlRRsipvVaYRcio5ToKczAuRq3VB
+
