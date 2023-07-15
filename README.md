@@ -5,7 +5,11 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 ## Nội dung
 1. [Chức năng](#chức-năng)
 
+   1. [Đăng ký](#đăng-ký)
+
    1. [Đăng nhập](#đăng-nhập)
+  
+   1. [Quên mật khẩu](#quên-mật-khẩu)
 
    1. [Trang chủ](#trang-chủ)
    
@@ -16,6 +20,8 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
    1. [Ghi chú](#ghi-chú)
 
    1. [Album ảnh](#album-ảnh)
+  
+   1. [Tài khoản](#tài-khoản)
 
    1. [Hồ sơ sức khoẻ](#hồ-sơ-sức-khoẻ)
 
@@ -27,23 +33,34 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 
 1. [Tác giả](#tác-giả)
 
-1. [Giấy phép](#giấy-phép)
-
 ## Chức năng
+
+### Đăng ký
+   * Đăng ký bằng SĐT
+     
+   <p align="center">
+   <img width="600" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/e7aec991-253a-4051-8339-ec7e8b296bf6">
+   </p>
+
 ### Đăng nhập
-   * Đăng nhập
+   * Đăng nhập SĐT, Google
 
    <p align="center">
-   <img src="https://user-images.githubusercontent.com/73011753/188632326-87c52442-c935-4991-8452-decb862351d4.jpg" height = "490" width="270">
-   <img src="https://user-images.githubusercontent.com/73011753/188632341-dc085164-3d09-45fc-a500-be28d106ac41.jpg" height = "490" width="270">
+   <img width="250" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/e2485118-cfb3-4448-a341-2ad6dc4d2c23">
+   </p>
+
+### Quên mật khẩu
+
+   <p align="center">
+   <img width="250" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/c9dbc89d-9b82-4752-b676-ada9c05cac82">
+
    </p>
 
 ### Trang chủ
    * Màn hình chính
 
    <p align="center">
-   <img src="https://user-images.githubusercontent.com/73011753/188633696-3086adba-da5f-4032-b31d-02027d91c2a6.jpg" height = "490" width="270"> 
-   <img src="https://user-images.githubusercontent.com/73011753/188633816-028ad07d-2df0-4dac-bae5-5aa005a805fc.png" height = "490" width="270">
+   <img width="500" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/521494be-3918-4329-aaa3-7c463e8f30f8">
    </p>
 
 ### Thông tin cá nhân
@@ -56,48 +73,70 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
    </p>
 
 ### Lập kế hoạch
-   * Thêm task hằng ngày, tương tự todo-list
+   * Thêm task
 
    <p align="center">
-   <img src="https://user-images.githubusercontent.com/73011753/188635024-c7886894-b015-4d03-b8ec-d373aa092647.jpg" height = "490" width="270"> 
-   <img src="https://user-images.githubusercontent.com/73011753/188635039-21c75117-7ead-40c7-9c8d-8f5c0cfa356d.jpg" height = "490" width="270">
-   <img src="https://user-images.githubusercontent.com/73011753/188635388-afc5b1e4-e989-40de-92f5-3efd42da3f3a.jpg" height = "490" width="270">
+   <img width="250" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/4d5e815b-3ef3-47a3-abb0-72664aa8789e">
+   </p>
+   
+   * Quản lý task
+
+   <p align="center">
+   <img width="600" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/1657264d-bfc6-4e93-9cab-0b23c66b546c">
+   </p>
+
+   * Loại task
+     
+   <p align="center">
+   <img width="600" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/e76427f8-e363-4e4b-80ce-84275b24880d">
    </p>
    
 ### Ghi chú
    * Ghi chú 
 
    <p align="center">
-   <img src="https://user-images.githubusercontent.com/73011753/188636163-7dff674b-3577-4d44-bd98-1e25cacdf04c.jpg" height = "490" width="270"> 
-   <img src="https://user-images.githubusercontent.com/73011753/188636237-6450d134-ee7f-451e-b0ea-6918e214f2e2.jpg" height = "490" width="270">
-   <img src="https://user-images.githubusercontent.com/73011753/188636362-91cb91ba-2d36-41f5-beac-55e4a7762d7e.jpg" height = "490" width="270">
+   <img width="600" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/2aa265df-aa3b-4515-9683-863870a4d9f3">
    </p>
    
 ### Album ảnh
-   * tạo và lưu các ảnh theo album
+   * All album and Detail
 
    <p align="center">
-   <img src="https://user-images.githubusercontent.com/73011753/188636996-4256f9c5-65de-4019-99bb-0358bed8cf8c.jpg" height = "490" width="270"> 
-   <img src="https://user-images.githubusercontent.com/73011753/188637104-b308777c-cec7-451b-b00c-d5b593912fe0.jpg" height = "490" width="270">
-   <img src="https://user-images.githubusercontent.com/73011753/188637199-c4db4cd5-b1b6-467a-b23a-7922d0f45367.jpg" height = "490" width="270">
-   <img src="https://user-images.githubusercontent.com/73011753/188637438-b32bf5ef-294b-439f-bb42-f2ea1c1e27fc.jpg" height = "490" width="270">
+   <img width="500" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/e71c85be-8785-4beb-a3e4-e486d25b33b2">
+   </p>
+
+   * Selection and detail image
+
+   <p align="center">
+   <img width="500" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/dafe2760-17be-4f3f-b1f8-fac9d2a09aae">
+   </p>
+
+### Tài khoản
+   * Lưu trữ tài khoản mạng xã hội khi có quá nhiều tk không nhớ hết
+
+   <p align="center">
+   <img width="200" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/587ff979-6e4d-47bf-b7c8-a2b1fa472223">
+   <img width="200" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/12ed8930-3cfd-4030-b448-c3d56fecfd26">
+   <img width="200" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/79854edc-dd81-4296-a0ed-f7c4cfb48108">
    </p>
 
 ### Hồ sơ sức khoẻ
 
    <p align="center">
-   <img src="https://user-images.githubusercontent.com/73011753/188637856-630ef87a-24cd-4397-a083-687dd3c4d84b.jpg" height = "490" width="270"> 
-   <img src="https://user-images.githubusercontent.com/73011753/188637874-136ee6d8-c8d5-4c3f-8a12-1de34baf74ab.jpg" height = "490" width="270">
-   <img src="https://user-images.githubusercontent.com/73011753/188637885-5be8b386-61b3-4a25-a057-cd418586327c.jpg" height = "490" width="270">
+   <img width="200" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/8622fbdb-8007-4a59-b983-5550a85b3285">
+   <img width="200" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/41a0cc95-25f6-478e-ae0d-2fcf824acbd8">
+   <img width="200" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/9a35ff38-9610-49a0-8771-638723443dbc">
    </p>
    
 ### Chatbot hỗ trợ chăm sóc sức khoẻ
 
    <p align="center">
-   <img src="https://user-images.githubusercontent.com/73011753/188638259-3b929995-37cd-4c46-9303-a20dc275dad6.jpg" height = "490" width="270"> 
+   <img width="200" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/389a6087-7c10-4b57-9e0e-fa216965c3ee">
+   <img width="200" alt="image" src="https://github.com/chanh12012001/per_note_app/assets/73011753/8c596f0b-8230-41ee-a64c-180b7f979ea2">
    </p>
 
 ## Yêu cầu thiết bị
+
 -Android:
 
    +Android studio : 3.0.1
@@ -110,13 +149,15 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 
 ## Thư viện và công nghệ
 
-- Language : Dart
+- Language : Dart 3.0.5
 
-- FrameWork : Flutter 3.0.5
+- FrameWork : Flutter 3.10.5
 
 - Database: MongoDB
 
-- Backend: Nodejs 
+- Backend: Nodejs, Express
+
+- Chatbot: Dialogflow
 
 * flutter - https://github.com/flutter/flutter/
 
@@ -140,24 +181,6 @@ Với mong muốn giúp người dùng quản lý được thời gian, kế ho�
 Phạm Văn Chánh - 19521274@gm.uit.edu.vn
 
 Hồ Quang - 19520875@gm.uit.edu.vn
-
-## Giấy phép
-
-    Copyright 2014
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
-
 
 # Link source code backend:
 https://github.com/chanh12012001/per_node
